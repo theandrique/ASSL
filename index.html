@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dame-Marie Trans - Boutique de Produits Agricoles</title>
+    <title>ASSL- Boutique de Produits Agricoles</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%238fbc8f'/><text x='50' y='72' font-size='55' text-anchor='middle'>🌺</text></svg>">
     <style>
         * {
             margin: 0;
@@ -642,6 +643,293 @@
             color: white;
         }
 
+        /* Modal Paiement */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease-out;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
+            color: white;
+            padding: 2rem;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .payment-method {
+            padding: 1.5rem;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .payment-method:hover {
+            border-color: #8fbc8f;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(107, 142, 35, 0.2);
+        }
+
+        .payment-method.active {
+            border-color: #6b8e23;
+            background: linear-gradient(135deg, rgba(107, 142, 35, 0.1), rgba(143, 188, 143, 0.1));
+        }
+
+        .payment-method-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-method-name {
+            font-weight: 700;
+            color: #3d210f;
+        }
+
+        .credit-card-form {
+            display: none;
+        }
+
+        .credit-card-form.active {
+            display: block;
+        }
+
+        .card-preview {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 15px 40px rgba(30, 58, 138, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-preview::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .card-chip {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .card-number-display {
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-holder {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .card-expiry {
+            font-size: 0.9rem;
+        }
+
+        .card-type-logo {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+        }
+
+        .payment-summary {
+            background: #f8f8f8;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .payment-summary h3 {
+            color: #3d210f;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #27ae60;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+            border-top: 2px solid #6b8e23;
+        }
+
+        .security-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #e8f5e9;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #27ae60;
+        }
+
+        .security-info-icon {
+            font-size: 2rem;
+        }
+
+        .security-info-text {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #2d5016;
+        }
+
+        .btn-pay {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-pay:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(39, 174, 96, 0.5);
+        }
+
+        .btn-pay:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .moncash-form, .mobile-form {
+            display: none;
+        }
+
+        .moncash-form.active, .mobile-form.active {
+            display: block;
+        }
+
+        .phone-input {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .country-code {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: #f8f8f8;
+            font-weight: 700;
+            width: 100px;
+        }
+
         /* Categories */
         .categories {
             background: white;
@@ -849,8 +1137,8 @@
     <nav>
         <div class="nav-content">
             <div class="logo-container" onclick="showPage('home')">
-                <div class="logo">🌾</div>
-                <div class="brand-text">ASSL</div>
+                <div class="logo">🌺</div>
+                <div class="brand-text">Dame-Marie Trans</div>
             </div>
             <ul class="nav-links">
                 <li><a onclick="showPage('home')">Accueil</a></li>
@@ -869,8 +1157,8 @@
     <div id="homePage" class="page active">
         <section id="accueil" class="hero">
             <div class="hero-content">
-                <h1>Produits agricoles de Qualité</h1>
-                <p>conçus avec une seule obsession : la qualité, la performance et la simplicité.</p>
+                <h1>Produits Agricoles de Qualité</h1>
+                <p>Du cacao aux chocolats artisanaux - Production locale à Dame-Marie, Haïti</p>
                 <a class="cta-button" onclick="scrollToSection('produits')">Voir nos produits</a>
             </div>
         </section>
@@ -924,7 +1212,7 @@
                             <p>15, carrefour figuier, Docan<br>Dame-Marie, Haïti</p>
                         </div>
                     </div>
-                    <div class="contact-item" href="">
+                    <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div>
                             <h4>Téléphones</h4>
@@ -964,6 +1252,7 @@
                 <a href="#" aria-label="Facebook">📘</a>
                 <a href="#" aria-label="Instagram">📷</a>
                 <a href="#" aria-label="WhatsApp">💬</a>
+                <a href="#" aria-label="LinkedIn">💼</a>
             </div>
 
             <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
@@ -984,6 +1273,204 @@
             </div>
             
             <div id="cartContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal Paiement -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>💳 Paiement Sécurisé</h2>
+                <button class="modal-close" onclick="closePaymentModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-summary" id="modalSummary"></div>
+
+                <h3 style="margin-bottom: 1.5rem; color: #3d210f;">Choisissez votre méthode de paiement</h3>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" onclick="selectPaymentMethod('card')">
+                        <div class="payment-method-icon">💳</div>
+                        <div class="payment-method-name">Carte de crédit</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('moncash')">
+                        <div class="payment-method-icon">📱</div>
+                        <div class="payment-method-name">MonCash</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('mobile')">
+                        <div class="payment-method-icon">📞</div>
+                        <div class="payment-method-name">Mobile Money</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('cash')">
+                        <div class="payment-method-icon">💵</div>
+                        <div class="payment-method-name">Paiement à la livraison</div>
+                    </div>
+                </div>
+
+                <!-- Formulaire Carte de Crédit -->
+                <div id="cardForm" class="credit-card-form active">
+                    <div class="card-preview">
+                        <div class="card-chip"></div>
+                        <div class="card-number-display" id="cardNumberDisplay">•••• •••• •••• ••••</div>
+                        <div class="card-details">
+                            <div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">Titulaire</div>
+                                <div class="card-holder" id="cardHolderDisplay">VOTRE NOM</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">Expire</div>
+                                <div class="card-expiry" id="cardExpiryDisplay">MM/AA</div>
+                            </div>
+                        </div>
+                        <div class="card-type-logo" id="cardTypeLogo">💳</div>
+                    </div>
+
+                    <form id="creditCardForm">
+                        <div class="form-group">
+                            <label>Numéro de carte *</label>
+                            <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" 
+                                   oninput="formatCardNumber(this)" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nom sur la carte *</label>
+                            <input type="text" id="cardHolder" placeholder="NOM PRENOM" 
+                                   oninput="updateCardPreview()" style="text-transform: uppercase;" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date d'expiration *</label>
+                                <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/AA" 
+                                       oninput="formatExpiry(this)" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CVV *</label>
+                                <input type="text" id="cardCVV" maxlength="4" placeholder="123" 
+                                       pattern="[0-9]{3,4}" required>
+                            </div>
+                        </div>
+                        <div class="security-info">
+                            <div class="security-info-icon">🔒</div>
+                            <div class="security-info-text">
+                                <strong>Paiement 100% sécurisé</strong><br>
+                                Vos informations sont cryptées et protégées
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-pay">
+                            💳 Payer maintenant
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Formulaire MonCash -->
+                <div id="moncashForm" class="moncash-form">
+                    <div style="text-align: center; padding: 2rem; background: #fff3cd; border-radius: 15px; margin-bottom: 2rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">📱</div>
+                        <h3 style="color: #856404; margin-bottom: 1rem;">MonCash</h3>
+                        <p style="color: #856404;">Système de paiement mobile sécurisé</p>
+                    </div>
+                    <form id="moncashPaymentForm">
+                        <div class="form-group">
+                            <label>Numéro MonCash *</label>
+                            <div class="phone-input">
+                                <div class="country-code">+509</div>
+                                <input type="tel" placeholder="XXXX XXXX" maxlength="9" required 
+                                       style="flex: 1;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Code PIN MonCash *</label>
+                            <input type="password" maxlength="4" placeholder="••••" required>
+                        </div>
+                        <div class="security-info">
+                            <div class="security-info-icon">🔒</div>
+                            <div class="security-info-text">
+                                <strong>Transaction sécurisée</strong><br>
+                                Vous recevrez un SMS de confirmation
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-pay">
+                            📱 Payer avec MonCash
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Formulaire Mobile Money -->
+                <div id="mobileForm" class="mobile-form">
+                    <div style="text-align: center; padding: 2rem; background: #e3f2fd; border-radius: 15px; margin-bottom: 2rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">📞</div>
+                        <h3 style="color: #0d47a1; margin-bottom: 1rem;">Mobile Money</h3>
+                        <p style="color: #0d47a1;">Natcom, Digicel</p>
+                    </div>
+                    <form id="mobilePaymentForm">
+                        <div class="form-group">
+                            <label>Opérateur *</label>
+                            <select style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 12px;" required>
+                                <option value="">Sélectionnez votre opérateur</option>
+                                <option value="natcom">Natcom</option>
+                                <option value="digicel">Digicel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Numéro de téléphone *</label>
+                            <div class="phone-input">
+                                <div class="country-code">+509</div>
+                                <input type="tel" placeholder="XXXX XXXX" maxlength="9" required 
+                                       style="flex: 1;">
+                            </div>
+                        </div>
+                        <div class="security-info">
+                            <div class="security-info-icon">🔒</div>
+                            <div class="security-info-text">
+                                <strong>Paiement mobile sécurisé</strong><br>
+                                Vous recevrez une demande de confirmation
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-pay">
+                            📞 Payer avec Mobile Money
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Paiement à la livraison -->
+                <div id="cashForm" class="mobile-form">
+                    <div style="text-align: center; padding: 3rem; background: #f1f8e9; border-radius: 15px; margin-bottom: 2rem;">
+                        <div style="font-size: 5rem; margin-bottom: 1.5rem;">💵</div>
+                        <h3 style="color: #33691e; margin-bottom: 1rem;">Paiement à la livraison</h3>
+                        <p style="color: #558b2f; font-size: 1.1rem; line-height: 1.6;">
+                            Vous paierez en espèces lors de la réception de votre commande
+                        </p>
+                    </div>
+                    <form id="cashPaymentForm">
+                        <div class="form-group">
+                            <label>Nom complet *</label>
+                            <input type="text" placeholder="Votre nom complet" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Numéro de téléphone *</label>
+                            <div class="phone-input">
+                                <div class="country-code">+509</div>
+                                <input type="tel" placeholder="XXXX XXXX" maxlength="9" required 
+                                       style="flex: 1;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Adresse de livraison *</label>
+                            <textarea placeholder="Votre adresse complète..." required 
+                                      style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 12px; min-height: 100px; font-family: inherit;"></textarea>
+                        </div>
+                        <div class="security-info">
+                            <div class="security-info-icon">✅</div>
+                            <div class="security-info-text">
+                                <strong>Livraison garantie</strong><br>
+                                Nous vous contacterons pour confirmer votre commande
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-pay">
+                            ✅ Confirmer la commande
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1216,11 +1703,226 @@
                 return sum + (produit.prix * cart[id].quantity);
             }, 0);
             
-            alert(`🎉 Commande confirmée!\n\nMontant total: ${total} HTG\n\nNous vous contacterons bientôt pour la livraison.`);
-            cart = {};
-            updateCart();
-            updateCartButtons();
+            openPaymentModal(total);
         }
+
+        // Ouvrir modal paiement
+        function openPaymentModal(total) {
+            const items = Object.keys(cart);
+            const itemCount = items.reduce((sum, id) => sum + cart[id].quantity, 0);
+            
+            document.getElementById('modalSummary').innerHTML = `
+                <h3>Récapitulatif de la commande</h3>
+                <div class="summary-item">
+                    <span>${itemCount} article(s)</span>
+                    <span>${total} HTG</span>
+                </div>
+                <div class="summary-item">
+                    <span>Livraison</span>
+                    <span>Gratuite</span>
+                </div>
+                <div class="summary-item">
+                    <span>Total à payer</span>
+                    <span>${total} HTG</span>
+                </div>
+            `;
+            
+            document.getElementById('paymentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fermer modal paiement
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Sélectionner méthode de paiement
+        let currentPaymentMethod = 'card';
+        
+        function selectPaymentMethod(method) {
+            currentPaymentMethod = method;
+            
+            // Update active state
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.target.closest('.payment-method').classList.add('active');
+            
+            // Hide all forms
+            document.getElementById('cardForm').classList.remove('active');
+            document.getElementById('moncashForm').classList.remove('active');
+            document.getElementById('mobileForm').classList.remove('active');
+            document.getElementById('cashForm').classList.remove('active');
+            
+            // Show selected form
+            if (method === 'card') {
+                document.getElementById('cardForm').classList.add('active');
+            } else if (method === 'moncash') {
+                document.getElementById('moncashForm').classList.add('active');
+            } else if (method === 'mobile') {
+                document.getElementById('mobileForm').classList.add('active');
+            } else if (method === 'cash') {
+                document.getElementById('cashForm').classList.add('active');
+            }
+        }
+
+        // Formater numéro de carte
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\s/g, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            input.value = formattedValue;
+            
+            // Update preview
+            document.getElementById('cardNumberDisplay').textContent = 
+                formattedValue || '•••• •••• •••• ••••';
+            
+            // Detect card type
+            const firstDigit = value.charAt(0);
+            let logo = '💳';
+            if (firstDigit === '4') logo = '💳'; // Visa
+            else if (firstDigit === '5') logo = '💳'; // Mastercard
+            else if (firstDigit === '3') logo = '💳'; // Amex
+            document.getElementById('cardTypeLogo').textContent = logo;
+        }
+
+        // Formater date expiration
+        function formatExpiry(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            input.value = value;
+            document.getElementById('cardExpiryDisplay').textContent = value || 'MM/AA';
+        }
+
+        // Update card preview
+        function updateCardPreview() {
+            const holder = document.getElementById('cardHolder').value.toUpperCase() || 'VOTRE NOM';
+            document.getElementById('cardHolderDisplay').textContent = holder;
+        }
+
+        // Soumettre paiement carte
+        document.getElementById('creditCardForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardHolder = document.getElementById('cardHolder').value;
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardCVV = document.getElementById('cardCVV').value;
+            
+            if (!cardNumber || !cardHolder || !cardExpiry || !cardCVV) {
+                alert('⚠️ Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            // Simulation de traitement
+            const btn = e.target.querySelector('.btn-pay');
+            btn.textContent = '⏳ Traitement en cours...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const total = Object.keys(cart).reduce((sum, id) => {
+                    const produit = produits.find(p => p.id == id);
+                    return sum + (produit.prix * cart[id].quantity);
+                }, 0);
+                
+                alert(`✅ Paiement réussi!\n\n💳 Carte: •••• ${cardNumber.slice(-4)}\n💰 Montant: ${total} HTG\n\n🎉 Votre commande a été confirmée!\nNous vous contacterons bientôt pour la livraison.`);
+                
+                cart = {};
+                updateCart();
+                updateCartButtons();
+                closePaymentModal();
+                
+                btn.textContent = '💳 Payer maintenant';
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        // Soumettre paiement MonCash
+        document.getElementById('moncashPaymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('.btn-pay');
+            btn.textContent = '⏳ Connexion à MonCash...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const total = Object.keys(cart).reduce((sum, id) => {
+                    const produit = produits.find(p => p.id == id);
+                    return sum + (produit.prix * cart[id].quantity);
+                }, 0);
+                
+                alert(`✅ Paiement MonCash réussi!\n\n💰 Montant: ${total} HTG\n\n🎉 Votre commande a été confirmée!\nVous recevrez un SMS de confirmation.`);
+                
+                cart = {};
+                updateCart();
+                updateCartButtons();
+                closePaymentModal();
+                
+                btn.textContent = '📱 Payer avec MonCash';
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        // Soumettre paiement Mobile Money
+        document.getElementById('mobilePaymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('.btn-pay');
+            btn.textContent = '⏳ Envoi de la demande...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const total = Object.keys(cart).reduce((sum, id) => {
+                    const produit = produits.find(p => p.id == id);
+                    return sum + (produit.prix * cart[id].quantity);
+                }, 0);
+                
+                alert(`✅ Demande envoyée!\n\n💰 Montant: ${total} HTG\n\n📱 Veuillez confirmer le paiement sur votre téléphone mobile.`);
+                
+                cart = {};
+                updateCart();
+                updateCartButtons();
+                closePaymentModal();
+                
+                btn.textContent = '📞 Payer avec Mobile Money';
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        // Soumettre paiement cash
+        document.getElementById('cashPaymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('.btn-pay');
+            btn.textContent = '⏳ Confirmation...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                const total = Object.keys(cart).reduce((sum, id) => {
+                    const produit = produits.find(p => p.id == id);
+                    return sum + (produit.prix * cart[id].quantity);
+                }, 0);
+                
+                alert(`✅ Commande confirmée!\n\n💰 Montant à payer: ${total} HTG\n💵 Paiement à la livraison\n\n🎉 Nous vous contacterons dans les 24h pour organiser la livraison.`);
+                
+                cart = {};
+                updateCart();
+                updateCartButtons();
+                closePaymentModal();
+                
+                btn.textContent = '✅ Confirmer la commande';
+                btn.disabled = false;
+            }, 1500);
+        });
+
+        // Fermer modal en cliquant à l'extérieur
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePaymentModal();
+            }
+        });
 
         // Détails produit
         function showDetails(id) {
