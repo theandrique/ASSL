@@ -221,6 +221,8 @@
             box-shadow: 0 15px 40px rgba(92, 58, 46, 0.5);
             border: 2px solid rgba(255,255,255,0.2);
             cursor: pointer;
+            animation: bounce 2s ease-in-out infinite;
+
         }
 
         .cta-button:hover {
@@ -1053,7 +1055,13 @@
             font-family: inherit;
             transition: all 0.3s;
         }
-
+.ble{
+   
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        
+}
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
@@ -1110,7 +1118,10 @@
             font-size: 2.5rem;
             transition: all 0.3s;
         }
-
+.ble{
+    width: 100px;
+    height: 100px;
+}
         .social-links a:hover {
             color: #8fbc8f;
             transform: translateY(-8px) scale(1.2);
@@ -1145,6 +1156,7 @@
                 <li><a onclick="scrollToSection('categories')">Catégories</a></li>
                 <li><a onclick="scrollToSection('produits')">Produits</a></li>
                 <li><a onclick="scrollToSection('contact')">Contact</a></li>
+                <li><a href="about.html">À propos</a></li>
             </ul>
             <div class="cart-icon" onclick="showPage('cart')">
                 🛒
@@ -1158,7 +1170,7 @@
         <section id="accueil" class="hero">
             <div class="hero-content">
                 <h1>Produits Agricoles de Qualité</h1>
-                <p>Du cacao aux chocolats artisanaux - Production locale à Dame-Marie, Haïti</p>
+                <p>Du cacao aux chocolats artisanaux - Production locale à ASSL, Haïti</p>
                 <a class="cta-button" onclick="scrollToSection('produits')">Voir nos produits</a>
             </div>
         </section>
@@ -1166,25 +1178,25 @@
         <section id="categories" class="categories">
             <h2 class="section-title">Nos Catégories</h2>
             <div class="categories-grid">
-                <div class="categorie-card">
-                    <div class="categorie-icon">🍫</div>
-                    <h3>Chocolats</h3>
-                    <p>Tablettes & poudres</p>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                    <img src="image/ble.png" class="ble">
+                    <h3>Mais</h3>
+                    <p>Sac & Sachet</p>
                 </div>
-                <div class="categorie-card">
-                    <div class="categorie-icon">🌾</div>
-                    <h3>Cacao Brut</h3>
-                    <p>Fèves & Poudre</p>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                    <img src="image/farine-de-ble.png"  class="ble">
+                    <h3>Akmil</h3>
+                    <p>poudre & poudre</p>
                 </div>
-                <div class="categorie-card">
-                    <div class="categorie-icon">🎁</div>
-                    <h3>Coffrets</h3>
-                    <p>Cadeaux & Assortiments</p>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                  <img src="image/farine (1).png"  class="ble">
+                    <h3>Farine</h3>
+                    <p>Bonne & haute qualité</p>
                 </div>
-                <div class="categorie-card">
-                    <div class="categorie-icon">🌿</div>
-                    <h3>Bio</h3>
-                    <p>Produits certifiés</p>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                    <img src="image/viande.png"  class="ble">
+                    <h3>Boeuf secher</h3>
+                    <p>Doux & delicieuse</p>
                 </div>
             </div>
         </section>
@@ -1209,14 +1221,14 @@
                         <div class="contact-icon">📍</div>
                         <div>
                             <h4>Adresse</h4>
-                            <p>15, carrefour figuier, Docan<br>Dame-Marie, Haïti</p>
+                            <p>13, Merger leogane<br>ASSL, Haïti</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div>
                             <h4>Téléphones</h4>
-                            <p>(+509) 44528308<br>+201503451347</p>
+                            <p>(+509) 47472529<br>+201503451347</p>
                         </div>
                     </div>
                 </div>
@@ -1236,7 +1248,7 @@
                         </div>
                         <div class="form-group">
                             <label>Message *</label>
-                            <textarea required placeholder="Votre message..."></textarea>
+                            <textarea required placeholder="Je veux acheter..."></textarea>
                         </div>
                         <button type="submit" class="submit-button">Envoyer</button>
                     </form>
@@ -1245,18 +1257,16 @@
         </section>
 
         <footer>
-            <h2>Dame-Marie Trans</h2>
+            <h2>ASSL</h2>
             <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
             
-            <div class="social-links">
-                <a href="#" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="WhatsApp">💬</a>
-                <a href="#" aria-label="LinkedIn">💼</a>
+           <div class="social-links">
+                <a href="https://www.facebook.com/assl.haiti" aria-label="Facebook" target="_blank">ⓕ</a>
+                <a href="https://www.instagram.com/assl.haiti" aria-label="Instagram" target="_blank">[◉°]</a>
+                <a href="https://wa.me/50936310974" aria-label="WhatsApp" target="_blank">✆</a>
             </div>
-
             <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-                <p>&copy; 2026 Dame-Marie Trans. Tous droits réservés.</p>
+                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
                 <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
                     Certifié HACCP | Production Locale | Commerce Équitable
                 </p>
