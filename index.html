@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASSL- Boutique de Produits Agricoles</title>
+    <title>ASSL - Boutique de Produits Agricoles</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%238fbc8f'/><text x='50' y='72' font-size='55' text-anchor='middle'>🌺</text></svg>">
     <style>
         * {
@@ -18,7 +18,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -43,7 +42,6 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            animation: fadeInDown 1s ease-out;
             cursor: pointer;
         }
 
@@ -138,7 +136,6 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Pages */
         .page {
             display: none;
             min-height: 100vh;
@@ -149,7 +146,6 @@
             display: block;
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, rgba(92, 64, 51, 0.88), rgba(61, 33, 15, 0.78)),
@@ -222,7 +218,11 @@
             border: 2px solid rgba(255,255,255,0.2);
             cursor: pointer;
             animation: bounce 2s ease-in-out infinite;
+        }
 
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .cta-button:hover {
@@ -231,7 +231,6 @@
             background: linear-gradient(135deg, #8fbc8f, #6b8e23);
         }
 
-        /* Section */
         section {
             padding: 6rem 5%;
             max-width: 1400px;
@@ -257,7 +256,6 @@
             border-radius: 3px;
         }
 
-        /* Produits en vente */
         .produits {
             background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
         }
@@ -275,12 +273,6 @@
             overflow: hidden;
             box-shadow: 0 15px 50px rgba(0,0,0,0.12);
             transition: all 0.5s;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .produit-card:hover {
@@ -297,23 +289,6 @@
             font-size: 5rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .produit-image::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3.5s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-150%) translateY(-150%) rotate(45deg); }
-            100% { transform: translateX(150%) translateY(150%) rotate(45deg); }
         }
 
         .produit-badge {
@@ -344,7 +319,6 @@
             color: #666;
             line-height: 1.7;
             margin-bottom: 1.2rem;
-            font-size: 1rem;
         }
 
         .produit-prix {
@@ -393,546 +367,6 @@
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
 
-        .btn-acheter.in-cart:hover {
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
-        }
-
-        .btn-details {
-            padding: 1rem 1.5rem;
-            background: white;
-            color: #6b8e23;
-            border: 2px solid #6b8e23;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-details:hover {
-            background: #6b8e23;
-            color: white;
-        }
-
-        /* Page Panier */
-        .cart-page {
-            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
-            min-height: 100vh;
-            padding: 8rem 5% 4rem;
-        }
-
-        .cart-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .cart-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .cart-header h1 {
-            font-size: 3rem;
-            color: #3d210f;
-            margin-bottom: 1rem;
-        }
-
-        .cart-empty {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: white;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-        }
-
-        .cart-empty-icon {
-            font-size: 8rem;
-            margin-bottom: 2rem;
-            opacity: 0.5;
-        }
-
-        .cart-empty h2 {
-            font-size: 2rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .cart-empty p {
-            font-size: 1.2rem;
-            color: #999;
-            margin-bottom: 2rem;
-        }
-
-        .cart-items {
-            background: white;
-            border-radius: 25px;
-            padding: 2rem;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-            margin-bottom: 2rem;
-        }
-
-        .cart-item {
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: 2rem;
-            padding: 2rem;
-            border-bottom: 2px solid #f0f0f0;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-item:hover {
-            background: #fafafa;
-            border-radius: 15px;
-        }
-
-        .cart-item-image {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #5c4033, #8b7355);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-info h3 {
-            font-size: 1.5rem;
-            color: #3d210f;
-            margin-bottom: 0.5rem;
-        }
-
-        .cart-item-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .quantity-btn {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #6b8e23;
-            background: white;
-            color: #6b8e23;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 700;
-        }
-
-        .quantity-btn:hover {
-            background: #6b8e23;
-            color: white;
-        }
-
-        .quantity-value {
-            font-size: 1.3rem;
-            font-weight: 700;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .cart-item-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 1rem;
-        }
-
-        .cart-item-price {
-            font-size: 2rem;
-            color: #27ae60;
-            font-weight: 800;
-        }
-
-        .btn-remove {
-            padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-remove:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
-        }
-
-        .cart-summary {
-            background: white;
-            border-radius: 25px;
-            padding: 3rem;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-        }
-
-        .cart-summary h2 {
-            font-size: 2rem;
-            color: #3d210f;
-            margin-bottom: 2rem;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 1.1rem;
-        }
-
-        .summary-row.total {
-            border-top: 3px solid #6b8e23;
-            border-bottom: none;
-            padding-top: 2rem;
-            margin-top: 1rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #3d210f;
-        }
-
-        .btn-checkout {
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 2rem;
-            transition: all 0.3s;
-        }
-
-        .btn-checkout:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(107, 142, 35, 0.5);
-        }
-
-        .btn-continue {
-            width: 100%;
-            padding: 1.2rem;
-            background: white;
-            color: #6b8e23;
-            border: 2px solid #6b8e23;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .btn-continue:hover {
-            background: #6b8e23;
-            color: white;
-        }
-
-        /* Modal Paiement */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 25px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: slideUp 0.4s ease-out;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
-            color: white;
-            padding: 2rem;
-            border-radius: 25px 25px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            font-size: 2rem;
-            margin: 0;
-        }
-
-        .modal-close {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 2.5rem;
-        }
-
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .payment-method {
-            padding: 1.5rem;
-            border: 3px solid #e0e0e0;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .payment-method:hover {
-            border-color: #8fbc8f;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(107, 142, 35, 0.2);
-        }
-
-        .payment-method.active {
-            border-color: #6b8e23;
-            background: linear-gradient(135deg, rgba(107, 142, 35, 0.1), rgba(143, 188, 143, 0.1));
-        }
-
-        .payment-method-icon {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .payment-method-name {
-            font-weight: 700;
-            color: #3d210f;
-        }
-
-        .credit-card-form {
-            display: none;
-        }
-
-        .credit-card-form.active {
-            display: block;
-        }
-
-        .card-preview {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            border-radius: 20px;
-            padding: 2rem;
-            color: white;
-            margin-bottom: 2rem;
-            box-shadow: 0 15px 40px rgba(30, 58, 138, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-preview::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-        }
-
-        .card-chip {
-            width: 50px;
-            height: 40px;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .card-number-display {
-            font-size: 1.5rem;
-            letter-spacing: 4px;
-            margin-bottom: 1.5rem;
-            font-family: 'Courier New', monospace;
-        }
-
-        .card-details {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .card-holder {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        .card-expiry {
-            font-size: 0.9rem;
-        }
-
-        .card-type-logo {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 3rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1rem;
-        }
-
-        .payment-summary {
-            background: #f8f8f8;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .payment-summary h3 {
-            color: #3d210f;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .summary-item:last-child {
-            border-bottom: none;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #27ae60;
-            padding-top: 1.5rem;
-            margin-top: 1rem;
-            border-top: 2px solid #6b8e23;
-        }
-
-        .security-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: #e8f5e9;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #27ae60;
-        }
-
-        .security-info-icon {
-            font-size: 2rem;
-        }
-
-        .security-info-text {
-            flex: 1;
-            font-size: 0.9rem;
-            color: #2d5016;
-        }
-
-        .btn-pay {
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
-        }
-
-        .btn-pay:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(39, 174, 96, 0.5);
-        }
-
-        .btn-pay:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .moncash-form, .mobile-form {
-            display: none;
-        }
-
-        .moncash-form.active, .mobile-form.active {
-            display: block;
-        }
-
-        .phone-input {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .country-code {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            background: #f8f8f8;
-            font-weight: 700;
-            width: 100px;
-        }
-
-        /* Categories */
         .categories {
             background: white;
         }
@@ -961,14 +395,9 @@
         }
 
         .categorie-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
         }
 
         .categorie-card h3 {
@@ -976,7 +405,6 @@
             font-weight: 700;
         }
 
-        /* Contact */
         .contact {
             background: linear-gradient(135deg, #faf8f3, #f5f0e8);
         }
@@ -986,15 +414,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             margin-top: 3rem;
-        }
-
-        .contact-info {
-            animation: slideInLeft 1s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
         }
 
         .contact-item {
@@ -1011,7 +430,6 @@
 
         .contact-item:hover {
             transform: translateX(15px);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.15);
         }
 
         .contact-icon {
@@ -1024,15 +442,6 @@
             color: #3d210f;
             margin-bottom: 0.5rem;
             font-weight: 700;
-        }
-
-        .contact-form {
-            animation: slideInRight 1s ease-out;
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
         }
 
         .form-group {
@@ -1055,13 +464,7 @@
             font-family: inherit;
             transition: all 0.3s;
         }
-.ble{
-   
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            animation: bounce 2s ease-in-out infinite;
-        
-}
+
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
@@ -1092,7 +495,176 @@
             box-shadow: 0 15px 40px rgba(107, 142, 35, 0.4);
         }
 
-        /* Footer */
+        .cart-page {
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+
+        .cart-empty-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            opacity: 0.5;
+        }
+
+        .cart-items {
+            background: white;
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 2rem;
+            padding: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #5c4033, #8b7355);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #6b8e23;
+            background: white;
+            color: #6b8e23;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+
+        .quantity-btn:hover {
+            background: #6b8e23;
+            color: white;
+        }
+
+        .cart-summary {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(107, 142, 35, 0.5);
+        }
+
+        .about-hero {
+            height: 80vh;
+            background: linear-gradient(135deg, rgba(92, 64, 51, 0.88), rgba(61, 33, 15, 0.78)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%235c4033" width="1200" height="600"/></svg>');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .histoire-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .histoire-text h3 {
+            font-size: 1.8rem;
+            color: #3d210f;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .histoire-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .histoire-image {
+            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 20px 60px rgba(107, 142, 35, 0.3);
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
+            color: white;
+            padding: 4rem 5%;
+            margin: 4rem 0;
+            border-radius: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
         footer {
             background: linear-gradient(180deg, #3d210f, #2a1609);
             color: #f5e6d3;
@@ -1117,30 +689,19 @@
             color: #f5e6d3;
             font-size: 2.5rem;
             transition: all 0.3s;
+            text-decoration: none;
         }
-.ble{
-    width: 100px;
-    height: 100px;
-}
+
         .social-links a:hover {
             color: #8fbc8f;
             transform: translateY(-8px) scale(1.2);
         }
 
-        /* Responsive */
         @media (max-width: 968px) {
             .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .contact-content { grid-template-columns: 1fr; }
-            .cart-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .cart-item-actions {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
+            .contact-content, .histoire-content { grid-template-columns: 1fr; }
+            .cart-item { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1153,10 +714,9 @@
             </div>
             <ul class="nav-links">
                 <li><a onclick="showPage('home')">Accueil</a></li>
-                <li><a onclick="scrollToSection('categories')">Catégories</a></li>
                 <li><a onclick="scrollToSection('produits')">Produits</a></li>
+                <li><a onclick="showPage('about')">À propos</a></li>
                 <li><a onclick="scrollToSection('contact')">Contact</a></li>
-                <li><a href="about.html">À propos</a></li>
             </ul>
             <div class="cart-icon" onclick="showPage('cart')">
                 🛒
@@ -1167,7 +727,7 @@
 
     <!-- Page Accueil -->
     <div id="homePage" class="page active">
-        <section id="accueil" class="hero">
+        <section class="hero">
             <div class="hero-content">
                 <h1>Produits Agricoles de Qualité</h1>
                 <p>Du cacao aux chocolats artisanaux - Production locale à ASSL, Haïti</p>
@@ -1179,24 +739,24 @@
             <h2 class="section-title">Nos Catégories</h2>
             <div class="categories-grid">
                 <div class="categorie-card" onclick="scrollToSection('produits')">
-                    <img src="image/ble.png" class="ble">
-                    <h3>Mais</h3>
+                    <div class="categorie-icon">🌽</div>
+                    <h3>Maïs</h3>
                     <p>Sac & Sachet</p>
                 </div>
                 <div class="categorie-card" onclick="scrollToSection('produits')">
-                    <img src="image/farine-de-ble.png"  class="ble">
+                    <div class="categorie-icon">🌾</div>
                     <h3>Akmil</h3>
-                    <p>poudre & poudre</p>
+                    <p>Poudre de qualité</p>
                 </div>
                 <div class="categorie-card" onclick="scrollToSection('produits')">
-                  <img src="image/farine (1).png"  class="ble">
+                    <div class="categorie-icon">🍞</div>
                     <h3>Farine</h3>
-                    <p>Bonne & haute qualité</p>
+                    <p>Haute qualité</p>
                 </div>
                 <div class="categorie-card" onclick="scrollToSection('produits')">
-                    <img src="image/viande.png"  class="ble">
-                    <h3>Boeuf secher</h3>
-                    <p>Doux & delicieuse</p>
+                    <div class="categorie-icon">🥩</div>
+                    <h3>Bœuf séché</h3>
+                    <p>Délicieux</p>
                 </div>
             </div>
         </section>
@@ -1221,7 +781,7 @@
                         <div class="contact-icon">📍</div>
                         <div>
                             <h4>Adresse</h4>
-                            <p>13, Merger leogane<br>ASSL, Haïti</p>
+                            <p>13, Merger Léogâne<br>ASSL, Haïti</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1233,7 +793,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form onsubmit="event.preventDefault(); alert('✅ Message envoyé! Nous vous contacterons bientôt.');">
                         <div class="form-group">
                             <label>Nom *</label>
                             <input type="text" required placeholder="Votre nom">
@@ -1259,300 +819,95 @@
         <footer>
             <h2>ASSL</h2>
             <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-            
-           <div class="social-links">
-                <a href="https://www.facebook.com/assl.haiti" aria-label="Facebook" target="_blank">ⓕ</a>
-                <a href="https://www.instagram.com/assl.haiti" aria-label="Instagram" target="_blank">[◉°]</a>
-                <a href="https://wa.me/50936310974" aria-label="WhatsApp" target="_blank">✆</a>
+            <div class="social-links">
+                <a href="https://www.facebook.com/assl.haiti" target="_blank">ⓕ</a>
+                <a href="https://www.instagram.com/assl.haiti" target="_blank">[◉°]</a>
+                <a href="https://wa.me/50936310974" target="_blank">✆</a>
             </div>
             <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
                 <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                    Certifié HACCP | Production Locale | Commerce Équitable
-                </p>
             </div>
+        </footer>
+    </div>
+
+    <!-- Page À Propos -->
+    <div id="aboutPage" class="page">
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1>À Propos d'ASSL</h1>
+                <p>Association Socio-Sportive de Lhomond</p>
+            </div>
+        </section>
+
+        <section class="histoire" style="background: white;">
+            <h2 class="section-title">Notre Histoire</h2>
+            <div class="histoire-content">
+                <div class="histoire-text">
+                    <h3>🌱 Fondation et Mission</h3>
+                    <p>
+                        L'Association Socio-Sportive de Lhomond (ASSL) a été <strong>fondée le 26 août 2007</strong> par un ensemble de jeunes soucieux de l'avancement de leur localité. Depuis sa création, ASSL s'est engagée à transformer la vie des communautés locales à travers des initiatives durables et inclusives.
+                    </p>
+                    <p>
+                        Avec un effectif actuel de <strong>92 membres (38 femmes et 54 hommes)</strong>, notre organisation est gérée par un comité directeur de 9 membres élus démocratiquement.
+                    </p>
+                </div>
+                <div class="histoire-image">🌾</div>
+            </div>
+
+            <div class="stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>92</h4>
+                        <p>Membres Actifs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>17+</h4>
+                        <p>Années d'Activité</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>6+</h4>
+                        <p>Partenaires Majeurs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Produits Locaux</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h2>ASSL</h2>
+            <p>Votre partenaire de confiance pour des produits agricoles de qualité.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/assl.haiti" target="_blank">ⓕ</a>
+                <a href="https://www.instagram.com/assl.haiti" target="_blank">[◉°]</a>
+                <a href="https://wa.me/50936310974" target="_blank">✆</a>
+            </div>
+            <p style="margin-top: 2rem;">&copy; 2026 ASSL. Tous droits réservés.</p>
         </footer>
     </div>
 
     <!-- Page Panier -->
     <div id="cartPage" class="page cart-page">
-        <div class="cart-container">
-            <div class="cart-header">
-                <h1>🛒 Ma Corbeille d'Achat</h1>
-                <p style="font-size: 1.2rem; color: #666;">Vos produits sélectionnés</p>
-            </div>
-            
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h1 style="text-align: center; font-size: 3rem; color: #3d210f; margin-bottom: 3rem;">🛒 Ma Corbeille d'Achat</h1>
             <div id="cartContent"></div>
         </div>
     </div>
 
-    <!-- Modal Paiement -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>💳 Paiement Sécurisé</h2>
-                <button class="modal-close" onclick="closePaymentModal()">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="payment-summary" id="modalSummary"></div>
-
-                <h3 style="margin-bottom: 1.5rem; color: #3d210f;">Choisissez votre méthode de paiement</h3>
-                
-                <div class="payment-methods">
-                    <div class="payment-method active" onclick="selectPaymentMethod('card')">
-                        <div class="payment-method-icon">💳</div>
-                        <div class="payment-method-name">Carte de crédit</div>
-                    </div>
-                    <div class="payment-method" onclick="selectPaymentMethod('moncash')">
-                        <div class="payment-method-icon">📱</div>
-                        <div class="payment-method-name">MonCash</div>
-                    </div>
-                    <div class="payment-method" onclick="selectPaymentMethod('mobile')">
-                        <div class="payment-method-icon">📞</div>
-                        <div class="payment-method-name">Mobile Money</div>
-                    </div>
-                    <div class="payment-method" onclick="selectPaymentMethod('cash')">
-                        <div class="payment-method-icon">💵</div>
-                        <div class="payment-method-name">Paiement à la livraison</div>
-                    </div>
-                </div>
-
-                <!-- Formulaire Carte de Crédit -->
-                <div id="cardForm" class="credit-card-form active">
-                    <div class="card-preview">
-                        <div class="card-chip"></div>
-                        <div class="card-number-display" id="cardNumberDisplay">•••• •••• •••• ••••</div>
-                        <div class="card-details">
-                            <div>
-                                <div style="font-size: 0.8rem; opacity: 0.8;">Titulaire</div>
-                                <div class="card-holder" id="cardHolderDisplay">VOTRE NOM</div>
-                            </div>
-                            <div>
-                                <div style="font-size: 0.8rem; opacity: 0.8;">Expire</div>
-                                <div class="card-expiry" id="cardExpiryDisplay">MM/AA</div>
-                            </div>
-                        </div>
-                        <div class="card-type-logo" id="cardTypeLogo">💳</div>
-                    </div>
-
-                    <form id="creditCardForm">
-                        <div class="form-group">
-                            <label>Numéro de carte *</label>
-                            <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" 
-                                   oninput="formatCardNumber(this)" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Nom sur la carte *</label>
-                            <input type="text" id="cardHolder" placeholder="NOM PRENOM" 
-                                   oninput="updateCardPreview()" style="text-transform: uppercase;" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Date d'expiration *</label>
-                                <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/AA" 
-                                       oninput="formatExpiry(this)" required>
-                            </div>
-                            <div class="form-group">
-                                <label>CVV *</label>
-                                <input type="text" id="cardCVV" maxlength="4" placeholder="123" 
-                                       pattern="[0-9]{3,4}" required>
-                            </div>
-                        </div>
-                        <div class="security-info">
-                            <div class="security-info-icon">🔒</div>
-                            <div class="security-info-text">
-                                <strong>Paiement 100% sécurisé</strong><br>
-                                Vos informations sont cryptées et protégées
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-pay">
-                            💳 Payer maintenant
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Formulaire MonCash -->
-                <div id="moncashForm" class="moncash-form">
-                    <div style="text-align: center; padding: 2rem; background: #fff3cd; border-radius: 15px; margin-bottom: 2rem;">
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">📱</div>
-                        <h3 style="color: #856404; margin-bottom: 1rem;">MonCash</h3>
-                        <p style="color: #856404;">Système de paiement mobile sécurisé</p>
-                    </div>
-                    <form id="moncashPaymentForm">
-                        <div class="form-group">
-                            <label>Numéro MonCash *</label>
-                            <div class="phone-input">
-                                <div class="country-code">+509</div>
-                                <input type="tel" placeholder="XXXX XXXX" maxlength="9" required 
-                                       style="flex: 1;">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Code PIN MonCash *</label>
-                            <input type="password" maxlength="4" placeholder="••••" required>
-                        </div>
-                        <div class="security-info">
-                            <div class="security-info-icon">🔒</div>
-                            <div class="security-info-text">
-                                <strong>Transaction sécurisée</strong><br>
-                                Vous recevrez un SMS de confirmation
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-pay">
-                            📱 Payer avec MonCash
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Formulaire Mobile Money -->
-                <div id="mobileForm" class="mobile-form">
-                    <div style="text-align: center; padding: 2rem; background: #e3f2fd; border-radius: 15px; margin-bottom: 2rem;">
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">📞</div>
-                        <h3 style="color: #0d47a1; margin-bottom: 1rem;">Mobile Money</h3>
-                        <p style="color: #0d47a1;">Natcom, Digicel</p>
-                    </div>
-                    <form id="mobilePaymentForm">
-                        <div class="form-group">
-                            <label>Opérateur *</label>
-                            <select style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 12px;" required>
-                                <option value="">Sélectionnez votre opérateur</option>
-                                <option value="natcom">Natcom</option>
-                                <option value="digicel">Digicel</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Numéro de téléphone *</label>
-                            <div class="phone-input">
-                                <div class="country-code">+509</div>
-                                <input type="tel" placeholder="XXXX XXXX" maxlength="9" required 
-                                       style="flex: 1;">
-                            </div>
-                        </div>
-                        <div class="security-info">
-                            <div class="security-info-icon">🔒</div>
-                            <div class="security-info-text">
-                                <strong>Paiement mobile sécurisé</strong><br>
-                                Vous recevrez une demande de confirmation
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-pay">
-                            📞 Payer avec Mobile Money
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Paiement à la livraison -->
-                <div id="cashForm" class="mobile-form">
-                    <div style="text-align: center; padding: 3rem; background: #f1f8e9; border-radius: 15px; margin-bottom: 2rem;">
-                        <div style="font-size: 5rem; margin-bottom: 1.5rem;">💵</div>
-                        <h3 style="color: #33691e; margin-bottom: 1rem;">Paiement à la livraison</h3>
-                        <p style="color: #558b2f; font-size: 1.1rem; line-height: 1.6;">
-                            Vous paierez en espèces lors de la réception de votre commande
-                        </p>
-                    </div>
-                    <form id="cashPaymentForm">
-                        <div class="form-group">
-                            <label>Nom complet *</label>
-                            <input type="text" placeholder="Votre nom complet" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Numéro de téléphone *</label>
-                            <div class="phone-input">
-                                <div class="country-code">+509</div>
-                                <input type="tel" placeholder="XXXX XXXX" maxlength="9" required 
-                                       style="flex: 1;">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Adresse de livraison *</label>
-                            <textarea placeholder="Votre adresse complète..." required 
-                                      style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 12px; min-height: 100px; font-family: inherit;"></textarea>
-                        </div>
-                        <div class="security-info">
-                            <div class="security-info-icon">✅</div>
-                            <div class="security-info-text">
-                                <strong>Livraison garantie</strong><br>
-                                Nous vous contacterons pour confirmer votre commande
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-pay">
-                            ✅ Confirmer la commande
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Données des produits
         const produits = [
-            {
-                id: 1,
-                nom: "Chocolat en poudre",
-                description: "Poudre de cacao pure 100% naturelle, idéale pour vos boissons et desserts.",
-                prix: 350,
-                prixAncien: 450,
-                poids: "500g",
-                badge: "Nouveau",
-                icon: "🍫"
-            },
-            {
-                id: 2,
-                nom: "Chocolat en poulet",
-                description: "Chocolat traditionnel haïtien, parfait pour la cuisine ou à déguster.",
-                prix: 280,
-                prixAncien: null,
-                poids: "400g",
-                badge: "Popular",
-                icon: "🍪"
-            },
-            {
-                id: 3,
-                nom: "Tablette de chocolat noir",
-                description: "Chocolat noir 70% cacao, artisanal et raffiné. Conforme HACCP.",
-                prix: 180,
-                prixAncien: 220,
-                poids: "100g",
-                badge: "Premium",
-                icon: "🍫"
-            },
-            {
-                id: 4,
-                nom: "Fèves de cacao brutes",
-                description: "Fèves de cacao fermentées et séchées, directement des producteurs.",
-                prix: 450,
-                prixAncien: null,
-                poids: "1kg",
-                badge: null,
-                icon: "🌾"
-            },
-            {
-                id: 5,
-                nom: "Coffret découverte",
-                description: "Assortiment de nos meilleurs produits dans un joli coffret cadeau.",
-                prix: 850,
-                prixAncien: 1000,
-                poids: "Pack",
-                badge: null,
-                icon: "🎁"
-            },
-            {
-                id: 6,
-                nom: "Cacao bio certifié",
-                description: "Poudre de cacao 100% biologique, sans additifs ni conservateurs.",
-                prix: 420,
-                prixAncien: null,
-                poids: "500g",
-                badge: "Bio",
-                icon: "🌿"
-            }
+            { id: 1, nom: "Chocolat en poudre", description: "Poudre de cacao pure 100% naturelle", prix: 350, prixAncien: 450, poids: "500g", badge: "Nouveau", icon: "🍫" },
+            { id: 2, nom: "Chocolat traditionnel", description: "Chocolat traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "🍪" },
+            { id: 3, nom: "Tablette de chocolat noir", description: "Chocolat noir 70% cacao artisanal", prix: 180, prixAncien: 220, poids: "100g", badge: "Premium", icon: "🍫" },
+            { id: 4, nom: "Fèves de cacao brutes", description: "Fèves de cacao fermentées et séchées", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "🌾" },
+            { id: 5, nom: "Coffret découverte", description: "Assortiment de nos meilleurs produits", prix: 850, prixAncien: 1000, poids: "Pack", badge: null, icon: "🎁" },
+            { id: 6, nom: "Cacao bio certifié", description: "Poudre de cacao 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon: "🌿" }
         ];
 
-        // Panier
         let cart = {};
 
-        // Afficher les produits
         function displayProduits() {
             const grid = document.getElementById('produitsGrid');
             grid.innerHTML = produits.map(p => `
@@ -1575,7 +930,6 @@
                             <button class="btn-acheter" id="btn-${p.id}" onclick="toggleCart(${p.id})">
                                 🛒 Ajouter au panier
                             </button>
-                            <button class="btn-details" onclick="showDetails(${p.id})">👁️</button>
                         </div>
                     </div>
                 </div>
@@ -1583,7 +937,6 @@
             updateCartButtons();
         }
 
-        // Ajouter/Retirer du panier
         function toggleCart(id) {
             if (cart[id]) {
                 delete cart[id];
@@ -1594,7 +947,6 @@
             updateCartButtons();
         }
 
-        // Mettre à jour les boutons
         function updateCartButtons() {
             produits.forEach(p => {
                 const btn = document.getElementById(`btn-${p.id}`);
@@ -1610,17 +962,14 @@
             });
         }
 
-        // Mettre à jour le panier
         function updateCart() {
             const count = Object.keys(cart).length;
             document.getElementById('cartCount').textContent = count;
-            
             if (document.getElementById('cartPage').classList.contains('active')) {
                 displayCart();
             }
         }
 
-        // Afficher le panier
         function displayCart() {
             const content = document.getElementById('cartContent');
             const items = Object.keys(cart);
@@ -1647,48 +996,45 @@
                 return `
                     <div class="cart-item">
                         <div class="cart-item-image">${produit.icon}</div>
-                        <div class="cart-item-info">
-                            <h3>${produit.nom}</h3>
-                            <p>${produit.description}</p>
+                        <div>
+                            <h3 style="font-size: 1.5rem; color: #3d210f; margin-bottom: 0.5rem;">${produit.nom}</h3>
+                            <p style="color: #666;">${produit.description}</p>
                             <div class="cart-item-quantity">
                                 <button class="quantity-btn" onclick="updateQuantity(${id}, -1)">-</button>
-                                <span class="quantity-value">${quantity}</span>
+                                <span style="font-size: 1.3rem; font-weight: 700; min-width: 40px; text-align: center;">${quantity}</span>
                                 <button class="quantity-btn" onclick="updateQuantity(${id}, 1)">+</button>
                             </div>
                         </div>
-                        <div class="cart-item-actions">
-                            <div class="cart-item-price">${subtotal} HTG</div>
-                            <button class="btn-remove" onclick="removeFromCart(${id})">🗑️ Retirer</button>
+                        <div style="text-align: right;">
+                            <div style="font-size: 2rem; color: #27ae60; font-weight: 800; margin-bottom: 1rem;">${subtotal} HTG</div>
+                            <button class="submit-button" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b);" onclick="removeFromCart(${id})">🗑️ Retirer</button>
                         </div>
                     </div>
                 `;
             }).join('');
 
             content.innerHTML = `
-                <div class="cart-items">
-                    ${itemsHTML}
-                </div>
+                <div class="cart-items">${itemsHTML}</div>
                 <div class="cart-summary">
                     <h2>Récapitulatif</h2>
-                    <div class="summary-row">
+                    <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
                         <span>Sous-total</span>
                         <span>${total} HTG</span>
                     </div>
-                    <div class="summary-row">
+                    <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
                         <span>Livraison</span>
                         <span>Gratuite</span>
                     </div>
-                    <div class="summary-row total">
+                    <div style="display: flex; justify-content: space-between; padding: 2rem 0 1rem; border-top: 3px solid #6b8e23; margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: #3d210f;">
                         <span>Total</span>
                         <span>${total} HTG</span>
                     </div>
-                    <button class="btn-checkout" onclick="checkout()">💳 Passer la commande</button>
-                    <button class="btn-continue" onclick="showPage('home')">← Continuer mes achats</button>
+                    <button class="btn-checkout" onclick="checkout(${total})">💳 Passer la commande</button>
+                    <button class="submit-button" style="width: 100%; margin-top: 1rem; background: white; color: #6b8e23; border: 2px solid #6b8e23;" onclick="showPage('home')">← Continuer mes achats</button>
                 </div>
             `;
         }
 
-        // Mettre à jour la quantité
         function updateQuantity(id, change) {
             if (!cart[id]) return;
             cart[id].quantity += change;
@@ -1699,248 +1045,19 @@
             updateCartButtons();
         }
 
-        // Retirer du panier
         function removeFromCart(id) {
             delete cart[id];
             updateCart();
             updateCartButtons();
         }
 
-        // Passer commande
-        function checkout() {
-            const total = Object.keys(cart).reduce((sum, id) => {
-                const produit = produits.find(p => p.id == id);
-                return sum + (produit.prix * cart[id].quantity);
-            }, 0);
-            
-            openPaymentModal(total);
+        function checkout(total) {
+            alert(`✅ Commande confirmée!\n\n💰 Total: ${total} HTG\n\n🎉 Nous vous contacterons bientôt pour la livraison.`);
+            cart = {};
+            updateCart();
+            updateCartButtons();
         }
 
-        // Ouvrir modal paiement
-        function openPaymentModal(total) {
-            const items = Object.keys(cart);
-            const itemCount = items.reduce((sum, id) => sum + cart[id].quantity, 0);
-            
-            document.getElementById('modalSummary').innerHTML = `
-                <h3>Récapitulatif de la commande</h3>
-                <div class="summary-item">
-                    <span>${itemCount} article(s)</span>
-                    <span>${total} HTG</span>
-                </div>
-                <div class="summary-item">
-                    <span>Livraison</span>
-                    <span>Gratuite</span>
-                </div>
-                <div class="summary-item">
-                    <span>Total à payer</span>
-                    <span>${total} HTG</span>
-                </div>
-            `;
-            
-            document.getElementById('paymentModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Fermer modal paiement
-        function closePaymentModal() {
-            document.getElementById('paymentModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Sélectionner méthode de paiement
-        let currentPaymentMethod = 'card';
-        
-        function selectPaymentMethod(method) {
-            currentPaymentMethod = method;
-            
-            // Update active state
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('active');
-            });
-            event.target.closest('.payment-method').classList.add('active');
-            
-            // Hide all forms
-            document.getElementById('cardForm').classList.remove('active');
-            document.getElementById('moncashForm').classList.remove('active');
-            document.getElementById('mobileForm').classList.remove('active');
-            document.getElementById('cashForm').classList.remove('active');
-            
-            // Show selected form
-            if (method === 'card') {
-                document.getElementById('cardForm').classList.add('active');
-            } else if (method === 'moncash') {
-                document.getElementById('moncashForm').classList.add('active');
-            } else if (method === 'mobile') {
-                document.getElementById('mobileForm').classList.add('active');
-            } else if (method === 'cash') {
-                document.getElementById('cashForm').classList.add('active');
-            }
-        }
-
-        // Formater numéro de carte
-        function formatCardNumber(input) {
-            let value = input.value.replace(/\s/g, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            input.value = formattedValue;
-            
-            // Update preview
-            document.getElementById('cardNumberDisplay').textContent = 
-                formattedValue || '•••• •••• •••• ••••';
-            
-            // Detect card type
-            const firstDigit = value.charAt(0);
-            let logo = '💳';
-            if (firstDigit === '4') logo = '💳'; // Visa
-            else if (firstDigit === '5') logo = '💳'; // Mastercard
-            else if (firstDigit === '3') logo = '💳'; // Amex
-            document.getElementById('cardTypeLogo').textContent = logo;
-        }
-
-        // Formater date expiration
-        function formatExpiry(input) {
-            let value = input.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            input.value = value;
-            document.getElementById('cardExpiryDisplay').textContent = value || 'MM/AA';
-        }
-
-        // Update card preview
-        function updateCardPreview() {
-            const holder = document.getElementById('cardHolder').value.toUpperCase() || 'VOTRE NOM';
-            document.getElementById('cardHolderDisplay').textContent = holder;
-        }
-
-        // Soumettre paiement carte
-        document.getElementById('creditCardForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const cardNumber = document.getElementById('cardNumber').value;
-            const cardHolder = document.getElementById('cardHolder').value;
-            const cardExpiry = document.getElementById('cardExpiry').value;
-            const cardCVV = document.getElementById('cardCVV').value;
-            
-            if (!cardNumber || !cardHolder || !cardExpiry || !cardCVV) {
-                alert('⚠️ Veuillez remplir tous les champs obligatoires');
-                return;
-            }
-            
-            // Simulation de traitement
-            const btn = e.target.querySelector('.btn-pay');
-            btn.textContent = '⏳ Traitement en cours...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                const total = Object.keys(cart).reduce((sum, id) => {
-                    const produit = produits.find(p => p.id == id);
-                    return sum + (produit.prix * cart[id].quantity);
-                }, 0);
-                
-                alert(`✅ Paiement réussi!\n\n💳 Carte: •••• ${cardNumber.slice(-4)}\n💰 Montant: ${total} HTG\n\n🎉 Votre commande a été confirmée!\nNous vous contacterons bientôt pour la livraison.`);
-                
-                cart = {};
-                updateCart();
-                updateCartButtons();
-                closePaymentModal();
-                
-                btn.textContent = '💳 Payer maintenant';
-                btn.disabled = false;
-            }, 2000);
-        });
-
-        // Soumettre paiement MonCash
-        document.getElementById('moncashPaymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('.btn-pay');
-            btn.textContent = '⏳ Connexion à MonCash...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                const total = Object.keys(cart).reduce((sum, id) => {
-                    const produit = produits.find(p => p.id == id);
-                    return sum + (produit.prix * cart[id].quantity);
-                }, 0);
-                
-                alert(`✅ Paiement MonCash réussi!\n\n💰 Montant: ${total} HTG\n\n🎉 Votre commande a été confirmée!\nVous recevrez un SMS de confirmation.`);
-                
-                cart = {};
-                updateCart();
-                updateCartButtons();
-                closePaymentModal();
-                
-                btn.textContent = '📱 Payer avec MonCash';
-                btn.disabled = false;
-            }, 2000);
-        });
-
-        // Soumettre paiement Mobile Money
-        document.getElementById('mobilePaymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('.btn-pay');
-            btn.textContent = '⏳ Envoi de la demande...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                const total = Object.keys(cart).reduce((sum, id) => {
-                    const produit = produits.find(p => p.id == id);
-                    return sum + (produit.prix * cart[id].quantity);
-                }, 0);
-                
-                alert(`✅ Demande envoyée!\n\n💰 Montant: ${total} HTG\n\n📱 Veuillez confirmer le paiement sur votre téléphone mobile.`);
-                
-                cart = {};
-                updateCart();
-                updateCartButtons();
-                closePaymentModal();
-                
-                btn.textContent = '📞 Payer avec Mobile Money';
-                btn.disabled = false;
-            }, 2000);
-        });
-
-        // Soumettre paiement cash
-        document.getElementById('cashPaymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('.btn-pay');
-            btn.textContent = '⏳ Confirmation...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                const total = Object.keys(cart).reduce((sum, id) => {
-                    const produit = produits.find(p => p.id == id);
-                    return sum + (produit.prix * cart[id].quantity);
-                }, 0);
-                
-                alert(`✅ Commande confirmée!\n\n💰 Montant à payer: ${total} HTG\n💵 Paiement à la livraison\n\n🎉 Nous vous contacterons dans les 24h pour organiser la livraison.`);
-                
-                cart = {};
-                updateCart();
-                updateCartButtons();
-                closePaymentModal();
-                
-                btn.textContent = '✅ Confirmer la commande';
-                btn.disabled = false;
-            }, 1500);
-        });
-
-        // Fermer modal en cliquant à l'extérieur
-        document.getElementById('paymentModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePaymentModal();
-            }
-        });
-
-        // Détails produit
-        function showDetails(id) {
-            const produit = produits.find(p => p.id == id);
-            alert(`📦 ${produit.nom}\n\n${produit.description}\n\nPrix: ${produit.prix} HTG\nPoids: ${produit.poids}\n\n${cart[id] ? '✅ Dans votre panier' : '❌ Pas encore dans votre panier'}`);
-        }
-
-        // Navigation entre pages
         function showPage(pageName) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -1948,15 +1065,15 @@
             
             if (pageName === 'home') {
                 document.getElementById('homePage').classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else if (pageName === 'cart') {
                 document.getElementById('cartPage').classList.add('active');
                 displayCart();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (pageName === 'about') {
+                document.getElementById('aboutPage').classList.add('active');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Scroll vers section
         function scrollToSection(sectionId) {
             showPage('home');
             setTimeout(() => {
@@ -1967,7 +1084,6 @@
             }, 100);
         }
 
-        // Initialisation
         displayProduits();
         updateCart();
     </script>
