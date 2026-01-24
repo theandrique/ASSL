@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASSL - Boutique de Produits Agricoles</title>
-<link rel="icon" type="image/png" href="image/logo.png"/>
+    <link rel="icon" type="image/png" href="image/logo.png"/>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         nav {
@@ -49,14 +52,7 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7a9b5a, #8fbc8f);
-            border: 3px solid rgba(255,255,255,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
             animation: float 3s ease-in-out infinite;
-            box-shadow: 0 10px 40px rgba(107, 142, 35, 0.4);
         }
 
         @keyframes float {
@@ -138,7 +134,7 @@
 
         .page {
             display: none;
-            min-height: 100vh;
+            flex: 1;
             padding-top: 100px;
         }
 
@@ -207,7 +203,7 @@
         .cta-button {
             display: inline-block;
             padding: 1.2rem 3.5rem;
-            margin:3rem;
+            margin: 1rem;
             background: linear-gradient(135deg, #7a4b3a, #5c3a2e);
             color: white;
             text-decoration: none;
@@ -221,22 +217,6 @@
             animation: bounce 2s ease-in-out infinite;
         }
 
-        .cta-buttons {
-            display: inline-block;
-            padding: 1.2rem 3.5rem;
-            margin:3rem;
-            background: linear-gradient(135deg, #7a4b3a, #5c3a2e);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.4s;
-             box-shadow: 0 15px 40px rgba(92, 58, 46, 0.5);
-            border: 2px solid rgba(255,255,255,0.2);
-            cursor: pointer;
-            animation: bounce 2s ease-in-out infinite;
-        }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -247,16 +227,7 @@
             box-shadow: 0 25px 60px rgba(92, 58, 46, 0.8);
             background: linear-gradient(135deg, #8fbc8f, #6b8e23);
         }
-  @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
 
-        .cta-buttons:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 25px 60px rgba(92, 58, 46, 0.8);
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-        }
         section {
             padding: 6rem 5%;
             max-width: 1400px;
@@ -420,15 +391,10 @@
             box-shadow: 0 20px 60px rgba(107, 142, 35, 0.5);
         }
 
-        .categorie-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem;
-        }
-
         .categorie-card h3 {
             font-size: 1.6rem;
             font-weight: 700;
+            margin-top: 1rem;
         }
 
         .contact {
@@ -507,7 +473,7 @@
             background: linear-gradient(135deg, #6b8e23, #8fbc8f);
             color: white;
             padding: 1rem 3rem;
-            margin:0.9em;
+            margin: 0.5rem;
             border: none;
             border-radius: 50px;
             font-size: 1.1rem;
@@ -674,8 +640,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8rem;
+            overflow: hidden;
             box-shadow: 0 20px 60px rgba(107, 142, 35, 0.3);
+        }
+
+        .histoire-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .stats {
@@ -704,6 +676,7 @@
             color: #f5e6d3;
             text-align: center;
             padding: 4rem 5%;
+            margin-top: auto;
         }
 
         footer h2 {
@@ -731,1664 +704,257 @@
             transform: translateY(-8px) scale(1.2);
         }
 
-        @media (max-width: 968px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .contact-content, .histoire-content { grid-template-columns: 1fr; }
-            .cart-item { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo-container" onclick="showPage('home')">
-               <img src="image/logo.png" class="logo">
-            </div>
-            <ul class="nav-links">
-                <li><a onclick="showPage('home')">Accueil</a></li>
-                <li><a onclick="scrollToSection('produits')">Produits</a></li>
-                <li><a onclick="showPage('about')">À propos</a></li>
-                 <li><a onclick="scrollToSection('categories')">Nos categories</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
-            </ul>
-            <div class="cart-icon" onclick="showPage('cart')">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page Accueil -->
-    <div id="homePage" class="page active">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Produits Agricoles de Qualité</h1>
-                <p>Du cacao aux chocolats artisanaux - Production locale à ASSL, Haïti</p>
-                <a class="cta-button" onclick="scrollToSection('produits')">Voir nos produits</a>
-                <a class="cta-button" onclick="showPage('about')">En savoir plus</a>
-            </div>
-        </section>
-
-        <section id="categories" class="categories">
-            <h2 class="section-title">Nos Catégories</h2>
-            <div class="categories-grid">
-                <div class="categorie-card" onclick="scrollToSection('produits')">
-                   <img src="image/ble.png" class="ble">
-                    <h3>Maïs</h3>
-                    <p>Sac & Sachet</p>
-                </div>
-                <div class="categorie-card" onclick="scrollToSection('produits')">
-                    <img src="image/farine (1).png" class="ble">
-                    <h3>Akmil</h3>
-                    <p>Poudre de qualité</p>
-                </div>
-                <div class="categorie-card" onclick="scrollToSection('produits')">
-                    <img src="image/farine-de-ble.png" class="ble">
-                    <h3>Farine</h3>
-                    <p>Haute qualité</p>
-                </div>
-                <div class="categorie-card" onclick="scrollToSection('produits')">
-                    <img src="image/viande.png" class="ble">
-                    <h3>Bœuf séché</h3>
-                    <p>Délicieux</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="produits" class="produits">
-            <h2 class="section-title">Nos Produits en Vente</h2>
-            <div class="produits-grid" id="produitsGrid"></div>
-        </section>
-
-         <section id="contact" class="contact">
-            <h2 class="section-title">Contactez-nous</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">🕐</div>
-                        <div>
-                            <h4>Heures d'ouverture</h4>
-                            <p>Lundi à Samedi, 8H-17H</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Adresse</h4>
-                            <p>13, Merger Léogâne<br>ASSL, Haïti</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <h4>Téléphones</h4>
-                            <p>(+509) 47472529<br>+201503451347</p>
-                        </div>
-                    </div>
-                </div>
-               <div class="container">
-                <div id="messageBox" class="message"></div>
-                <form id="contactForm">
-            <div class="form-group">
-                <label>Nom *</label>
-                <input type="text" id="nom" required placeholder="Votre nom">
-            </div>
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" id="email" required placeholder="votre@email.com">
-            </div>
-            <div class="form-group">
-                <label>Téléphone</label>
-                <input type="tel" id="telephone" placeholder="+509 XXXX XXXX">
-            </div>
-            <div class="form-group">
-                <label>Message *</label>
-                <textarea id="message" required placeholder="Je veux acheter..."></textarea>
-            </div>
-            <div class="button-group">
-                <button type="button" id="submitBtn" class="submit-button">📧 Gmail</button>
-                <button type="button" id="whatsappBtn" class="submit-button">💬 WhatsApp</button>
-            </div>
-            <div class="info-text">
-                ✓ Gmail ouvre automatiquement | ✓ WhatsApp ouvre automatiquement
-            </div>
-        </form>
-    </div>
-        </section>
-
-        <footer>
-            <h2>ASSL</h2>
-            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
-            </div>
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Page À Propos -->
-    <div id="aboutPage" class="page">
-        <section class="about-hero">
-            <div class="hero-content">
-                <h1>À Propos d'ASSL</h1>
-                <p>Association Socio-Sportive de Lhomond</p>
-            </div>
-        </section>
-
-        <section class="histoire" style="background: white;">
-            <h2 class="section-title">Notre Histoire</h2>
-            <div class="histoire-content">
-                <div class="histoire-text">
-                    <h3>🌱 Fondation et Mission</h3>
-                    <p>
-                        L'Association Socio-Sportive de Lhomond (ASSL) a été <strong>fondée le 26 août 2007</strong> par un ensemble de jeunes soucieux de l'avancement de leur localité. Depuis sa création, ASSL s'est engagée à transformer la vie des communautés locales à travers des initiatives durables et inclusives.
-                    </p>
-                    <p>
-                        Avec un effectif actuel de <strong>92 membres (38 femmes et 54 hommes)</strong>, notre organisation est gérée par un comité directeur de 9 membres élus démocratiquement.
-                    </p>
-                </div>
-              <img src="image/fondateur.png" alt="Fondateur" class="histoire-image">
-            </div>
-
-            <div class="stats">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h4>92</h4>
-                        <p>Membres Actifs</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>17+</h4>
-                        <p>Années d'Activité</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>6+</h4>
-                        <p>Partenaires Majeurs</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>100%</h4>
-                        <p>Produits Locaux</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-       <footer>
-            <h2>ASSL</h2>
-            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
-            </div>
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Page Panier -->
-    <div id="cartPage" class="page cart-page">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h1 style="text-align: center; font-size: 3rem; color: #3d210f; margin-bottom: 3rem;">🛒 Ma Corbeille d'Achat</h1>
-            <div id="cartContent"></div>
-        </div>
-    </div>
-
-    <script>
-  const produits = [
-    { id: 1, nom: "Mais", description: "mais fin et ultra pure", prix: 350, prixAncien: null, poids: "500g", badge: "Nouveau", icon: "<img src='image/ble.png' class='ble' >" },
-    { id: 2, nom: "Akmil", description: "transformation traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "<img src='image/farine (1).png' class='ble' >" },
-    { id: 3, nom: "Viande", description: "Boeuf seché a different gout", prix: 180, prixAncien: null, poids: "100g", badge: "Premium", icon: "<img src='image/viande.png' class='ble' >" },
-    { id: 4, nom: "Riz", description: "par sac et par marmite", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "<img src='image/riz.png' class='ble' >" },
-    { id: 5, nom: "Petit mil", description: "haute gamme et naturel", prix: 850, prixAncien: null, poids: "Pack", badge: null, icon: "<img src='image/ble.png' class='ble' >" },
-    { id: 6, nom: "Lait", description: "Poudre de lait 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon:"<img src='image/bouteille-de-lait.png' class='ble' >" }
-];
-
-let cart = {};
-
-function displayProduits() {
-    const grid = document.getElementById('produitsGrid');
-    grid.innerHTML = produits.map(p => `
-        <div class="produit-card">
-            <div class="produit-image">
-                ${p.badge ? `<span class="produit-badge">${p.badge}</span>` : ''}
-                ${p.icon}
-            </div>
-            <div class="produit-info">
-                <h3>${p.nom}</h3>
-                <p>${p.description}</p>
-                <div class="produit-prix">
-                    <div>
-                        <div class="prix">${p.prix} HTG</div>
-                        ${p.prixAncien ? `<div class="prix-ancien">${p.prixAncien} HTG</div>` : ''}
-                    </div>
-                    <div>${p.poids}</div>
-                </div>
-                <div class="produit-actions">
-                    <button class="btn-acheter" id="btn-${p.id}" onclick="toggleCart(${p.id})">
-                        🛒 Ajouter au panier
-                    </button>
-                </div>
-            </div>
-        </div>
-    `).join('');
-    updateCartButtons();
-}
-
-function toggleCart(id) {
-    if (cart[id]) {
-        delete cart[id];
-    } else {
-        cart[id] = { quantity: 1 };
-    }
-    updateCart();
-    updateCartButtons();
-}
-
-function updateCartButtons() {
-    produits.forEach(p => {
-        const btn = document.getElementById(`btn-${p.id}`);
-        if (btn) {
-            if (cart[p.id]) {
-                btn.classList.add('in-cart');
-                btn.innerHTML = '❌ Retirer du panier';
-            } else {
-                btn.classList.remove('in-cart');
-                btn.innerHTML = '🛒 Ajouter au panier';
-            }
-        }
-    });
-}
-
-function updateCart() {
-    const count = Object.keys(cart).length;
-    document.getElementById('cartCount').textContent = count;
-    if (document.getElementById('cartPage').classList.contains('active')) {
-        displayCart();
-    }
-}
-
-function displayCart() {
-    const content = document.getElementById('cartContent');
-    const items = Object.keys(cart);
-    
-    if (items.length === 0) {
-        content.innerHTML = `
-            <div class="cart-empty">
-                <div class="cart-empty-icon">🛒</div>
-                <h2>Votre panier est vide</h2>
-                <p>Ajoutez des produits pour commencer vos achats</p>
-                <button class="cta-buttons" onclick="showPage('home')">Voir les produits</button>
-            </div>
-        `;
-        return;
-    }
-
-    let total = 0;
-    const itemsHTML = items.map(id => {
-        const produit = produits.find(p => p.id == id);
-        const quantity = cart[id].quantity;
-        const subtotal = produit.prix * quantity;
-        total += subtotal;
-
-        return `
-            <div class="cart-item">
-                <div class="cart-item-image">${produit.icon}</div>
-                <div>
-                    <h3 style="font-size: 1.5rem; color: #3d210f; margin-bottom: 0.5rem;">${produit.nom}</h3>
-                    <p style="color: #666;">${produit.description}</p>
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn" onclick="updateQuantity(${id}, -1)">-</button>
-                        <span style="font-size: 1.3rem; font-weight: 700; min-width: 40px; text-align: center;">${quantity}</span>
-                        <button class="quantity-btn" onclick="updateQuantity(${id}, 1)">+</button>
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 2rem; color: #27ae60; font-weight: 800; margin-bottom: 1rem;">${subtotal} HTG</div>
-                    <button class="submit-button" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b);" onclick="removeFromCart(${id})">🗑️ Retirer</button>
-                </div>
-            </div>
-        `;
-    }).join('');
-
-    content.innerHTML = `
-        <div class="cart-items">${itemsHTML}</div>
-        <div class="cart-summary">
-            <h2>Récapitulatif</h2>
-            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
-                <span>Sous-total</span>
-                <span>${total} HTG</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
-                <span>Livraison</span>
-                <span>Gratuite</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 2rem 0 1rem; border-top: 3px solid #6b8e23; margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: #3d210f;">
-                <span>Total</span>
-                <span>${total} HTG</span>
-            </div>
-            <button class="btn-checkout" onclick="window.open('https://wa.me/50936310974', '_blank')">💳 Passer la commande</button>
-            <button class="submit-button" style="width: 100%; margin-top: 1rem; background: white; color: #6b8e23; border: 2px solid #6b8e23;" onclick="showPage('home')">← Continuer mes achats</button>
-        </div>
-    `;
-}
-
-function updateQuantity(id, change) {
-    if (!cart[id]) return;
-    cart[id].quantity += change;
-    if (cart[id].quantity <= 0) {
-        delete cart[id];
-    }
-    updateCart();
-    updateCartButtons();
-}
-
-function removeFromCart(id) {
-    delete cart[id];
-    updateCart();
-    updateCartButtons();
-}
-
-function checkout(total) {
-    alert(`✅ Commande confirmée!\n\n💰 Total: ${total} HTG\n\n🎉 Nous vous contacterons bientôt pour la livraison.`);
-    cart = {};
-    updateCart();
-    updateCartButtons();
-}
-
-function showPage(pageName) {
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    if (pageName === 'home') {
-        document.getElementById('homePage').classList.add('active');
-    } else if (pageName === 'cart') {
-        document.getElementById('cartPage').classList.add('active');
-        displayCart();
-    } else if (pageName === 'about') {
-        document.getElementById('aboutPage').classList.add('active');
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToSection(sectionId) {
-    showPage('home');
-    setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }, 100);
-}
-
-  const submitBtn = document.getElementById('submitBtn');
-        const whatsappBtn = document.getElementById('whatsappBtn');
-        const messageBox = document.getElementById('messageBox');
-        const contactForm = document.getElementById('contactForm');
-
-        function showMessage(text, type) {
-            messageBox.textContent = text;
-            messageBox.className = `message ${type}`;
-            setTimeout(() => {
-                messageBox.className = 'message';
-            }, 3000);
-        }
-
-        function validateForm() {
-            const nom = document.getElementById('nom').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if (!nom || !email || !message) {
-                showMessage('⚠️ Rempli tout les champs obligatoires!', 'error');
-                return null;
-            }
-            
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showMessage('⚠️ Email pa valide!', 'error');
-                return null;
-            }
-
-            return {
-                nom: nom,
-                email: email,
-                telephone: document.getElementById('telephone').value.trim(),
-                message: message
-            };
-        }
-
-        // ===== GMAIL =====
-        submitBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const data = validateForm();
-            if (!data) return;
-
-            // Construire le message
-            const sujet = encodeURIComponent(`Nouveau message de ${data.nom} - ASSL`);
-            const corps = encodeURIComponent(
-                `Bonjour,\n\n` +
-                `J'ai reçu un message via le formulaire ASSL:\n\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-                `Nom: ${data.nom}\n` +
-                `Email: ${data.email}\n` +
-                `Téléphone: ${data.telephone || 'Non fourni'}\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
-                `Message:\n${data.message}\n\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`
-            );
-            
-            // LIEN GMAIL - Ouvrir automatiquement
-            const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=theandrique.louisjuste@gmail.com&su=${sujet}&body=${corps}`;
-            window.open(gmailLink, '_blank');
-            
-            showMessage('✅ Gmail ouvert! "Envoyer"!', 'success');
-            
-            setTimeout(() => {
-                contactForm.reset();
-            }, 1500);
-        });
-
-        // ===== WHATSAPP =====
-        whatsappBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const data = validateForm();
-            if (!data) return;
-
-            // Construire le message WhatsApp
-            const texte = `*Message depuis ASSL*\n\n` +
-                         `*Nom:* ${data.nom}\n` +
-                         `*Email:* ${data.email}\n` +
-                         `*Téléphone:* ${data.telephone || 'Non fourni'}\n\n` +
-                         `*Message:*\n${data.message}`;
-
-            const textEncoded = encodeURIComponent(texte);
-            
-            // Numéro WhatsApp ASSL
-            const whatsappNumber = '50936310974';
-            
-            // Ouvrir WhatsApp
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${textEncoded}`;
-            window.open(whatsappLink, '_blank');
-            
-            showMessage('✅ WhatsApp ouvert! Envoye message a!', 'success');
-            
-            contactForm.reset();
-        });
-// Initialisation
-displayProduits();
-updateCart();
-    </script>
- <!-- ===== SMART CHAT WITH AI VOICE EN FRANCAIS - METE SA A ANVAN </body> ===== -->
-
-<style>
-    .chat-button-fixed {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #25d366, #128c7e);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        transition: all 0.3s;
-        z-index: 999;
-         cursor: pointer;
-            animation: bounce 2s ease-in-out infinite;
-    }
-
-    .chat-button-fixed:hover {
-        transform: scale(1.1);
-        box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
-    }
-
-    .chat-button-fixed.active {
-        background: linear-gradient(135deg, #ea4335, #c5221f);
-    }
-
-    .chat-popup {
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        width: 380px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-        display: none;
-        flex-direction: column;
-        z-index: 998;
-        overflow: hidden;
-    }
-
-    .chat-popup.open {
-        display: flex;
-        animation: slideUp 0.3s ease-out;
-    }
-
-    @keyframes slideUp {
-        from {
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
             opacity: 0;
-            transform: translateY(20px);
+            transition: opacity 0.3s;
         }
-        to {
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
             opacity: 1;
-            transform: translateY(0);
         }
-    }
 
-    .chat-header {
-        background: linear-gradient(135deg, #6b8e23, #8fbc8f);
-        color: white;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .chat-header h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .chat-header p {
-        font-size: 0.85rem;
-        opacity: 0.9;
-    }
-
-    .chat-body {
-        padding: 1.5rem;
-        max-height: 400px;
-        overflow-y: auto;
-        background: #fafafa;
-    }
-
-    .chat-message {
-        margin-bottom: 1rem;
-        padding: 1rem;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        animation: fadeIn 0.3s ease-out;
-        position: relative;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
             opacity: 1;
-            transform: translateY(0);
         }
-    }
 
-    .chat-message.bot {
-        background: white;
-        color: #333;
-        border-left: 4px solid #6b8e23;
-        margin-right: 20%;
-    }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-    .chat-message.user {
-        background: #8fbc8f;
-        color: white;
-        margin-left: 20%;
-        text-align: right;
-    }
-
-    .chat-message.typing {
-        background: white;
-        border-left: 4px solid #6b8e23;
-        margin-right: 20%;
-    }
-
-    .typing-indicator {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: 0.5rem;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #6b8e23;
-        animation: bounce 1.4s infinite;
-    }
-
-    .dot:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .dot:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-
-    @keyframes bounce {
-        0%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-10px); }
-    }
-
-    .voice-icon {
-        display: inline-block;
-        margin-left: 0.5rem;
-        cursor: pointer;
-        font-size: 1.2rem;
-        transition: all 0.3s;
-    }
-
-    .voice-icon:hover {
-        animation: pulse 0.5s;
-    }
-
-    .voice-icon.playing {
-        background: #6b8e23;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-    }
-
-    .chat-footer {
-        padding: 1rem;
-        border-top: 1px solid #e0e0e0;
-        display: flex;
-        gap: 0.5rem;
-        background: white;
-    }
-
-    .chat-footer input {
-        flex: 1;
-        padding: 0.8rem;
-        border: 2px solid #e0e0e0;
-        border-radius: 25px;
-        font-family: inherit;
-        transition: all 0.3s;
-    }
-
-    .chat-footer input:focus {
-        outline: none;
-        border-color: #8fbc8f;
-    }
-
-    .chat-footer button {
-        background: #8fbc8f;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 1.2rem;
-    }
-
-    .chat-footer button:hover {
-        background: #6b8e23;
-    }
-
-    .chat-footer button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    @media (max-width: 480px) {
-        .chat-popup {
-            width: 90vw;
-            right: 5vw;
-            bottom: 80px;
+        .info-text {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
         .chat-button-fixed {
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-        }
-    }
-</style>
-
-<!-- Chat Button HTML -->
-<button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
-
-<div class="chat-popup" id="chatPopup">
-    <div class="chat-header">
-        <h3>🌾 Assistante ASSL 🎙️</h3>
-        <p>Chat avec voix - nous parlons!</p>
-    </div>
-    
-    <div class="chat-body" id="chatBody">
-        <div class="chat-message bot">
-            👋 Bonjour! Je suis l'assistante ASSL avec voix! 
-            <span class="voice-icon" onclick="speakText('Bonjour! Je suis l\'assistante ASSL avec voix!', 'fr-FR')">🔊</span>
-            <br><br>
-            Je peux répondre à vos questions sur:
-            <br>
-            • 🌾 Les produits ASSL<br>
-            • 💰 Les prix<br>
-            • 📦 La livraison<br>
-            • 📞 Comment nous contacter<br>
-            <br>
-            Posez votre question! 😊
-        </div>
-    </div>
-
-    <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Tapez votre question...">
-        <button id="sendBtn" onclick="sendMessage()">✔</button>
-    </div>
-</div>
-
-<script>
-    const chatBtn = document.getElementById('chatBtn');
-    const chatPopup = document.getElementById('chatPopup');
-    const chatBody = document.getElementById('chatBody');
-    const chatInput = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
-
-    // Function to speak text with natural voice
-    function speakText(text, lang = 'fr-FR') {
-        // If already speaking, stop it
-        if (window.speechSynthesis.speaking) {
-            window.speechSynthesis.cancel();
-            return;
-        }
-        
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang;
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
-        utterance.volume = 1;
-        
-        const voices = window.speechSynthesis.getVoices();
-        const frenchVoice = voices.find(voice => voice.lang.startsWith('fr'));
-        if (frenchVoice) {
-            utterance.voice = frenchVoice;
-        }
-        
-        // Update voice icon when speaking starts
-        utterance.onstart = function() {
-            updateVoiceIcon(true);
-        };
-        
-        // Update voice icon when speaking ends
-        utterance.onend = function() {
-            updateVoiceIcon(false);
-        };
-        
-        window.speechSynthesis.speak(utterance);
-    }
-
-    // Function to update voice icon appearance
-    function updateVoiceIcon(isPlaying) {
-        const icons = document.querySelectorAll('.voice-icon');
-        icons.forEach(icon => {
-            if (isPlaying) {
-                icon.classList.add('playing');
-                icon.textContent = '🔈'; // Stop button
-            } else {
-                icon.classList.remove('playing');
-                icon.textContent = '🔊'; // Play button
-            }
-        });
-    }
-
-    // Knowledge base en français
-    const knowledge = {
-        "mais": "Nous vendons du maïs fin et pur! Prix: 350 HTG pour 500g. Qualité excellente pour votre famille!",
-        "akmil": "L'Akmil est une transformation traditionnelle haïtienne! Prix: 280 HTG pour 400g. Bon pour la santé!",
-        "viande": "Boeuf séché avec un goût spécial! Prix: 180 HTG pour 100g. Délicieux!",
-        "riz": "Le meilleur riz! Prix: 450 HTG pour 1kg. Parfait pour tous les repas!",
-        "lait": "Poudre de lait 100% biologique! Prix: 420 HTG pour 500g. Pour toute la famille!",
-        "prix": "Voici nos prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG",
-        "livraison": "La livraison est GRATUITE sur tous les produits ASSL! Nous livrons dans toute Haïti rapidement!",
-        "kontakte": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
-        "assl": "ASSL est l'Association Socio-Sportive de Lhomond. Nous vendons les meilleur produits agricoles depuis 2007!",
-        "produit": "ASSL vend: Maïs, Akmil, Farine, Boeuf séché, Riz, Lait - TOUS de très bonne qualité!",
-        "bonjour": "Bonjour! Comment allez-vous? N'hésitez pas à poser votre question!",
-        "merci": "De rien! Avez-vous d'autres questions?",
-        "contact": "Pour nous contacter: 📞 (+509) 47472529 ou 📧 theandrique.louisjuste@gmail.com ou 💬 WhatsApp wa.me/50936310974"
-    };
-
-    const defaultResponses = [
-        "Je ne comprends pas bien. Pourriez-vous poser une question sur nos produits ou nos services?",
-        "Votre question n'est pas très claire. Voulez-vous des informations sur les produits ou la livraison?",
-        "Je n'ai pas de réponse à cela. Posez une question sur ASSL, nos prix ou comment nous contacter!"
-    ];
-
-    // Toggle chat
-    chatBtn.addEventListener('click', function() {
-        chatPopup.classList.toggle('open');
-        chatBtn.classList.toggle('active');
-        if (chatPopup.classList.contains('open')) {
-            chatInput.focus();
-        }
-    });
-
-    // Send message
-    function sendMessage() {
-        const message = chatInput.value.trim();
-        if (!message) return;
-
-        // User message
-        const userMsg = document.createElement('div');
-        userMsg.className = 'chat-message user';
-        userMsg.textContent = message;
-        chatBody.appendChild(userMsg);
-        chatInput.value = '';
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        sendBtn.disabled = true;
-
-        // Show typing
-        const typingMsg = document.createElement('div');
-        typingMsg.className = 'chat-message typing';
-        typingMsg.innerHTML = '<div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-        chatBody.appendChild(typingMsg);
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        // Process response
-        setTimeout(() => {
-            typingMsg.remove();
-            
-            const lowerMsg = message.toLowerCase();
-            let response = null;
-
-            for (let key in knowledge) {
-                if (lowerMsg.includes(key)) {
-                    response = knowledge[key];
-                    break;
-                }
-            }
-
-            if (!response) {
-                response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-            }
-
-            // Display response with voice button
-            const botMsg = document.createElement('div');
-            botMsg.className = 'chat-message bot';
-            botMsg.innerHTML = response + ` <span class="voice-icon" onclick="speakText('${response.replace(/'/g, "\\'")}', 'fr-FR')">🔊</span>`;
-            chatBody.appendChild(botMsg);
-            
-            // Auto-speak response
-            speakText(response, 'fr-FR');
-            
-            chatBody.scrollTop = chatBody.scrollHeight;
-            sendBtn.disabled = false;
-            chatInput.focus();
-        }, 800);
-    }
-
-    // Send on Enter
-    chatInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !sendBtn.disabled) sendMessage();
-    });
-
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.chat-button-fixed') && 
-            !e.target.closest('.chat-popup')) {
-            chatPopup.classList.remove('open');
-            chatBtn.classList.remove('active');
-        }
-    });
-
-    // Load voices when they're available
-    window.speechSynthesis.onvoiceschanged = function() {
-        window.speechSynthesis.getVoices();
-    };
-</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASSL - Boutique de Produits Agricoles</title>
-<link rel="icon" type="image/png" href="image/logo.png"/>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(180deg, rgba(92, 64, 51, 0.98) 0%, rgba(61, 33, 15, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-        }
-
-        .logo {
-            width: 70px;
-            height: 70px;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border: none;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7a9b5a, #8fbc8f);
-            border: 3px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 10px 40px rgba(107, 142, 35, 0.4);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .brand-text {
-            color: #f5e6d3;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #f5e6d3;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: all 0.3s;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #8fbc8f;
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cart-icon {
-            position: relative;
             font-size: 1.8rem;
-            cursor: pointer;
             transition: all 0.3s;
-            color: #f5e6d3;
-        }
-
-        .cart-icon:hover {
-            transform: scale(1.2);
-            color: #8fbc8f;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #e74c3c;
-            color: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: bold;
-            animation: pulse-cart 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-cart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding-top: 100px;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(92, 64, 51, 0.88), rgba(61, 33, 15, 0.78)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%235c4033" width="1200" height="600"/><circle cx="200" cy="150" r="80" fill="%238b7355" opacity="0.3"/><circle cx="900" cy="400" r="120" fill="%23a0522d" opacity="0.2"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at 30% 40%, rgba(139, 115, 85, 0.4), transparent 60%);
-            animation: pulse 10s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            padding: 2rem;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
-            color: #f5e6d3;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3.5rem;
-            margin:3rem;
-            background: linear-gradient(135deg, #7a4b3a, #5c3a2e);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.4s;
-            box-shadow: 0 15px 40px rgba(92, 58, 46, 0.5);
-            border: 2px solid rgba(255,255,255,0.2);
-            cursor: pointer;
+            z-index: 999;
             animation: bounce 2s ease-in-out infinite;
         }
 
-        .cta-buttons {
-            display: inline-block;
-            padding: 1.2rem 3.5rem;
-            margin:3rem;
-            background: linear-gradient(135deg, #7a4b3a, #5c3a2e);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.4s;
-             box-shadow: 0 15px 40px rgba(92, 58, 46, 0.5);
-            border: 2px solid rgba(255,255,255,0.2);
-            cursor: pointer;
-            animation: bounce 2s ease-in-out infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .chat-button-fixed:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
         }
 
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 25px 60px rgba(92, 58, 46, 0.8);
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-        }
-  @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .chat-button-fixed.active {
+            background: linear-gradient(135deg, #ea4335, #c5221f);
         }
 
-        .cta-buttons:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 25px 60px rgba(92, 58, 46, 0.8);
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-        }
-        section {
-            padding: 6rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: #3d210f;
-            margin-bottom: 4rem;
-            position: relative;
-            font-weight: 700;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 120px;
-            height: 5px;
-            background: linear-gradient(90deg, #8fbc8f, #6b8e23);
-            margin: 1.5rem auto;
-            border-radius: 3px;
-        }
-
-        .produits {
-            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
-        }
-
-        .produits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .produit-card {
+        .chat-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
             background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-            transition: all 0.5s;
-        }
-
-        .produit-card:hover {
-            transform: translateY(-20px) scale(1.03);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-        }
-
-        .produit-image {
-            height: 280px;
-            background: linear-gradient(135deg, #5c4033, #8b7355);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 998;
             overflow: hidden;
         }
 
-        .produit-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e74c3c;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            z-index: 1;
-        }
-
-        .produit-info {
-            padding: 2rem;
-        }
-
-        .produit-info h3 {
-            color: #3d210f;
-            margin-bottom: 0.8rem;
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
-
-        .produit-info p {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-        }
-
-        .produit-prix {
+        .chat-popup.open {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+            animation: slideUp 0.3s ease-out;
         }
 
-        .prix {
-            font-size: 1.8rem;
-            color: #27ae60;
-            font-weight: 800;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .prix-ancien {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 1.2rem;
-        }
-
-        .produit-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-acheter {
-            flex: 1;
-            padding: 1rem;
+        .chat-header {
             background: linear-gradient(135deg, #6b8e23, #8fbc8f);
             color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .chat-header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .chat-body {
+            padding: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.bot {
+            background: white;
+            color: #333;
+            border-left: 4px solid #6b8e23;
+            margin-right: 20%;
+        }
+
+        .chat-message.user {
+            background: #8fbc8f;
+            color: white;
+            margin-left: 20%;
+            text-align: right;
+        }
+
+        .chat-message.typing {
+            background: white;
+            border-left: 4px solid #6b8e23;
+            margin-right: 20%;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0.5rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6b8e23;
+            animation: typing-bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing-bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+        }
+
+        .voice-icon {
+            display: inline-block;
+            margin-left: 0.5rem;
             cursor: pointer;
+            font-size: 1.2rem;
             transition: all 0.3s;
         }
 
-        .btn-acheter:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(107, 142, 35, 0.4);
+        .voice-icon:hover {
+            animation: pulse-icon 0.5s;
         }
 
-        .btn-acheter.in-cart {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
-        .categories {
-            background: white;
+        .voice-icon.playing {
+            background: #6b8e23;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
         }
 
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .categorie-card {
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            transition: all 0.4s;
-            box-shadow: 0 10px 40px rgba(107, 142, 35, 0.3);
-        }
-
-        .categorie-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(107, 142, 35, 0.5);
-        }
-
-        .categorie-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem;
-        }
-
-        .categorie-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
-
-        .contact {
-            background: linear-gradient(135deg, #faf8f3, #f5f0e8);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s;
-        }
-
-        .contact-item:hover {
-            transform: translateX(15px);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            color: #6b8e23;
-        }
-
-        .contact-item h4 {
-            font-size: 1.2rem;
-            color: #3d210f;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #3d210f;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
+        .chat-footer {
             padding: 1rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0.5rem;
+            background: white;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 0.8rem;
             border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            border-radius: 25px;
             font-family: inherit;
             transition: all 0.3s;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .chat-footer input:focus {
             outline: none;
             border-color: #8fbc8f;
-            box-shadow: 0 0 0 4px rgba(143, 188, 143, 0.15);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-button {
-            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
+        .chat-footer button {
+            background: #8fbc8f;
             color: white;
-            padding: 1rem 3rem;
-            margin:0.9em;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(107, 142, 35, 0.3);
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(107, 142, 35, 0.4);
-        }
-
-        .cart-page {
-            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
-            min-height: 100vh;
-            padding: 8rem 5% 4rem;
-        }
-
-        .cart-empty {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: white;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-        }
-
-        .cart-empty-icon {
-            font-size: 8rem;
-            margin-bottom: 2rem;
-            opacity: 0.5;
-        }
-
-        .cart-items {
-            background: white;
-            border-radius: 25px;
-            padding: 2rem;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-            margin-bottom: 2rem;
-        }
-
-        .cart-item {
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: 2rem;
-            padding: 2rem;
-            border-bottom: 2px solid #f0f0f0;
-            align-items: center;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-item-image {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #5c4033, #8b7355);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .quantity-btn {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #6b8e23;
-            background: white;
-            color: #6b8e23;
-            border-radius: 8px;
             font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 700;
         }
 
-        .quantity-btn:hover {
+        .chat-footer button:hover {
             background: #6b8e23;
-            color: white;
         }
 
-        .cart-summary {
-            background: white;
-            border-radius: 25px;
-            padding: 3rem;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-        }
-
-        .btn-checkout {
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #6b8e23, #8fbc8f);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 2rem;
-            transition: all 0.3s;
-        }
-
-        .ble {
-            width: 100px;
-            height: 100px;
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 10px 40px rgba(107, 142, 35, 0.4);
-        }
-
-        .btn-checkout:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(107, 142, 35, 0.5);
-        }
-
-        .about-hero {
-            height: 80vh;
-            background: linear-gradient(135deg, rgba(92, 64, 51, 0.88), rgba(61, 33, 15, 0.78)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%235c4033" width="1200" height="600"/></svg>');
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        .histoire-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-
-        .histoire-text h3 {
-            font-size: 1.8rem;
-            color: #3d210f;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .histoire-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-
-        .histoire-image {
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-            height: 400px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            box-shadow: 0 20px 60px rgba(107, 142, 35, 0.3);
-        }
-
-        .stats {
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-            color: white;
-            padding: 4rem 5%;
-            margin: 4rem 0;
-            border-radius: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item h4 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        footer {
-            background: linear-gradient(180deg, #3d210f, #2a1609);
-            color: #f5e6d3;
-            text-align: center;
-            padding: 4rem 5%;
-        }
-
-        footer h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .social-links a {
-            color: #f5e6d3;
-            font-size: 2.5rem;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            color: #8fbc8f;
-            transform: translateY(-8px) scale(1.2);
+        .chat-footer button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         @media (max-width: 968px) {
@@ -2396,6 +962,16 @@ updateCart();
             .nav-links { display: none; }
             .contact-content, .histoire-content { grid-template-columns: 1fr; }
             .cart-item { grid-template-columns: 1fr; }
+            .chat-popup {
+                width: 90vw;
+                right: 5vw;
+                bottom: 80px;
+            }
+            .chat-button-fixed {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -2409,7 +985,7 @@ updateCart();
                 <li><a onclick="showPage('home')">Accueil</a></li>
                 <li><a onclick="scrollToSection('produits')">Produits</a></li>
                 <li><a onclick="showPage('about')">À propos</a></li>
-                 <li><a onclick="scrollToSection('categories')">Nos categories</a></li>
+                <li><a onclick="scrollToSection('categories')">Nos catégories</a></li>
                 <li><a onclick="scrollToSection('contact')">Contact</a></li>
             </ul>
             <div class="cart-icon" onclick="showPage('cart')">
@@ -2461,7 +1037,7 @@ updateCart();
             <div class="produits-grid" id="produitsGrid"></div>
         </section>
 
-         <section id="contact" class="contact">
+        <section id="contact" class="contact">
             <h2 class="section-title">Contactez-nous</h2>
             <div class="contact-content">
                 <div class="contact-info">
@@ -2487,49 +1063,36 @@ updateCart();
                         </div>
                     </div>
                 </div>
-               <div class="container">
-                <div id="messageBox" class="message"></div>
-                <form id="contactForm">
-            <div class="form-group">
-                <label>Nom *</label>
-                <input type="text" id="nom" required placeholder="Votre nom">
+                <div class="container">
+                    <div id="messageBox" class="message"></div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label>Nom *</label>
+                            <input type="text" id="nom" required placeholder="Votre nom">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" required placeholder="votre@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" id="telephone" placeholder="+509 XXXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea id="message" required placeholder="Je veux acheter..."></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" id="submitBtn" class="submit-button">📧 Gmail</button>
+                            <button type="button" id="whatsappBtn" class="submit-button">💬 WhatsApp</button>
+                        </div>
+                        <div class="info-text">
+                            ✓ Gmail ouvre automatiquement | ✓ WhatsApp ouvre automatiquement
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" id="email" required placeholder="votre@email.com">
-            </div>
-            <div class="form-group">
-                <label>Téléphone</label>
-                <input type="tel" id="telephone" placeholder="+509 XXXX XXXX">
-            </div>
-            <div class="form-group">
-                <label>Message *</label>
-                <textarea id="message" required placeholder="Je veux acheter..."></textarea>
-            </div>
-            <div class="button-group">
-                <button type="button" id="submitBtn" class="submit-button">📧 Gmail</button>
-                <button type="button" id="whatsappBtn" class="submit-button">💬 WhatsApp</button>
-            </div>
-            <div class="info-text">
-                ✓ Gmail ouvre automatiquement | ✓ WhatsApp ouvre automatiquement
-            </div>
-        </form>
-    </div>
         </section>
-
-        <footer>
-            <h2>ASSL</h2>
-            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
-            </div>
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-            </div>
-        </footer>
     </div>
 
     <!-- Page À Propos -->
@@ -2553,7 +1116,9 @@ updateCart();
                         Avec un effectif actuel de <strong>92 membres (38 femmes et 54 hommes)</strong>, notre organisation est gérée par un comité directeur de 9 membres élus démocratiquement.
                     </p>
                 </div>
-              <img src="image/fondateur.png" alt="Fondateur" class="histoire-image">
+                <div class="histoire-image">
+                    <img src="image/fondateur.png" alt="Fondateur">
+                </div>
             </div>
 
             <div class="stats">
@@ -2577,20 +1142,6 @@ updateCart();
                 </div>
             </div>
         </section>
-
-       <footer>
-            <h2>ASSL</h2>
-            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
-            </div>
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-            </div>
-        </footer>
     </div>
 
     <!-- Page Panier -->
@@ -2601,195 +1152,235 @@ updateCart();
         </div>
     </div>
 
-    <script>
-  const produits = [
-    { id: 1, nom: "Mais", description: "mais fin et ultra pure", prix: 350, prixAncien: null, poids: "500g", badge: "Nouveau", icon: "<img src='image/ble.png' class='ble' >" },
-    { id: 2, nom: "Akmil", description: "transformation traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "<img src='image/farine (1).png' class='ble' >" },
-    { id: 3, nom: "Viande", description: "Boeuf seché a different gout", prix: 180, prixAncien: null, poids: "100g", badge: "Premium", icon: "<img src='image/viande.png' class='ble' >" },
-    { id: 4, nom: "Riz", description: "par sac et par marmite", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "<img src='image/riz.png' class='ble' >" },
-    { id: 5, nom: "Petit mil", description: "haute gamme et naturel", prix: 850, prixAncien: null, poids: "Pack", badge: null, icon: "<img src='image/ble.png' class='ble' >" },
-    { id: 6, nom: "Lait", description: "Poudre de lait 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon:"<img src='image/bouteille-de-lait.png' class='ble' >" }
-];
+    <!-- Footer Global (pou tout paj yo) -->
+    <footer>
+        <h2>ASSL</h2>
+        <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+            <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+            <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+            <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
+        </div>
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
+            <p>&copy; 2026 ASSL. Tous droits réservés.</p>
+        </div>
+    </footer>
 
-let cart = {};
+    <!-- Chat Button -->
+    <button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
 
-function displayProduits() {
-    const grid = document.getElementById('produitsGrid');
-    grid.innerHTML = produits.map(p => `
-        <div class="produit-card">
-            <div class="produit-image">
-                ${p.badge ? `<span class="produit-badge">${p.badge}</span>` : ''}
-                ${p.icon}
-            </div>
-            <div class="produit-info">
-                <h3>${p.nom}</h3>
-                <p>${p.description}</p>
-                <div class="produit-prix">
-                    <div>
-                        <div class="prix">${p.prix} HTG</div>
-                        ${p.prixAncien ? `<div class="prix-ancien">${p.prixAncien} HTG</div>` : ''}
-                    </div>
-                    <div>${p.poids}</div>
-                </div>
-                <div class="produit-actions">
-                    <button class="btn-acheter" id="btn-${p.id}" onclick="toggleCart(${p.id})">
-                        🛒 Ajouter au panier
-                    </button>
-                </div>
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <h3>🌾 Assistante ASSL 🎙️</h3>
+            <p>Chat avec voix - nous parlons!</p>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot">
+                👋 Bonjour! Je suis l'assistante ASSL avec voix! 
+                <span class="voice-icon" onclick="speakText('Bonjour! Je suis l\'assistante ASSL avec voix!', 'fr-FR')">🔊</span>
+                <br><br>
+                Je peux répondre à vos questions sur:
+                <br>
+                • 🌾 Les produits ASSL<br>
+                • 💰 Les prix<br>
+                • 📦 La livraison<br>
+                • 📞 Comment nous contacter<br>
+                <br>
+                Posez votre question! 😊
             </div>
         </div>
-    `).join('');
-    updateCartButtons();
-}
 
-function toggleCart(id) {
-    if (cart[id]) {
-        delete cart[id];
-    } else {
-        cart[id] = { quantity: 1 };
-    }
-    updateCart();
-    updateCartButtons();
-}
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Tapez votre question...">
+            <button id="sendBtn" onclick="sendMessage()">✔</button>
+        </div>
+    </div>
 
-function updateCartButtons() {
-    produits.forEach(p => {
-        const btn = document.getElementById(`btn-${p.id}`);
-        if (btn) {
-            if (cart[p.id]) {
-                btn.classList.add('in-cart');
-                btn.innerHTML = '❌ Retirer du panier';
+    <script>
+        const produits = [
+            { id: 1, nom: "Mais", description: "mais fin et ultra pure", prix: 350, prixAncien: null, poids: "500g", badge: "Nouveau", icon: "<img src='image/ble.png' class='ble' >" },
+            { id: 2, nom: "Akmil", description: "transformation traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "<img src='image/farine (1).png' class='ble' >" },
+            { id: 3, nom: "Viande", description: "Boeuf seché a different gout", prix: 180, prixAncien: null, poids: "100g", badge: "Premium", icon: "<img src='image/viande.png' class='ble' >" },
+            { id: 4, nom: "Riz", description: "par sac et par marmite", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "<img src='image/riz.png' class='ble' >" },
+            { id: 5, nom: "Petit mil", description: "haute gamme et naturel", prix: 850, prixAncien: null, poids: "Pack", badge: null, icon: "<img src='image/ble.png' class='ble' >" },
+            { id: 6, nom: "Lait", description: "Poudre de lait 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon:"<img src='image/bouteille-de-lait.png' class='ble' >" }
+        ];
+
+        let cart = {};
+
+        function displayProduits() {
+            const grid = document.getElementById('produitsGrid');
+            grid.innerHTML = produits.map(p => `
+                <div class="produit-card">
+                    <div class="produit-image">
+                        ${p.badge ? `<span class="produit-badge">${p.badge}</span>` : ''}
+                        ${p.icon}
+                    </div>
+                    <div class="produit-info">
+                        <h3>${p.nom}</h3>
+                        <p>${p.description}</p>
+                        <div class="produit-prix">
+                            <div>
+                                <div class="prix">${p.prix} HTG</div>
+                                ${p.prixAncien ? `<div class="prix-ancien">${p.prixAncien} HTG</div>` : ''}
+                            </div>
+                            <div>${p.poids}</div>
+                        </div>
+                        <div class="produit-actions">
+                            <button class="btn-acheter" id="btn-${p.id}" onclick="toggleCart(${p.id})">
+                                🛒 Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            updateCartButtons();
+        }
+
+        function toggleCart(id) {
+            if (cart[id]) {
+                delete cart[id];
             } else {
-                btn.classList.remove('in-cart');
-                btn.innerHTML = '🛒 Ajouter au panier';
+                cart[id] = { quantity: 1 };
+            }
+            updateCart();
+            updateCartButtons();
+        }
+
+        function updateCartButtons() {
+            produits.forEach(p => {
+                const btn = document.getElementById(`btn-${p.id}`);
+                if (btn) {
+                    if (cart[p.id]) {
+                        btn.classList.add('in-cart');
+                        btn.innerHTML = '❌ Retirer du panier';
+                    } else {
+                        btn.classList.remove('in-cart');
+                        btn.innerHTML = '🛒 Ajouter au panier';
+                    }
+                }
+            });
+        }
+
+        function updateCart() {
+            const count = Object.keys(cart).length;
+            document.getElementById('cartCount').textContent = count;
+            if (document.getElementById('cartPage').classList.contains('active')) {
+                displayCart();
             }
         }
-    });
-}
 
-function updateCart() {
-    const count = Object.keys(cart).length;
-    document.getElementById('cartCount').textContent = count;
-    if (document.getElementById('cartPage').classList.contains('active')) {
-        displayCart();
-    }
-}
-
-function displayCart() {
-    const content = document.getElementById('cartContent');
-    const items = Object.keys(cart);
-    
-    if (items.length === 0) {
-        content.innerHTML = `
-            <div class="cart-empty">
-                <div class="cart-empty-icon">🛒</div>
-                <h2>Votre panier est vide</h2>
-                <p>Ajoutez des produits pour commencer vos achats</p>
-                <button class="cta-buttons" onclick="showPage('home')">Voir les produits</button>
-            </div>
-        `;
-        return;
-    }
-
-    let total = 0;
-    const itemsHTML = items.map(id => {
-        const produit = produits.find(p => p.id == id);
-        const quantity = cart[id].quantity;
-        const subtotal = produit.prix * quantity;
-        total += subtotal;
-
-        return `
-            <div class="cart-item">
-                <div class="cart-item-image">${produit.icon}</div>
-                <div>
-                    <h3 style="font-size: 1.5rem; color: #3d210f; margin-bottom: 0.5rem;">${produit.nom}</h3>
-                    <p style="color: #666;">${produit.description}</p>
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn" onclick="updateQuantity(${id}, -1)">-</button>
-                        <span style="font-size: 1.3rem; font-weight: 700; min-width: 40px; text-align: center;">${quantity}</span>
-                        <button class="quantity-btn" onclick="updateQuantity(${id}, 1)">+</button>
+        function displayCart() {
+            const content = document.getElementById('cartContent');
+            const items = Object.keys(cart);
+            
+            if (items.length === 0) {
+                content.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛒</div>
+                        <h2>Votre panier est vide</h2>
+                        <p>Ajoutez des produits pour commencer vos achats</p>
+                        <button class="cta-button" onclick="showPage('home')">Voir les produits</button>
                     </div>
+                `;
+                return;
+            }
+
+            let total = 0;
+            const itemsHTML = items.map(id => {
+                const produit = produits.find(p => p.id == id);
+                const quantity = cart[id].quantity;
+                const subtotal = produit.prix * quantity;
+                total += subtotal;
+
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-image">${produit.icon}</div>
+                        <div>
+                            <h3 style="font-size: 1.5rem; color: #3d210f; margin-bottom: 0.5rem;">${produit.nom}</h3>
+                            <p style="color: #666;">${produit.description}</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${id}, -1)">-</button>
+                                <span style="font-size: 1.3rem; font-weight: 700; min-width: 40px; text-align: center;">${quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 2rem; color: #27ae60; font-weight: 800; margin-bottom: 1rem;">${subtotal} HTG</div>
+                            <button class="submit-button" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b);" onclick="removeFromCart(${id})">🗑️ Retirer</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            content.innerHTML = `
+                <div class="cart-items">${itemsHTML}</div>
+                <div class="cart-summary">
+                    <h2>Récapitulatif</h2>
+                    <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
+                        <span>Sous-total</span>
+                        <span>${total} HTG</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
+                        <span>Livraison</span>
+                        <span>Gratuite</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 2rem 0 1rem; border-top: 3px solid #6b8e23; margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: #3d210f;">
+                        <span>Total</span>
+                        <span>${total} HTG</span>
+                    </div>
+                    <button class="btn-checkout" onclick="window.open('https://wa.me/50936310974', '_blank')">💳 Passer la commande</button>
+                    <button class="submit-button" style="width: 100%; margin-top: 1rem; background: white; color: #6b8e23; border: 2px solid #6b8e23;" onclick="showPage('home')">← Continuer mes achats</button>
                 </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 2rem; color: #27ae60; font-weight: 800; margin-bottom: 1rem;">${subtotal} HTG</div>
-                    <button class="submit-button" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b);" onclick="removeFromCart(${id})">🗑️ Retirer</button>
-                </div>
-            </div>
-        `;
-    }).join('');
-
-    content.innerHTML = `
-        <div class="cart-items">${itemsHTML}</div>
-        <div class="cart-summary">
-            <h2>Récapitulatif</h2>
-            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
-                <span>Sous-total</span>
-                <span>${total} HTG</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
-                <span>Livraison</span>
-                <span>Gratuite</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; padding: 2rem 0 1rem; border-top: 3px solid #6b8e23; margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: #3d210f;">
-                <span>Total</span>
-                <span>${total} HTG</span>
-            </div>
-            <button class="btn-checkout" onclick="window.open('https://wa.me/50936310974', '_blank')">💳 Passer la commande</button>
-            <button class="submit-button" style="width: 100%; margin-top: 1rem; background: white; color: #6b8e23; border: 2px solid #6b8e23;" onclick="showPage('home')">← Continuer mes achats</button>
-        </div>
-    `;
-}
-
-function updateQuantity(id, change) {
-    if (!cart[id]) return;
-    cart[id].quantity += change;
-    if (cart[id].quantity <= 0) {
-        delete cart[id];
-    }
-    updateCart();
-    updateCartButtons();
-}
-
-function removeFromCart(id) {
-    delete cart[id];
-    updateCart();
-    updateCartButtons();
-}
-
-function checkout(total) {
-    alert(`✅ Commande confirmée!\n\n💰 Total: ${total} HTG\n\n🎉 Nous vous contacterons bientôt pour la livraison.`);
-    cart = {};
-    updateCart();
-    updateCartButtons();
-}
-
-function showPage(pageName) {
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    if (pageName === 'home') {
-        document.getElementById('homePage').classList.add('active');
-    } else if (pageName === 'cart') {
-        document.getElementById('cartPage').classList.add('active');
-        displayCart();
-    } else if (pageName === 'about') {
-        document.getElementById('aboutPage').classList.add('active');
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToSection(sectionId) {
-    showPage('home');
-    setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            `;
         }
-    }, 100);
-}
 
-  const submitBtn = document.getElementById('submitBtn');
+        function updateQuantity(id, change) {
+            if (!cart[id]) return;
+            cart[id].quantity += change;
+            if (cart[id].quantity <= 0) {
+                delete cart[id];
+            }
+            updateCart();
+            updateCartButtons();
+        }
+
+        function removeFromCart(id) {
+            delete cart[id];
+            updateCart();
+            updateCartButtons();
+        }
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            if (pageName === 'home') {
+                document.getElementById('homePage').classList.add('active');
+            } else if (pageName === 'cart') {
+                document.getElementById('cartPage').classList.add('active');
+                displayCart();
+            } else if (pageName === 'about') {
+                document.getElementById('aboutPage').classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToSection(sectionId) {
+            showPage('home');
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        // Contact form functionality
+        const submitBtn = document.getElementById('submitBtn');
         const whatsappBtn = document.getElementById('whatsappBtn');
         const messageBox = document.getElementById('messageBox');
         const contactForm = document.getElementById('contactForm');
@@ -2826,14 +1417,12 @@ function scrollToSection(sectionId) {
             };
         }
 
-        // ===== GMAIL =====
         submitBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
             const data = validateForm();
             if (!data) return;
 
-            // Construire le message
             const sujet = encodeURIComponent(`Nouveau message de ${data.nom} - ASSL`);
             const corps = encodeURIComponent(
                 `Bonjour,\n\n` +
@@ -2847,7 +1436,6 @@ function scrollToSection(sectionId) {
                 `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`
             );
             
-            // LIEN GMAIL - Ouvrir automatiquement
             const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=theandrique.louisjuste@gmail.com&su=${sujet}&body=${corps}`;
             window.open(gmailLink, '_blank');
             
@@ -2858,14 +1446,12 @@ function scrollToSection(sectionId) {
             }, 1500);
         });
 
-        // ===== WHATSAPP =====
         whatsappBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
             const data = validateForm();
             if (!data) return;
 
-            // Construire le message WhatsApp
             const texte = `*Message depuis ASSL*\n\n` +
                          `*Nom:* ${data.nom}\n` +
                          `*Email:* ${data.email}\n` +
@@ -2873,448 +1459,161 @@ function scrollToSection(sectionId) {
                          `*Message:*\n${data.message}`;
 
             const textEncoded = encodeURIComponent(texte);
-            
-            // Numéro WhatsApp ASSL
             const whatsappNumber = '50936310974';
-            
-            // Ouvrir WhatsApp
             const whatsappLink = `https://wa.me/${whatsappNumber}?text=${textEncoded}`;
             window.open(whatsappLink, '_blank');
             
             showMessage('✅ WhatsApp ouvert! Envoye message a!', 'success');
-            
             contactForm.reset();
         });
-// Initialisation
-displayProduits();
-updateCart();
-    </script>
- <!-- ===== SMART CHAT WITH AI VOICE EN FRANCAIS - METE SA A ANVAN </body> ===== -->
 
-<style>
-    .chat-button-fixed {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #25d366, #128c7e);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        transition: all 0.3s;
-        z-index: 999;
-    }
+        // Chat functionality
+        const chatBtn = document.getElementById('chatBtn');
+        const chatPopup = document.getElementById('chatPopup');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
 
-    .chat-button-fixed:hover {
-        transform: scale(1.1);
-        box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
-    }
-
-    .chat-button-fixed.active {
-        background: linear-gradient(135deg, #ea4335, #c5221f);
-    }
-
-    .chat-popup {
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        width: 380px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-        display: none;
-        flex-direction: column;
-        z-index: 998;
-        overflow: hidden;
-    }
-
-    .chat-popup.open {
-        display: flex;
-        animation: slideUp 0.3s ease-out;
-    }
-
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .chat-header {
-        background: linear-gradient(135deg, #6b8e23, #8fbc8f);
-        color: white;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .chat-header h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .chat-header p {
-        font-size: 0.85rem;
-        opacity: 0.9;
-    }
-
-    .chat-body {
-        padding: 1.5rem;
-        max-height: 400px;
-        overflow-y: auto;
-        background: #fafafa;
-    }
-
-    .chat-message {
-        margin-bottom: 1rem;
-        padding: 1rem;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        animation: fadeIn 0.3s ease-out;
-        position: relative;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .chat-message.bot {
-        background: white;
-        color: #333;
-        border-left: 4px solid #6b8e23;
-        margin-right: 20%;
-    }
-
-    .chat-message.user {
-        background: #8fbc8f;
-        color: white;
-        margin-left: 20%;
-        text-align: right;
-    }
-
-    .chat-message.typing {
-        background: white;
-        border-left: 4px solid #6b8e23;
-        margin-right: 20%;
-    }
-
-    .typing-indicator {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: 0.5rem;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #6b8e23;
-        animation: bounce 1.4s infinite;
-    }
-
-    .dot:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .dot:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-
-    @keyframes bounce {
-        0%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-10px); }
-    }
-
-    .voice-icon {
-        display: inline-block;
-        margin-left: 0.5rem;
-        cursor: pointer;
-        font-size: 1.2rem;
-        transition: all 0.3s;
-    }
-
-    .voice-icon:hover {
-        animation: pulse 0.5s;
-    }
-
-    .voice-icon.playing {
-        background: #ff6b6b;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-    }
-
-    .chat-footer {
-        padding: 1rem;
-        border-top: 1px solid #e0e0e0;
-        display: flex;
-        gap: 0.5rem;
-        background: white;
-    }
-
-    .chat-footer input {
-        flex: 1;
-        padding: 0.8rem;
-        border: 2px solid #e0e0e0;
-        border-radius: 25px;
-        font-family: inherit;
-        transition: all 0.3s;
-    }
-
-    .chat-footer input:focus {
-        outline: none;
-        border-color: #8fbc8f;
-    }
-
-    .chat-footer button {
-        background: #8fbc8f;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 1.2rem;
-    }
-
-    .chat-footer button:hover {
-        background: #6b8e23;
-    }
-
-    .chat-footer button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    @media (max-width: 480px) {
-        .chat-popup {
-            width: 90vw;
-            right: 5vw;
-            bottom: 80px;
+        function speakText(text, lang = 'fr-FR') {
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                return;
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const frenchVoice = voices.find(voice => voice.lang.startsWith('fr'));
+            if (frenchVoice) {
+                utterance.voice = frenchVoice;
+            }
+            
+            utterance.onstart = function() {
+                updateVoiceIcon(true);
+            };
+            
+            utterance.onend = function() {
+                updateVoiceIcon(false);
+            };
+            
+            window.speechSynthesis.speak(utterance);
         }
 
-        .chat-button-fixed {
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
+        function updateVoiceIcon(isPlaying) {
+            const icons = document.querySelectorAll('.voice-icon');
+            icons.forEach(icon => {
+                if (isPlaying) {
+                    icon.classList.add('playing');
+                    icon.textContent = '🔈';
+                } else {
+                    icon.classList.remove('playing');
+                    icon.textContent = '🔊';
+                }
+            });
         }
-    }
-</style>
 
-<!-- Chat Button HTML -->
-<button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
-
-<div class="chat-popup" id="chatPopup">
-    <div class="chat-header">
-        <h3>🌾 Assistante ASSL 🎙️</h3>
-        <p>Chat avec voix - nous parlons!</p>
-    </div>
-    
-    <div class="chat-body" id="chatBody">
-        <div class="chat-message bot">
-            👋 Bonjour! Je suis l'assistante ASSL avec voix! 
-            <span class="voice-icon" onclick="speakText('Bonjour! Je suis l\'assistante ASSL avec voix!', 'fr-FR')">🔊</span>
-            <br><br>
-            Je peux répondre à vos questions sur:
-            <br>
-            • 🌾 Les produits ASSL<br>
-            • 💰 Les prix<br>
-            • 📦 La livraison<br>
-            • 📞 Comment nous contacter<br>
-            <br>
-            Posez votre question! 😊
-        </div>
-    </div>
-
-    <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Tapez votre question...">
-        <button id="sendBtn" onclick="sendMessage()">✔</button>
-    </div>
-</div>
-
-<script>
-    const chatBtn = document.getElementById('chatBtn');
-    const chatPopup = document.getElementById('chatPopup');
-    const chatBody = document.getElementById('chatBody');
-    const chatInput = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
-
-    // Function to speak text with natural voice
-    function speakText(text, lang = 'fr-FR') {
-        // If already speaking, stop it
-        if (window.speechSynthesis.speaking) {
-            window.speechSynthesis.cancel();
-            return;
-        }
-        
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang;
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
-        utterance.volume = 1;
-        
-        const voices = window.speechSynthesis.getVoices();
-        const frenchVoice = voices.find(voice => voice.lang.startsWith('fr'));
-        if (frenchVoice) {
-            utterance.voice = frenchVoice;
-        }
-        
-        // Update voice icon when speaking starts
-        utterance.onstart = function() {
-            updateVoiceIcon(true);
+        const knowledge = {
+            "mais": "Nous vendons du maïs fin et pur! Prix: 350 HTG pour 500g. Qualité excellente pour votre famille!",
+            "akmil": "L'Akmil est une transformation traditionnelle haïtienne! Prix: 280 HTG pour 400g. Bon pour la santé!",
+            "viande": "Boeuf séché avec un goût spécial! Prix: 180 HTG pour 100g. Délicieux!",
+            "riz": "Le meilleur riz! Prix: 450 HTG pour 1kg. Parfait pour tous les repas!",
+            "lait": "Poudre de lait 100% biologique! Prix: 420 HTG pour 500g. Pour toute la famille!",
+            "prix": "Voici nos prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG",
+            "livraison": "La livraison est GRATUITE sur tous les produits ASSL! Nous livrons dans toute Haïti rapidement!",
+            "kontakte": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
+            "assl": "ASSL est l'Association Socio-Sportive de Lhomond. Nous vendons les meilleur produits agricoles depuis 2007!",
+            "produit": "ASSL vend: Maïs, Akmil, Farine, Boeuf séché, Riz, Lait - TOUS de très bonne qualité!",
+            "bonjour": "Bonjour! Comment allez-vous? N'hésitez pas à poser votre question!",
+            "merci": "De rien! Avez-vous d'autres questions?",
+            "contact": "Pour nous contacter: 📞 (+509) 47472529 ou 📧 theandrique.louisjuste@gmail.com ou 💬 WhatsApp wa.me/50936310974"
         };
-        
-        // Update voice icon when speaking ends
-        utterance.onend = function() {
-            updateVoiceIcon(false);
-        };
-        
-        window.speechSynthesis.speak(utterance);
-    }
 
-    // Function to update voice icon appearance
-    function updateVoiceIcon(isPlaying) {
-        const icons = document.querySelectorAll('.voice-icon');
-        icons.forEach(icon => {
-            if (isPlaying) {
-                icon.classList.add('playing');
-                icon.textContent = '🔈'; // Stop button
-            } else {
-                icon.classList.remove('playing');
-                icon.textContent = '🔊'; // Play button
+        const defaultResponses = [
+            "Je ne comprends pas bien. Pourriez-vous poser une question sur nos produits ou nos services?",
+            "Votre question n'est pas très claire. Voulez-vous des informations sur les produits ou la livraison?",
+            "Je n'ai pas de réponse à cela. Posez une question sur ASSL, nos prix ou comment nous contacter!"
+        ];
+
+        chatBtn.addEventListener('click', function() {
+            chatPopup.classList.toggle('open');
+            chatBtn.classList.toggle('active');
+            if (chatPopup.classList.contains('open')) {
+                chatInput.focus();
             }
         });
-    }
 
-    // Knowledge base en français
-    const knowledge = {
-        "mais": "Nous vendons du maïs fin et pur! Prix: 350 HTG pour 500g. Qualité excellente pour votre famille!",
-        "akmil": "L'Akmil est une transformation traditionnelle haïtienne! Prix: 280 HTG pour 400g. Bon pour la santé!",
-        "viande": "Boeuf séché avec un goût spécial! Prix: 180 HTG pour 100g. Délicieux!",
-        "riz": "Le meilleur riz! Prix: 450 HTG pour 1kg. Parfait pour tous les repas!",
-        "lait": "Poudre de lait 100% biologique! Prix: 420 HTG pour 500g. Pour toute la famille!",
-        "prix": "Voici nos prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG",
-        "livraison": "La livraison est GRATUITE sur tous les produits ASSL! Nous livrons dans toute Haïti rapidement!",
-        "kontakte": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
-        "assl": "ASSL est l'Association Socio-Sportive de Lhomond. Nous vendons les meilleur produits agricoles depuis 2007!",
-        "produit": "ASSL vend: Maïs, Akmil, Farine, Boeuf séché, Riz, Lait - TOUS de très bonne qualité!",
-        "bonjour": "Bonjour! Comment allez-vous? N'hésitez pas à poser votre question!",
-        "merci": "De rien! Avez-vous d'autres questions?",
-        "contact": "Pour nous contacter: 📞 (+509) 47472529 ou 📧 theandrique.louisjuste@gmail.com ou 💬 WhatsApp wa.me/50936310974"
-    };
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
 
-    const defaultResponses = [
-        "Je ne comprends pas bien. Pourriez-vous poser une question sur nos produits ou nos services?",
-        "Votre question n'est pas très claire. Voulez-vous des informations sur les produits ou la livraison?",
-        "Je n'ai pas de réponse à cela. Posez une question sur ASSL, nos prix ou comment nous contacter!"
-    ];
-
-    // Toggle chat
-    chatBtn.addEventListener('click', function() {
-        chatPopup.classList.toggle('open');
-        chatBtn.classList.toggle('active');
-        if (chatPopup.classList.contains('open')) {
-            chatInput.focus();
-        }
-    });
-
-    // Send message
-    function sendMessage() {
-        const message = chatInput.value.trim();
-        if (!message) return;
-
-        // User message
-        const userMsg = document.createElement('div');
-        userMsg.className = 'chat-message user';
-        userMsg.textContent = message;
-        chatBody.appendChild(userMsg);
-        chatInput.value = '';
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        sendBtn.disabled = true;
-
-        // Show typing
-        const typingMsg = document.createElement('div');
-        typingMsg.className = 'chat-message typing';
-        typingMsg.innerHTML = '<div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-        chatBody.appendChild(typingMsg);
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        // Process response
-        setTimeout(() => {
-            typingMsg.remove();
-            
-            const lowerMsg = message.toLowerCase();
-            let response = null;
-
-            for (let key in knowledge) {
-                if (lowerMsg.includes(key)) {
-                    response = knowledge[key];
-                    break;
-                }
-            }
-
-            if (!response) {
-                response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-            }
-
-            // Display response with voice button
-            const botMsg = document.createElement('div');
-            botMsg.className = 'chat-message bot';
-            botMsg.innerHTML = response + ` <span class="voice-icon" onclick="speakText('${response.replace(/'/g, "\\'")}', 'fr-FR')">🔊</span>`;
-            chatBody.appendChild(botMsg);
-            
-            // Auto-speak response
-            speakText(response, 'fr-FR');
-            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-message user';
+            userMsg.textContent = message;
+            chatBody.appendChild(userMsg);
+            chatInput.value = '';
             chatBody.scrollTop = chatBody.scrollHeight;
-            sendBtn.disabled = false;
-            chatInput.focus();
-        }, 800);
-    }
 
-    // Send on Enter
-    chatInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !sendBtn.disabled) sendMessage();
-    });
+            sendBtn.disabled = true;
 
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.chat-button-fixed') && 
-            !e.target.closest('.chat-popup')) {
-            chatPopup.classList.remove('open');
-            chatBtn.classList.remove('active');
+            const typingMsg = document.createElement('div');
+            typingMsg.className = 'chat-message typing';
+            typingMsg.innerHTML = '<div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+            chatBody.appendChild(typingMsg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                typingMsg.remove();
+                
+                const lowerMsg = message.toLowerCase();
+                let response = null;
+
+                for (let key in knowledge) {
+                    if (lowerMsg.includes(key)) {
+                        response = knowledge[key];
+                        break;
+                    }
+                }
+
+                if (!response) {
+                    response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+                }
+
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-message bot';
+                botMsg.innerHTML = response + ` <span class="voice-icon" onclick="speakText('${response.replace(/'/g, "\\'")}', 'fr-FR')">🔊</span>`;
+                chatBody.appendChild(botMsg);
+                
+                speakText(response, 'fr-FR');
+                
+                chatBody.scrollTop = chatBody.scrollHeight;
+                sendBtn.disabled = false;
+                chatInput.focus();
+            }, 800);
         }
-    });
 
-    // Load voices when they're available
-    window.speechSynthesis.onvoiceschanged = function() {
-        window.speechSynthesis.getVoices();
-    };
-</script>
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !sendBtn.disabled) sendMessage();
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.chat-button-fixed') && 
+                !e.target.closest('.chat-popup')) {
+                chatPopup.classList.remove('open');
+                chatBtn.classList.remove('active');
+            }
+        });
+
+        window.speechSynthesis.onvoiceschanged = function() {
+            window.speechSynthesis.getVoices();
+        };
+
+        // Initialize
+        displayProduits();
+        updateCart();
+    </script>
 </body>
 </html>
-
