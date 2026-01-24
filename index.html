@@ -1229,10 +1229,9 @@ function scrollToSection(sectionId) {
 displayProduits();
 updateCart();
     </script>
-    <!-- ===== CHAT BUTTON - METE SA A ANVAN </body> ===== -->
+ <!-- ===== SMART CHAT WITH AI VOICE EN FRANCAIS - METE SA A ANVAN </body> ===== -->
 
 <style>
-     /* Chat Button Styles */
     .chat-button-fixed {
         position: fixed;
         bottom: 30px;
@@ -1322,6 +1321,7 @@ updateCart();
         font-size: 0.95rem;
         line-height: 1.6;
         animation: fadeIn 0.3s ease-out;
+        position: relative;
     }
 
     @keyframes fadeIn {
@@ -1383,6 +1383,29 @@ updateCart();
         40% { transform: translateY(-10px); }
     }
 
+    .voice-icon {
+        display: inline-block;
+        margin-left: 0.5rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+    }
+
+    .voice-icon:hover {
+        animation: pulse 0.5s;
+    }
+
+    .voice-icon.playing {
+        background: #ff6b6b;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+
     .chat-footer {
         padding: 1rem;
         border-top: 1px solid #e0e0e0;
@@ -1420,25 +1443,10 @@ updateCart();
     .chat-footer button:hover {
         background: #6b8e23;
     }
-.send{
-        width: 25px;
-        height: 25px;
-        margin-top: 7px;
-        
-}
+
     .chat-footer button:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-    }
-
-    a {
-        color: #25d366;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    a:hover {
-        text-decoration: underline;
     }
 
     @media (max-width: 480px) {
@@ -1457,30 +1465,33 @@ updateCart();
 </style>
 
 <!-- Chat Button HTML -->
-<button class="chat-button-fixed" id="chatBtn" title="Mesasse ASSL">💬</button>
+<button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
 
 <div class="chat-popup" id="chatPopup">
     <div class="chat-header">
-        <h3>🌾 ASSL Bot</h3>
-        <p>Poser vos questions -je reponds!</p>
+        <h3>🌾 Assistante ASSL 🎙️</h3>
+        <p>Chat avec voix - nous parlons!</p>
     </div>
     
     <div class="chat-body" id="chatBody">
         <div class="chat-message bot">
-            👋 Bonjour! je suis un mini-assistant de ce site comment vous aidez?:
+            👋 Bonjour! Je suis l'assistante ASSL avec voix! 
+            <span class="voice-icon" onclick="speakText('Bonjour! Je suis l\'assistante ASSL avec voix!', 'fr-FR')">🔊</span>
             <br><br>
-            • 🌾 Produits ASSL<br>
-            • 💰 Prix<br>
-            • 📦 Livraison<br>
-            • 📞 Contact<br>
+            Je peux répondre à vos questions sur:
             <br>
-            Posez vos questions! 😊
+            • 🌾 Les produits ASSL<br>
+            • 💰 Les prix<br>
+            • 📦 La livraison<br>
+            • 📞 Comment nous contacter<br>
+            <br>
+            Posez votre question! 😊
         </div>
     </div>
 
     <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Écrire un message..." onkeypress="if(event.key === 'Enter') sendMessage()">
-       <button id="sendBtn" onclick="sendMessage()">✔</button>
+        <input type="text" id="chatInput" placeholder="Tapez votre question...">
+        <button id="sendBtn" onclick="sendMessage()">✔</button>
     </div>
 </div>
 
@@ -1491,51 +1502,74 @@ updateCart();
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
 
-    // Knowledge base para bot
+    // Function to speak text with natural voice
+    function speakText(text, lang = 'fr-FR') {
+        // If already speaking, stop it
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.cancel();
+            return;
+        }
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        
+        const voices = window.speechSynthesis.getVoices();
+        const frenchVoice = voices.find(voice => voice.lang.startsWith('fr'));
+        if (frenchVoice) {
+            utterance.voice = frenchVoice;
+        }
+        
+        // Update voice icon when speaking starts
+        utterance.onstart = function() {
+            updateVoiceIcon(true);
+        };
+        
+        // Update voice icon when speaking ends
+        utterance.onend = function() {
+            updateVoiceIcon(false);
+        };
+        
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Function to update voice icon appearance
+    function updateVoiceIcon(isPlaying) {
+        const icons = document.querySelectorAll('.voice-icon');
+        icons.forEach(icon => {
+            if (isPlaying) {
+                icon.classList.add('playing');
+                icon.textContent = '🔈'; // Stop button
+            } else {
+                icon.classList.remove('playing');
+                icon.textContent = '🔊'; // Play button
+            }
+        });
+    }
+
+    // Knowledge base en français
     const knowledge = {
-        // Produi
-        "mais": "On vend du mais! 🌾 Prix: 350 HTG pour 500g. de bonne qualite et haute gamme!",
-        "akmil": "Akmil,trasformation traditionnel de notre pays! 🥣 Prix: 280 HTG pou 400g. bonne santé!",
-        "viande": "Du boeuf seche! 🥩 Prix: 180 HTG pour 100g. Delicieux!",
-        "riz": "Du ris! 🍚 Prix: 450 HTG pour 1kg. Apetissant!",
-        "lait": "En poudre 100% biologique! 🥛 Prix: 420 HTG pour 500g. Pour tout le monde!",
-        
-        // Prix
-        "prix": "Voir prix ASSL:\n• Mais: 350 HTG\n• Akmil: 280 HTG\n• Viande: 180 HTG\n• Riz: 450 HTG\n• Lait: 420 HTG\n\n! 🛒",
-        "cout": "Vwa pri ASSL:\n• Mais: 350 HTG\n• Akmil: 280 HTG\n• Viande: 180 HTG\n• Riz: 450 HTG\n• Lait: 420 HTG",
-        
-        // Livraison
-        "livraison": "✅ Livraison gratuit!\n📍 delivré a haiti\n⏱️ quand vous cliquez, nous agissons immmediatement!\n\nPassez votre commande! 🚚",
-        "deliver": "Livrezon gratis! 🚚 Nou livré tout Ayiti rapid!",
-        
-        // Kontakte
-        "Contact": "Contacter ASSL:\n📞 Telephone: (+509) 47472529\n📧 Email: theandrique.louisjuste@gmail.com\n💬 WhatsApp: https://wa.me/50936310974\n\nOn est la pour vous! 💪",
-        "telephone": "comment nous appelez: (+509) 47472529 oubyen WhatsApp: https://wa.me/50936310974",
-        "whatsapp": "Ecris nous sur WhatsApp: https://wa.me/50936310974 ✅",
-        "email": "notre email: theandrique.louisjuste@gmail.com 📧",
-        
-        // Jeneral
-        "assl": "🌾 ASSL = Association Socio-Sportive de Lhomond. Nou vendons des produits agricoles depuis 2007!",
-        "fondation": "ASSL fondé le 26 aout 2007! 🎉 92 membre actif - 38 filles ak 54 garcons!",
-        "quoi": "ASSL est une boutique agricole. on vend du mais, akmil, farine, boeuf seché, riz, lait - bonne qualités! ✅",
-        
-        // Pye
-        "haiti": "Oui! en haiti! 🇭🇹 13 Merger Léogâne, ASSL haiti",
-        "adresse": "📍 13 Merger Léogâne, ASSL Ayiti",
-        "local": "ASSL  a Léogâne, haiti! 🇭🇹",
-        
-        // Saliyasyon
-        "Bonjour": "Bonjour! ca roule? 😊 poser vos questions surASSL!",
-        "Merci": "De rin! 🙏 vous avez d'autre question?",
-        "Remercie": "merci d'utiliser ASSL!! 💚",
+        "mais": "Nous vendons du maïs fin et pur! Prix: 350 HTG pour 500g. Qualité excellente pour votre famille!",
+        "akmil": "L'Akmil est une transformation traditionnelle haïtienne! Prix: 280 HTG pour 400g. Bon pour la santé!",
+        "viande": "Boeuf séché avec un goût spécial! Prix: 180 HTG pour 100g. Délicieux!",
+        "riz": "Le meilleur riz! Prix: 450 HTG pour 1kg. Parfait pour tous les repas!",
+        "lait": "Poudre de lait 100% biologique! Prix: 420 HTG pour 500g. Pour toute la famille!",
+        "prix": "Voici nos prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG",
+        "livraison": "La livraison est GRATUITE sur tous les produits ASSL! Nous livrons dans toute Haïti rapidement!",
+        "kontakte": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
+        "assl": "ASSL est l'Association Socio-Sportive de Lhomond. Nous vendons les meilleur produits agricoles depuis 2007!",
+        "produit": "ASSL vend: Maïs, Akmil, Farine, Boeuf séché, Riz, Lait - TOUS de très bonne qualité!",
+        "bonjour": "Bonjour! Comment allez-vous? N'hésitez pas à poser votre question!",
+        "merci": "De rien! Avez-vous d'autres questions?",
+        "contact": "Pour nous contacter: 📞 (+509) 47472529 ou 📧 theandrique.louisjuste@gmail.com ou 💬 WhatsApp wa.me/50936310974"
     };
 
-    // Default response
     const defaultResponses = [
-        "🤔 je ne comprends pas. poser des questions sur ASSL, produits, ou contacter nous!",
-        "❓  votre question n'est pas clair. vous voulez des infos sur les prix ou Livraison?",
-        "💭 Je n'ai pas de reponse pour ca. comprennez moi - je sui un mini-assistant! 😅",
-        "🤷 Question hors sujet, parler sur ASSL, ou contacter nous!"
+        "Je ne comprends pas bien. Pourriez-vous poser une question sur nos produits ou nos services?",
+        "Votre question n'est pas très claire. Voulez-vous des informations sur les produits ou la livraison?",
+        "Je n'ai pas de réponse à cela. Posez une question sur ASSL, nos prix ou comment nous contacter!"
     ];
 
     // Toggle chat
@@ -1560,7 +1594,6 @@ updateCart();
         chatInput.value = '';
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Disable send button
         sendBtn.disabled = true;
 
         // Show typing
@@ -1577,7 +1610,6 @@ updateCart();
             const lowerMsg = message.toLowerCase();
             let response = null;
 
-            // Check knowledge base
             for (let key in knowledge) {
                 if (lowerMsg.includes(key)) {
                     response = knowledge[key];
@@ -1585,18 +1617,20 @@ updateCart();
                 }
             }
 
-            // If no match, use default
             if (!response) {
                 response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
             }
 
-            // Display response
+            // Display response with voice button
             const botMsg = document.createElement('div');
             botMsg.className = 'chat-message bot';
-            botMsg.innerHTML = response;
+            botMsg.innerHTML = response + ` <span class="voice-icon" onclick="speakText('${response.replace(/'/g, "\\'")}', 'fr-FR')">🔊</span>`;
             chatBody.appendChild(botMsg);
+            
+            // Auto-speak response
+            speakText(response, 'fr-FR');
+            
             chatBody.scrollTop = chatBody.scrollHeight;
-
             sendBtn.disabled = false;
             chatInput.focus();
         }, 800);
@@ -1616,6 +1650,10 @@ updateCart();
         }
     });
 
+    // Load voices when they're available
+    window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.getVoices();
+    };
 </script>
 </body>
 </html>
