@@ -1232,7 +1232,7 @@ updateCart();
     <!-- ===== CHAT BUTTON - METE SA A ANVAN </body> ===== -->
 
 <style>
-    /* Chat Button Styles */
+     /* Chat Button Styles */
     .chat-button-fixed {
         position: fixed;
         bottom: 30px;
@@ -1251,11 +1251,7 @@ updateCart();
         transition: all 0.3s;
         z-index: 999;
     }
-.contact-icon{
-    width: 20px;
-    height: 20px;
-    margin-right: 1rem;
-}
+
     .chat-button-fixed:hover {
         transform: scale(1.1);
         box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
@@ -1269,7 +1265,7 @@ updateCart();
         position: fixed;
         bottom: 100px;
         right: 30px;
-        width: 350px;
+        width: 380px;
         background: white;
         border-radius: 15px;
         box-shadow: 0 15px 50px rgba(0,0,0,0.2);
@@ -1314,28 +1310,77 @@ updateCart();
 
     .chat-body {
         padding: 1.5rem;
-        max-height: 300px;
+        max-height: 400px;
         overflow-y: auto;
+        background: #fafafa;
     }
 
     .chat-message {
         margin-bottom: 1rem;
-        padding: 0.8rem;
+        padding: 1rem;
         border-radius: 10px;
-        font-size: 0.9rem;
-        line-height: 1.5;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .chat-message.bot {
-        background: #f0f0f0;
+        background: white;
         color: #333;
+        border-left: 4px solid #6b8e23;
+        margin-right: 20%;
     }
 
     .chat-message.user {
         background: #8fbc8f;
         color: white;
-        margin-left: auto;
-        max-width: 80%;
+        margin-left: 20%;
+        text-align: right;
+    }
+
+    .chat-message.typing {
+        background: white;
+        border-left: 4px solid #6b8e23;
+        margin-right: 20%;
+    }
+
+    .typing-indicator {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0.5rem;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #6b8e23;
+        animation: bounce 1.4s infinite;
+    }
+
+    .dot:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .dot:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+        0%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
     }
 
     .chat-footer {
@@ -1343,6 +1388,7 @@ updateCart();
         border-top: 1px solid #e0e0e0;
         display: flex;
         gap: 0.5rem;
+        background: white;
     }
 
     .chat-footer input {
@@ -1374,6 +1420,26 @@ updateCart();
     .chat-footer button:hover {
         background: #6b8e23;
     }
+.send{
+        width: 25px;
+        height: 25px;
+        margin-top: 7px;
+        
+}
+    .chat-footer button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    a {
+        color: #25d366;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
 
     @media (max-width: 480px) {
         .chat-popup {
@@ -1391,23 +1457,30 @@ updateCart();
 </style>
 
 <!-- Chat Button HTML -->
-<button class="chat-button-fixed" id="chatBtn" title="Mesaj nou">💬</button>
+<button class="chat-button-fixed" id="chatBtn" title="Mesasse ASSL">💬</button>
 
 <div class="chat-popup" id="chatPopup">
     <div class="chat-header">
-        <h3>👋 Bonjour!</h3>
-        <p>ASSL - comment puis je vous aider?</p>
+        <h3>🌾 ASSL Bot</h3>
+        <p>Poser vos questions -je reponds!</p>
     </div>
     
     <div class="chat-body" id="chatBody">
         <div class="chat-message bot">
-            Bonjour je suis l'assistant ASSL. Comment puis-je vous aider aujourd'hui?
+            👋 Bonjour! je suis un mini-assistant de ce site comment vous aidez?:
+            <br><br>
+            • 🌾 Produits ASSL<br>
+            • 💰 Prix<br>
+            • 📦 Livraison<br>
+            • 📞 Contact<br>
+            <br>
+            Posez vos questions! 😊
         </div>
     </div>
 
     <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Ecris message.....">
-        <button onclick="sendMessage()">📤</button>
+        <input type="text" id="chatInput" placeholder="Écrire un message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+       <button id="sendBtn" onclick="sendMessage()">✔</button>
     </div>
 </div>
 
@@ -1416,8 +1489,56 @@ updateCart();
     const chatPopup = document.getElementById('chatPopup');
     const chatBody = document.getElementById('chatBody');
     const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
 
-    // Toggle chat popup
+    // Knowledge base para bot
+    const knowledge = {
+        // Produi
+        "mais": "On vend du mais! 🌾 Prix: 350 HTG pour 500g. de bonne qualite et haute gamme!",
+        "akmil": "Akmil,trasformation traditionnel de notre pays! 🥣 Prix: 280 HTG pou 400g. bonne santé!",
+        "viande": "Du boeuf seche! 🥩 Prix: 180 HTG pour 100g. Delicieux!",
+        "riz": "Du ris! 🍚 Prix: 450 HTG pour 1kg. Apetissant!",
+        "lait": "En poudre 100% biologique! 🥛 Prix: 420 HTG pour 500g. Pour tout le monde!",
+        
+        // Prix
+        "prix": "Voir prix ASSL:\n• Mais: 350 HTG\n• Akmil: 280 HTG\n• Viande: 180 HTG\n• Riz: 450 HTG\n• Lait: 420 HTG\n\n! 🛒",
+        "cout": "Vwa pri ASSL:\n• Mais: 350 HTG\n• Akmil: 280 HTG\n• Viande: 180 HTG\n• Riz: 450 HTG\n• Lait: 420 HTG",
+        
+        // Livraison
+        "livraison": "✅ Livraison gratuit!\n📍 delivré a haiti\n⏱️ quand vous cliquez, nous agissons immmediatement!\n\nPassez votre commande! 🚚",
+        "deliver": "Livrezon gratis! 🚚 Nou livré tout Ayiti rapid!",
+        
+        // Kontakte
+        "Contact": "Contacter ASSL:\n📞 Telephone: (+509) 47472529\n📧 Email: theandrique.louisjuste@gmail.com\n💬 WhatsApp: https://wa.me/50936310974\n\nOn est la pour vous! 💪",
+        "telephone": "comment nous appelez: (+509) 47472529 oubyen WhatsApp: https://wa.me/50936310974",
+        "whatsapp": "Ecris nous sur WhatsApp: https://wa.me/50936310974 ✅",
+        "email": "notre email: theandrique.louisjuste@gmail.com 📧",
+        
+        // Jeneral
+        "assl": "🌾 ASSL = Association Socio-Sportive de Lhomond. Nou vendons des produits agricoles depuis 2007!",
+        "fondation": "ASSL fondé le 26 aout 2007! 🎉 92 membre actif - 38 filles ak 54 garcons!",
+        "quoi": "ASSL est une boutique agricole. on vend du mais, akmil, farine, boeuf seché, riz, lait - bonne qualités! ✅",
+        
+        // Pye
+        "haiti": "Oui! en haiti! 🇭🇹 13 Merger Léogâne, ASSL haiti",
+        "adresse": "📍 13 Merger Léogâne, ASSL Ayiti",
+        "local": "ASSL  a Léogâne, haiti! 🇭🇹",
+        
+        // Saliyasyon
+        "Bonjour": "Bonjour! ca roule? 😊 poser vos questions surASSL!",
+        "Merci": "De rin! 🙏 vous avez d'autre question?",
+        "Remercie": "merci d'utiliser ASSL!! 💚",
+    };
+
+    // Default response
+    const defaultResponses = [
+        "🤔 je ne comprends pas. poser des questions sur ASSL, produits, ou contacter nous!",
+        "❓  votre question n'est pas clair. vous voulez des infos sur les prix ou Livraison?",
+        "💭 Je n'ai pas de reponse pour ca. comprennez moi - je sui un mini-assistant! 😅",
+        "🤷 Question hors sujet, parler sur ASSL, ou contacter nous!"
+    ];
+
+    // Toggle chat
     chatBtn.addEventListener('click', function() {
         chatPopup.classList.toggle('open');
         chatBtn.classList.toggle('active');
@@ -1436,29 +1557,54 @@ updateCart();
         userMsg.className = 'chat-message user';
         userMsg.textContent = message;
         chatBody.appendChild(userMsg);
-
         chatInput.value = '';
+        chatBody.scrollTop = chatBody.scrollHeight;
 
-        // Bot response
+        // Disable send button
+        sendBtn.disabled = true;
+
+        // Show typing
+        const typingMsg = document.createElement('div');
+        typingMsg.className = 'chat-message typing';
+        typingMsg.innerHTML = '<div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+        chatBody.appendChild(typingMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Process response
         setTimeout(() => {
+            typingMsg.remove();
+            
+            const lowerMsg = message.toLowerCase();
+            let response = null;
+
+            // Check knowledge base
+            for (let key in knowledge) {
+                if (lowerMsg.includes(key)) {
+                    response = knowledge[key];
+                    break;
+                }
+            }
+
+            // If no match, use default
+            if (!response) {
+                response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            }
+
+            // Display response
             const botMsg = document.createElement('div');
             botMsg.className = 'chat-message bot';
-            botMsg.innerHTML = `
-                Parlons plus ouvertement 🙏<br><br>
-                Contacter nous sur:<br>
-                <img src="image/whatsapp.png" class="contact-icon"><a href="https://wa.me/50936310974" target="_blank" style="color: #25d366; font-weight: bold;"> WhatsApp</a> | 
-                <img  src="image/google.png"  class="contact-icon"><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=theandrique.louisjuste@gmail.com" target="_blank" style="color: #ea4335; font-weight: bold;"> Email</a>
-            `;
+            botMsg.innerHTML = response;
             chatBody.appendChild(botMsg);
             chatBody.scrollTop = chatBody.scrollHeight;
-        }, 500);
 
-        chatBody.scrollTop = chatBody.scrollHeight;
+            sendBtn.disabled = false;
+            chatInput.focus();
+        }, 800);
     }
 
     // Send on Enter
     chatInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') sendMessage();
+        if (e.key === 'Enter' && !sendBtn.disabled) sendMessage();
     });
 
     // Close on outside click
@@ -1469,6 +1615,7 @@ updateCart();
             chatBtn.classList.remove('active');
         }
     });
+
 </script>
 </body>
 </html>
