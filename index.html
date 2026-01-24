@@ -507,6 +507,7 @@
             background: linear-gradient(135deg, #6b8e23, #8fbc8f);
             color: white;
             padding: 1rem 3rem;
+            margin:0.9em;
             border: none;
             border-radius: 50px;
             font-size: 1.1rem;
@@ -826,28 +827,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label>Nom *</label>
-                            <input type="text" id="nom" required placeholder="Votre nom">
-                        </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" id="email" required placeholder="votre@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Téléphone</label>
-                            <input type="tel" id="telephone" placeholder="+509 XXXX XXXX">
-                        </div>
-                        <div class="form-group">
-                            <label>Message *</label>
-                            <textarea id="message" required placeholder="Je veux acheter..."></textarea>
-                        </div>
-                       <button type="submit" class="submit-button" onclick="envoyerEmail(event)">Envoyer</button>
-                    </form>
-                </div>
+               <div class="container">
+                <div id="messageBox" class="message"></div>
+                <form id="contactForm">
+            <div class="form-group">
+                <label>Nom *</label>
+                <input type="text" id="nom" required placeholder="Votre nom">
             </div>
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" required placeholder="votre@email.com">
+            </div>
+            <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" id="telephone" placeholder="+509 XXXX XXXX">
+            </div>
+            <div class="form-group">
+                <label>Message *</label>
+                <textarea id="message" required placeholder="Je veux acheter..."></textarea>
+            </div>
+            <div class="button-group">
+                <button type="button" id="submitBtn" class="submit-button">📧 Gmail</button>
+                <button type="button" id="whatsappBtn" class="submit-button">💬 WhatsApp</button>
+            </div>
+            <div class="info-text">
+                ✓ Gmail ouvre automatiquement | ✓ WhatsApp ouvre automatiquement
+            </div>
+        </form>
+    </div>
         </section>
 
         <footer>
@@ -1122,38 +1129,346 @@ function scrollToSection(sectionId) {
     }, 100);
 }
 
-// Fonction pour envoyer l'email
-function envoyerEmail(e) {
-    e.preventDefault();
-    
-    const nom = document.getElementById('nom').value;
-    const email = document.getElementById('email').value;
-    const telephone = document.getElementById('telephone').value;
-    const message = document.getElementById('message').value;
-    
-    if (!nom || !email || !message) {
-        alert('⚠️ Veuillez remplir tous les champs obligatoires (Nom, Email, Message)!');
-        return;
-    }
-    
-    const sujet = encodeURIComponent(`Nouveau message de ${nom} - ASSL`);
-    const corps = encodeURIComponent(
-        `Nom: ${nom}\n` +
-        `Email: ${email}\n` +
-        `Téléphone: ${telephone || 'Non fourni'}\n\n` +
-        `Message:\n${message}`
-    );
-    
-    window.location.href = `mailto:theandrique.louisjuste@gmail.com?subject=${sujet}&body=${corps}`;
-    
-    alert('✅ Votre client email va s\'ouvrir. Veuillez envoyer le message.');
-    
-    document.getElementById('contactForm').reset();
-}
+  const submitBtn = document.getElementById('submitBtn');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const messageBox = document.getElementById('messageBox');
+        const contactForm = document.getElementById('contactForm');
 
+        function showMessage(text, type) {
+            messageBox.textContent = text;
+            messageBox.className = `message ${type}`;
+            setTimeout(() => {
+                messageBox.className = 'message';
+            }, 3000);
+        }
+
+        function validateForm() {
+            const nom = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!nom || !email || !message) {
+                showMessage('⚠️ Rempli tout les champs obligatoires!', 'error');
+                return null;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage('⚠️ Email pa valide!', 'error');
+                return null;
+            }
+
+            return {
+                nom: nom,
+                email: email,
+                telephone: document.getElementById('telephone').value.trim(),
+                message: message
+            };
+        }
+
+        // ===== GMAIL =====
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const data = validateForm();
+            if (!data) return;
+
+            // Construire le message
+            const sujet = encodeURIComponent(`Nouveau message de ${data.nom} - ASSL`);
+            const corps = encodeURIComponent(
+                `Bonjour,\n\n` +
+                `J'ai reçu un message via le formulaire ASSL:\n\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+                `Nom: ${data.nom}\n` +
+                `Email: ${data.email}\n` +
+                `Téléphone: ${data.telephone || 'Non fourni'}\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+                `Message:\n${data.message}\n\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`
+            );
+            
+            // LIEN GMAIL - Ouvrir automatiquement
+            const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=theandrique.louisjuste@gmail.com&su=${sujet}&body=${corps}`;
+            window.open(gmailLink, '_blank');
+            
+            showMessage('✅ Gmail ouvert! "Envoyer"!', 'success');
+            
+            setTimeout(() => {
+                contactForm.reset();
+            }, 1500);
+        });
+
+        // ===== WHATSAPP =====
+        whatsappBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const data = validateForm();
+            if (!data) return;
+
+            // Construire le message WhatsApp
+            const texte = `*Message depuis ASSL*\n\n` +
+                         `*Nom:* ${data.nom}\n` +
+                         `*Email:* ${data.email}\n` +
+                         `*Téléphone:* ${data.telephone || 'Non fourni'}\n\n` +
+                         `*Message:*\n${data.message}`;
+
+            const textEncoded = encodeURIComponent(texte);
+            
+            // Numéro WhatsApp ASSL
+            const whatsappNumber = '50936310974';
+            
+            // Ouvrir WhatsApp
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${textEncoded}`;
+            window.open(whatsappLink, '_blank');
+            
+            showMessage('✅ WhatsApp ouvert! Envoye message a!', 'success');
+            
+            contactForm.reset();
+        });
 // Initialisation
 displayProduits();
 updateCart();
     </script>
+    <!-- ===== CHAT BUTTON - METE SA A ANVAN </body> ===== -->
+
+<style>
+    /* Chat Button Styles */
+    .chat-button-fixed {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        transition: all 0.3s;
+        z-index: 999;
+    }
+.contact-icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+}
+    .chat-button-fixed:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
+    }
+
+    .chat-button-fixed.active {
+        background: linear-gradient(135deg, #ea4335, #c5221f);
+    }
+
+    .chat-popup {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 350px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        display: none;
+        flex-direction: column;
+        z-index: 998;
+        overflow: hidden;
+    }
+
+    .chat-popup.open {
+        display: flex;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .chat-header {
+        background: linear-gradient(135deg, #6b8e23, #8fbc8f);
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .chat-header h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .chat-header p {
+        font-size: 0.85rem;
+        opacity: 0.9;
+    }
+
+    .chat-body {
+        padding: 1.5rem;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .chat-message {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .chat-message.bot {
+        background: #f0f0f0;
+        color: #333;
+    }
+
+    .chat-message.user {
+        background: #8fbc8f;
+        color: white;
+        margin-left: auto;
+        max-width: 80%;
+    }
+
+    .chat-footer {
+        padding: 1rem;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .chat-footer input {
+        flex: 1;
+        padding: 0.8rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 25px;
+        font-family: inherit;
+        transition: all 0.3s;
+    }
+
+    .chat-footer input:focus {
+        outline: none;
+        border-color: #8fbc8f;
+    }
+
+    .chat-footer button {
+        background: #8fbc8f;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1.2rem;
+    }
+
+    .chat-footer button:hover {
+        background: #6b8e23;
+    }
+
+    @media (max-width: 480px) {
+        .chat-popup {
+            width: 90vw;
+            right: 5vw;
+            bottom: 80px;
+        }
+
+        .chat-button-fixed {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<!-- Chat Button HTML -->
+<button class="chat-button-fixed" id="chatBtn" title="Mesaj nou">💬</button>
+
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+        <h3>👋 Bonjour!</h3>
+        <p>ASSL - comment puis je vous aider?</p>
+    </div>
+    
+    <div class="chat-body" id="chatBody">
+        <div class="chat-message bot">
+            Bonjour je suis l'assistant ASSL. Comment puis-je vous aider aujourd'hui?
+        </div>
+    </div>
+
+    <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Ecris message.....">
+        <button onclick="sendMessage()">📤</button>
+    </div>
+</div>
+
+<script>
+    const chatBtn = document.getElementById('chatBtn');
+    const chatPopup = document.getElementById('chatPopup');
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+
+    // Toggle chat popup
+    chatBtn.addEventListener('click', function() {
+        chatPopup.classList.toggle('open');
+        chatBtn.classList.toggle('active');
+        if (chatPopup.classList.contains('open')) {
+            chatInput.focus();
+        }
+    });
+
+    // Send message
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // User message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-message user';
+        userMsg.textContent = message;
+        chatBody.appendChild(userMsg);
+
+        chatInput.value = '';
+
+        // Bot response
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'chat-message bot';
+            botMsg.innerHTML = `
+                Parlons plus ouvertement 🙏<br><br>
+                Contacter nous sur:<br>
+                <img src="image/whatsapp.png" class="contact-icon"><a href="https://wa.me/50936310974" target="_blank" style="color: #25d366; font-weight: bold;"> WhatsApp</a> | 
+                <img  src="image/google.png"  class="contact-icon"><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=theandrique.louisjuste@gmail.com" target="_blank" style="color: #ea4335; font-weight: bold;"> Email</a>
+            `;
+            chatBody.appendChild(botMsg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 500);
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Send on Enter
+    chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.chat-button-fixed') && 
+            !e.target.closest('.chat-popup')) {
+            chatPopup.classList.remove('open');
+            chatBtn.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>
