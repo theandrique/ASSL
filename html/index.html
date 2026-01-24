@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style">
+    <title>ASSL - Boutique de Produits Agricoles</title>
+    <link rel="icon" type="image/png" href="image/logo.png"/>
+    <script src="script/script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo-container" onclick="showPage('home')">
+               <img src="image/logo.png" class="logo">
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Accueil</a></li>
+                <li><a onclick="scrollToSection('produits')">Produits</a></li>
+                <li><a onclick="showPage('about')">À propos</a></li>
+                 <li><a onclick="scrollToSection('categories')">Nos categories</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            <div class="cart-icon" onclick="showPage('cart')">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Accueil -->
+    <div id="homePage" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Produits Agricoles de Qualité</h1>
+                <p>Du cacao aux chocolats artisanaux - Production locale à ASSL, Haïti</p>
+                <a class="cta-button" onclick="scrollToSection('produits')">Voir nos produits</a>
+                <a class="cta-button" onclick="showPage('about')">En savoir plus</a>
+            </div>
+        </section>
+
+        <section id="categories" class="categories">
+            <h2 class="section-title">Nos Catégories</h2>
+            <div class="categories-grid">
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                   <img src="image/ble.png" class="ble">
+                    <h3>Maïs</h3>
+                    <p>Sac & Sachet</p>
+                </div>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                    <img src="image/farine (1).png" class="ble">
+                    <h3>Akmil</h3>
+                    <p>Poudre de qualité</p>
+                </div>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                    <img src="image/farine-de-ble.png" class="ble">
+                    <h3>Farine</h3>
+                    <p>Haute qualité</p>
+                </div>
+                <div class="categorie-card" onclick="scrollToSection('produits')">
+                    <img src="image/viande.png" class="ble">
+                    <h3>Bœuf séché</h3>
+                    <p>Délicieux</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="produits" class="produits">
+            <h2 class="section-title">Nos Produits en Vente</h2>
+            <div class="produits-grid" id="produitsGrid"></div>
+        </section>
+
+         <section id="contact" class="contact">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <h4>Heures d'ouverture</h4>
+                            <p>Lundi à Samedi, 8H-17H</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Adresse</h4>
+                            <p>13, Merger Léogâne<br>ASSL, Haïti</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Téléphones</h4>
+                            <p>(+509) 47472529<br>+201503451347</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label>Nom *</label>
+                            <input type="text" id="nom" required placeholder="Votre nom">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" required placeholder="votre@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" id="telephone" placeholder="+509 XXXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea id="message" required placeholder="Je veux acheter..."></textarea>
+                        </div>
+                       <button type="submit" class="submit-button" onclick="envoyerEmail(event)">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h2>ASSL</h2>
+            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+                <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+                <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
+            </div>
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
+                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Page À Propos -->
+    <div id="aboutPage" class="page">
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1>À Propos d'ASSL</h1>
+                <p>Association Socio-Sportive de Lhomond</p>
+            </div>
+        </section>
+
+        <section class="histoire" style="background: white;">
+            <h2 class="section-title">Notre Histoire</h2>
+            <div class="histoire-content">
+                <div class="histoire-text">
+                    <h3>🌱 Fondation et Mission</h3>
+                    <p>
+                        L'Association Socio-Sportive de Lhomond (ASSL) a été <strong>fondée le 26 août 2007</strong> par un ensemble de jeunes soucieux de l'avancement de leur localité. Depuis sa création, ASSL s'est engagée à transformer la vie des communautés locales à travers des initiatives durables et inclusives.
+                    </p>
+                    <p>
+                        Avec un effectif actuel de <strong>92 membres (38 femmes et 54 hommes)</strong>, notre organisation est gérée par un comité directeur de 9 membres élus démocratiquement.
+                    </p>
+                </div>
+              <img src="image/fondateur.png" alt="Fondateur" class="histoire-image">
+            </div>
+
+            <div class="stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>92</h4>
+                        <p>Membres Actifs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>17+</h4>
+                        <p>Années d'Activité</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>6+</h4>
+                        <p>Partenaires Majeurs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Produits Locaux</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <footer>
+            <h2>ASSL</h2>
+            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+                <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+                <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
+            </div>
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
+                <p>&copy; 2026 ASSL. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Page Panier -->
+    <div id="cartPage" class="page cart-page">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h1 style="text-align: center; font-size: 3rem; color: #3d210f; margin-bottom: 3rem;">🛒 Ma Corbeille d'Achat</h1>
+            <div id="cartContent"></div>
+        </div>
+    </div>
+
+    <script>
+  const produits = [
+    { id: 1, nom: "Mais", description: "mais fin et ultra pure", prix: 350, prixAncien: null, poids: "500g", badge: "Nouveau", icon: "<img src='image/ble.png' class='ble' >" },
+    { id: 2, nom: "Akmil", description: "transformation traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "<img src='image/farine (1).png' class='ble' >" },
+    { id: 3, nom: "Viande", description: "Boeuf seché a different gout", prix: 180, prixAncien: null, poids: "100g", badge: "Premium", icon: "<img src='image/viande.png' class='ble' >" },
+    { id: 4, nom: "Riz", description: "par sac et par marmite", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "<img src='image/riz.png' class='ble' >" },
+    { id: 5, nom: "Petit mil", description: "haute gamme et naturel", prix: 850, prixAncien: null, poids: "Pack", badge: null, icon: "<img src='image/ble.png' class='ble' >" },
+    { id: 6, nom: "Lait", description: "Poudre de lait 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon:"<img src='image/bouteille-de-lait.png' class='ble' >" }
+];
+
+let cart = {};
+
+function displayProduits() {
+    const grid = document.getElementById('produitsGrid');
+    grid.innerHTML = produits.map(p => `
+        <div class="produit-card">
+            <div class="produit-image">
+                ${p.badge ? `<span class="produit-badge">${p.badge}</span>` : ''}
+                ${p.icon}
+            </div>
+            <div class="produit-info">
+                <h3>${p.nom}</h3>
+                <p>${p.description}</p>
+                <div class="produit-prix">
+                    <div>
+                        <div class="prix">${p.prix} HTG</div>
+                        ${p.prixAncien ? `<div class="prix-ancien">${p.prixAncien} HTG</div>` : ''}
+                    </div>
+                    <div>${p.poids}</div>
+                </div>
+                <div class="produit-actions">
+                    <button class="btn-acheter" id="btn-${p.id}" onclick="toggleCart(${p.id})">
+                        🛒 Ajouter au panier
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    updateCartButtons();
+}
+
+function toggleCart(id) {
+    if (cart[id]) {
+        delete cart[id];
+    } else {
+        cart[id] = { quantity: 1 };
+    }
+    updateCart();
+    updateCartButtons();
+}
+
+function updateCartButtons() {
+    produits.forEach(p => {
+        const btn = document.getElementById(`btn-${p.id}`);
+        if (btn) {
+            if (cart[p.id]) {
+                btn.classList.add('in-cart');
+                btn.innerHTML = '❌ Retirer du panier';
+            } else {
+                btn.classList.remove('in-cart');
+                btn.innerHTML = '🛒 Ajouter au panier';
+            }
+        }
+    });
+}
+
+function updateCart() {
+    const count = Object.keys(cart).length;
+    document.getElementById('cartCount').textContent = count;
+    if (document.getElementById('cartPage').classList.contains('active')) {
+        displayCart();
+    }
+}
+
+function displayCart() {
+    const content = document.getElementById('cartContent');
+    const items = Object.keys(cart);
+    
+    if (items.length === 0) {
+        content.innerHTML = `
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <h2>Votre panier est vide</h2>
+                <p>Ajoutez des produits pour commencer vos achats</p>
+                <button class="cta-buttons" onclick="showPage('home')">Voir les produits</button>
+            </div>
+        `;
+        return;
+    }
+
+    let total = 0;
+    const itemsHTML = items.map(id => {
+        const produit = produits.find(p => p.id == id);
+        const quantity = cart[id].quantity;
+        const subtotal = produit.prix * quantity;
+        total += subtotal;
+
+        return `
+            <div class="cart-item">
+                <div class="cart-item-image">${produit.icon}</div>
+                <div>
+                    <h3 style="font-size: 1.5rem; color: #3d210f; margin-bottom: 0.5rem;">${produit.nom}</h3>
+                    <p style="color: #666;">${produit.description}</p>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity(${id}, -1)">-</button>
+                        <span style="font-size: 1.3rem; font-weight: 700; min-width: 40px; text-align: center;">${quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${id}, 1)">+</button>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 2rem; color: #27ae60; font-weight: 800; margin-bottom: 1rem;">${subtotal} HTG</div>
+                    <button class="submit-button" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #e74c3c, #c0392b);" onclick="removeFromCart(${id})">🗑️ Retirer</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    content.innerHTML = `
+        <div class="cart-items">${itemsHTML}</div>
+        <div class="cart-summary">
+            <h2>Récapitulatif</h2>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
+                <span>Sous-total</span>
+                <span>${total} HTG</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f0f0f0; font-size: 1.1rem;">
+                <span>Livraison</span>
+                <span>Gratuite</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 2rem 0 1rem; border-top: 3px solid #6b8e23; margin-top: 1rem; font-size: 1.5rem; font-weight: 800; color: #3d210f;">
+                <span>Total</span>
+                <span>${total} HTG</span>
+            </div>
+            <button class="btn-checkout" onclick="window.open('https://wa.me/50936310974', '_blank')">💳 Passer la commande</button>
+            <button class="submit-button" style="width: 100%; margin-top: 1rem; background: white; color: #6b8e23; border: 2px solid #6b8e23;" onclick="showPage('home')">← Continuer mes achats</button>
+        </div>
+    `;
+}
+
+function updateQuantity(id, change) {
+    if (!cart[id]) return;
+    cart[id].quantity += change;
+    if (cart[id].quantity <= 0) {
+        delete cart[id];
+    }
+    updateCart();
+    updateCartButtons();
+}
+
+function removeFromCart(id) {
+    delete cart[id];
+    updateCart();
+    updateCartButtons();
+}
+
+function checkout(total) {
+    alert(`✅ Commande confirmée!\n\n💰 Total: ${total} HTG\n\n🎉 Nous vous contacterons bientôt pour la livraison.`);
+    cart = {};
+    updateCart();
+    updateCartButtons();
+}
+
+function showPage(pageName) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    if (pageName === 'home') {
+        document.getElementById('homePage').classList.add('active');
+    } else if (pageName === 'cart') {
+        document.getElementById('cartPage').classList.add('active');
+        displayCart();
+    } else if (pageName === 'about') {
+        document.getElementById('aboutPage').classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToSection(sectionId) {
+    showPage('home');
+    setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 100);
+}
+
+// Fonction pour envoyer l'email
+function envoyerEmail(e) {
+    e.preventDefault();
+    
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    const telephone = document.getElementById('telephone').value;
+    const message = document.getElementById('message').value;
+    
+    if (!nom || !email || !message) {
+        alert('⚠️ Veuillez remplir tous les champs obligatoires (Nom, Email, Message)!');
+        return;
+    }
+    
+    const sujet = encodeURIComponent(`Nouveau message de ${nom} - ASSL`);
+    const corps = encodeURIComponent(
+        `Nom: ${nom}\n` +
+        `Email: ${email}\n` +
+        `Téléphone: ${telephone || 'Non fourni'}\n\n` +
+        `Message:\n${message}`
+    );
+    
+    window.location.href = `mailto:theandrique.louisjuste@gmail.com?subject=${sujet}&body=${corps}`;
+    
+    alert('✅ Votre client email va s\'ouvrir. Veuillez envoyer le message.');
+    
+    document.getElementById('contactForm').reset();
+}
+
+// Initialisation
+displayProduits();
+updateCart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo-container" onclick="showPage('home')">
+               <img src="image/logo.png" class="logo">
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Accueil</a></li>
+                <li><a onclick="scrollToSection('produits')">Produits</a></li>
+                <li><a onclick="showPage('about')">À propos</a></li>
+                 <li><a onclick="scrollToSection('categories')">Nos categories</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            <div class="cart-icon" onclick="showPage('cart')">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+
+    <footer>
+        <h2>ASSL</h2>
+            <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+            <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+            <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+            <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
+        </div>
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
+            <p>&copy; 2026 ASSL. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
