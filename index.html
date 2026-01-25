@@ -973,26 +973,346 @@
                 font-size: 1.5rem;
             }
         }
+        .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* NAV RIGHT STYLES */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, #8fbc8f, #6b8e23);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(107, 142, 35, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(107, 142, 35, 0.5);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    color: #f5e6d3;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.user-profile:hover {
+    color: #8fbc8f;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8fbc8f, #6b8e23);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    border: 2px solid #f5e6d3;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+    min-width: 220px;
+    overflow: hidden;
+}
+
+.dropdown-menu.active {
+    display: flex;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+    padding: 1rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-menu a:last-child,
+.dropdown-menu button:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+    background: #f0f0f0;
+    color: #6b8e23;
+}
+
+/* MODAL STYLES */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 25px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s ease-out;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.modal-header h2 {
+    color: #3d210f;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #3d210f;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: inherit;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #8fbc8f;
+    box-shadow: 0 0 0 4px rgba(143, 188, 143, 0.15);
+}
+
+.form-group .optional {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 0.3rem;
+}
+
+.submit-button {
+    background: linear-gradient(135deg, #6b8e23, #8fbc8f);
+    color: white;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+    border-radius: 30px;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(107, 142, 35, 0.4);
+}
+
+.toggle-form {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.toggle-form a {
+    color: #6b8e23;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.toggle-form a:hover {
+    text-decoration: underline;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.3s;
+    background: none;
+    border: none;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.profile-page {
+    background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+    min-height: 100vh;
+}
+
+.profile-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-card h3 {
+    color: #3d210f;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.info-item {
+    padding: 1rem;
+    background: #f0f0f0;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.info-label {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-value {
+    color: #3d210f;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-content">
-            <div class="logo-container" onclick="showPage('home')">
-               <img src="image/logo.png" class="logo">
-            </div>
-            <ul class="nav-links">
-                <li><a onclick="showPage('home')">Accueil</a></li>
-                <li><a onclick="scrollToSection('produits')">Produits</a></li>
-                <li><a onclick="showPage('about')">À propos</a></li>
-                <li><a onclick="scrollToSection('categories')">Nos catégories</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
-            </ul>
-            <div class="cart-icon" onclick="showPage('cart')">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
+    <div class="logo-container" onclick="showPage('home')">
+       <img src="image/logo.png" class="logo">
+    </div>
+    
+    <ul class="nav-links">
+        <li><a onclick="showPage('home')">Accueil</a></li>
+        <li><a onclick="scrollToSection('produits')">Produits</a></li>
+        <li><a onclick="showPage('about')">À propos</a></li>
+        <li><a onclick="scrollToSection('categories')">Nos catégories</a></li>
+        <li><a onclick="scrollToSection('contact')">Contact</a></li>
+    </ul>
+    
+    <!-- 🔴 SECKSYON NAV-RIGHT AJOUTE IKI -->
+    <div class="nav-right">
+        <div class="cart-icon" onclick="showPage('cart')">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+        
+        <div id="authContainer">
+            <button class="login-btn" onclick="openAuthModal()">🔐 Connexion</button>
+        </div>
+        
+        <div id="userMenu" class="user-profile" style="display: none; position: relative;">
+            <div class="user-avatar" id="userAvatar">👤</div>
+            <span id="userName">Utilisateur</span>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a onclick="goToProfile()">👤 Mon Profil</a>
+                <button onclick="handleLogout()">🚪 Déconnexion</button>
             </div>
         </div>
+    </div>
+</div>
     </nav>
 
     <!-- Page Accueil -->
@@ -1151,22 +1471,6 @@
             <div id="cartContent"></div>
         </div>
     </div>
-
-    <!-- Footer Global (pou tout paj yo) -->
-    <footer>
-        <h2>ASSL</h2>
-        <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-            <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-            <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-            <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
-        </div>
-        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-            <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-        </div>
-    </footer>
-
     <!-- Chat Button -->
     <button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
 
@@ -1239,15 +1543,26 @@
             updateCartButtons();
         }
 
-        function toggleCart(id) {
-            if (cart[id]) {
-                delete cart[id];
-            } else {
-                cart[id] = { quantity: 1 };
-            }
-            updateCart();
-            updateCartButtons();
-        }
+     function toggleCart(id) {
+    // 🔴 VERIFYE SI MOUN KONEKTE
+    if (!isLoggedIn()) {
+        openAuthModal();
+        return;
+    }
+
+    if (cart[id]) {
+        delete cart[id];
+    } else {
+        cart[id] = { quantity: 1 };
+    }
+    updateCart();
+    updateCartButtons();
+}
+
+// 🔴 AJOUTE FONKSYON SA
+function isLoggedIn() {
+    return localStorage.getItem('asslUser') !== null;
+}
 
         function updateCartButtons() {
             produits.forEach(p => {
@@ -1352,22 +1667,23 @@
             updateCart();
             updateCartButtons();
         }
-
-        function showPage(pageName) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            if (pageName === 'home') {
-                document.getElementById('homePage').classList.add('active');
-            } else if (pageName === 'cart') {
-                document.getElementById('cartPage').classList.add('active');
-                displayCart();
-            } else if (pageName === 'about') {
-                document.getElementById('aboutPage').classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+function showPage(pageName) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    if (pageName === 'home') {
+        document.getElementById('homePage').classList.add('active');
+    } else if (pageName === 'profile') {
+        document.getElementById('profilePage').classList.add('active');
+    } else if (pageName === 'cart') {
+        document.getElementById('cartPage').classList.add('active');
+        displayCart();
+    } else if (pageName === 'about') {
+        document.getElementById('aboutPage').classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
         function scrollToSection(sectionId) {
             showPage('home');
@@ -1405,7 +1721,7 @@
             
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                showMessage('⚠️ Email pa valide!', 'error');
+                showMessage('⚠️ Email non valide!', 'error');
                 return null;
             }
 
@@ -1524,7 +1840,7 @@
             "lait": "Poudre de lait 100% biologique! Prix: 420 HTG pour 500g. Pour toute la famille!",
             "prix": "Voici nos prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG",
             "livraison": "La livraison est GRATUITE sur tous les produits ASSL! Nous livrons dans toute Haïti rapidement!",
-            "kontakte": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
+            "contact": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
             "assl": "ASSL est l'Association Socio-Sportive de Lhomond. Nous vendons les meilleur produits agricoles depuis 2007!",
             "produit": "ASSL vend: Maïs, Akmil, Farine, Boeuf séché, Riz, Lait - TOUS de très bonne qualité!",
             "bonjour": "Bonjour! Comment allez-vous? N'hésitez pas à poser votre question!",
@@ -1614,6 +1930,277 @@
         // Initialize
         displayProduits();
         updateCart();
+   // 🔴 MODAL FUNCTIONS
+function openAuthModal() {
+    document.getElementById('authModal').classList.add('active');
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').classList.remove('active');
+}
+
+function toggleForms() {
+    const loginSection = document.getElementById('loginSection');
+    const signupSection = document.getElementById('signupSection');
+    
+    loginSection.style.display = loginSection.style.display === 'none' ? 'block' : 'none';
+    signupSection.style.display = signupSection.style.display === 'none' ? 'block' : 'none';
+}
+
+// 🔴 LOGIN FUNCTION
+function handleLogin() {
+    const username = document.getElementById('loginUsername').value.trim();
+    const whatsapp = document.getElementById('loginWhatsapp').value.trim();
+    const email = document.getElementById('loginEmail').value.trim();
+
+    if (!username || !whatsapp) {
+        alert('⚠️ Nom et WhatsApp obligatoire!');
+        return;
+    }
+
+    const userData = { 
+        username, 
+        whatsapp, 
+        email,
+        joinDate: new Date().toLocaleDateString('fr-HT')
+    };
+    
+    localStorage.setItem('asslUser', JSON.stringify(userData));
+    loginUser(userData);
+}
+
+// 🔴 SIGNUP FUNCTION
+function handleSignup() {
+    const username = document.getElementById('signupUsername').value.trim();
+    const whatsapp = document.getElementById('signupWhatsapp').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+
+    if (!username || !whatsapp) {
+        alert('⚠️ Nom et WhatsApp obligatoire!');
+        return;
+    }
+
+    const userData = { 
+        username, 
+        whatsapp, 
+        email,
+        joinDate: new Date().toLocaleDateString('fr-HT')
+    };
+    
+    localStorage.setItem('asslUser', JSON.stringify(userData));
+    loginUser(userData);
+}
+
+// 🔴 LOGIN USER FUNCTION
+function loginUser(userData) {
+    document.getElementById('authContainer').style.display = 'none';
+    document.getElementById('userMenu').style.display = 'flex';
+    document.getElementById('userName').textContent = userData.username;
+    document.getElementById('userAvatar').innerHTML = '<img src="image/login.jfif" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">';
+    
+    // Reset forms
+    document.getElementById('loginUsername').value = '';
+    document.getElementById('loginWhatsapp').value = '';
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('signupUsername').value = '';
+    document.getElementById('signupWhatsapp').value = '';
+    document.getElementById('signupEmail').value = '';
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('signupSection').style.display = 'none';
+    
+    closeAuthModal();
+}
+
+// 🔴 LOGOUT FUNCTION
+function handleLogout() {
+    if (confirm('Vous etes sur de ce que vous faites?')) {
+        localStorage.removeItem('asslUser');
+        location.reload();
+    }
+}
+
+// 🔴 GO TO PROFILE
+function goToProfile() {
+    const user = JSON.parse(localStorage.getItem('asslUser'));
+    document.getElementById('infoUsername').textContent = user.username;
+    document.getElementById('infoWhatsapp').textContent = user.whatsapp;
+    document.getElementById('infoEmail').textContent = user.email || 'Non fourni';
+    document.getElementById('infoDate').textContent = user.joinDate;
+    
+    showPage('profile');
+    document.getElementById('dropdownMenu').classList.remove('active');
+}
+
+
+// 🔴 SHOW PAGE
+function showPage(pageName) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    if (pageName === 'home') {
+        document.getElementById('homePage').classList.add('active');
+    } else if (pageName === 'profile') {
+        document.getElementById('profilePage').classList.add('active');
+    } else if (pageName === 'orders') {
+        document.getElementById('ordersPage').classList.add('active');
+    } else if (pageName === 'cart') {
+        document.getElementById('cartPage').classList.add('active');
+        displayCart();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 🔴 CHECK IF USER LOGGED IN AT START
+window.addEventListener('load', function() {
+    const user = localStorage.getItem('asslUser');
+    if (user) {
+        const userData = JSON.parse(user);
+        document.getElementById('authContainer').style.display = 'none';
+        document.getElementById('userMenu').style.display = 'flex';
+        document.getElementById('userName').textContent = userData.username;
+        document.getElementById('userAvatar').textContent = userData.username[0].toUpperCase();
+    }
+    
+    // Dropdown toggle
+    const userMenu = document.getElementById('userMenu');
+    if (userMenu) {
+        userMenu.addEventListener('click', function() {
+            document.getElementById('dropdownMenu').classList.toggle('active');
+        });
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown && !e.target.closest('.user-profile')) {
+            dropdown.classList.remove('active');
+        }
+    });
+});
     </script>
+   <!-- 🔴 LOGIN MODAL AJOUTE IKI -->
+<div class="modal" id="authModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeAuthModal()">✕</button>
+        
+        <!-- Login Form -->
+        <div id="loginSection">
+            <div class="modal-header">
+                <h2>🔐 Connexion</h2>
+                <p>Connectez-vous pour ajoutez a votre panier</p>
+            </div>
+            <div id="loginMessage" class="message"></div>
+            
+            <div class="form-group">
+                <label>Nom d'utilisateur *</label>
+                <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Numéro WhatsApp *</label>
+                <input type="tel" id="loginWhatsapp" placeholder="+509 XXXX XXXX" required>
+                <div class="optional">Obligatoire pour vérifier votre compte</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="votre@email.com (optionnel)">
+                <div class="optional">Optionnel - Pour recevoir des mises à jour</div>
+            </div>
+            
+            <button class="submit-button" onclick="handleLogin()">Se connecter</button>
+            
+            <div class="toggle-form">
+                Pas inscrit? <a onclick="toggleForms()">Créer un compte</a>
+            </div>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupSection" style="display: none;">
+            <div class="modal-header">
+                <h2>📝 Créer un compte</h2>
+                <p>Inscription rapide et facile</p>
+            </div>
+            <div id="signupMessage" class="message"></div>
+            
+            <div class="form-group">
+                <label>Nom d'utilisateur *</label>
+                <input type="text" id="signupUsername" placeholder="Nom d'utilisateur" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Numéro WhatsApp *</label>
+                <input type="tel" id="signupWhatsapp" placeholder="+509 XXXX XXXX" required>
+                <div class="optional">Obligatoire pour vérifier votre compte</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="signupEmail" placeholder="votre@email.com (optionnel)">
+                <div class="optional">Optionnel - Pour recevoir des mises à jour</div>
+            </div>
+            
+            <button class="submit-button" onclick="handleSignup()">Créer mon compte</button>
+            
+            <div class="toggle-form">
+                Déjà inscrit? <a onclick="toggleForms()">Se connecter</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔴 PROFILE PAGE AJOUTE IKI -->
+<div id="profilePage" class="page profile-page" style="padding-top: 100px;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 4rem 5%;">
+        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+            <h2 style="color: #3d210f; margin-bottom: 2rem; font-size: 2rem;">👤 Mon Profil</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div class="info-item">
+                    <div class="info-label">Nom d'utilisateur</div>
+                    <div class="info-value" id="infoUsername">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Numéro WhatsApp</div>
+                    <div class="info-value" id="infoWhatsapp">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-value" id="infoEmail">Non fourni</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Date d'inscription</div>
+                    <div class="info-value" id="infoDate">-</div>
+                </div>
+            </div>
+            
+            <button class="cta-button" onclick="showPage('home')" style="display: inline-block;">← Retour Accueil</button>
+            
+        </div>
+    </div>
+</div>
+<!-- Profile Page -->
+<div id="profilePage" class="page profile-page" style="padding-top: 100px;">
+    ...
+</div>
+
+<!-- 🔴 FOOTER LA DWE IKI, APRE TOUT PAJ YO -->
+<footer>
+    <h2>ASSL</h2>
+    <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
+    </div>
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
+        <p>&copy; 2026 ASSL. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<!-- Chat Button -->
+<button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
 </body>
 </html>
