@@ -1996,7 +1996,7 @@ function loginUser(userData) {
     document.getElementById('authContainer').style.display = 'none';
     document.getElementById('userMenu').style.display = 'flex';
     document.getElementById('userName').textContent = userData.username;
-    document.getElementById('userAvatar').innerHTML = '<img src="image/login.jfif" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">';
+    document.getElementById('userAvatar').innerHTML = userData.username[0].toUpperCase();
     
     // Reset forms
     document.getElementById('loginUsername').value = '';
@@ -2199,8 +2199,5 @@ window.addEventListener('load', function() {
         <p>&copy; 2026 ASSL. Tous droits réservés.</p>
     </div>
 </footer>
-
-<!-- Chat Button -->
-<button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
 </body>
 </html>
