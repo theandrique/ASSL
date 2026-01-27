@@ -132,6 +132,98 @@
             50% { transform: scale(1.1); }
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(107, 142, 35, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(107, 142, 35, 0.5);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            color: #f5e6d3;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .user-profile:hover {
+            color: #8fbc8f;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            border: 2px solid #f5e6d3;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            min-width: 220px;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.active {
+            display: flex;
+        }
+
+        .dropdown-menu a,
+        .dropdown-menu button {
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-menu a:last-child,
+        .dropdown-menu button:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu button:hover {
+            background: #f0f0f0;
+            color: #6b8e23;
+        }
+
         .page {
             display: none;
             flex: 1;
@@ -586,93 +678,20 @@
             transition: all 0.3s;
         }
 
-        .ble {
-            width: 100px;
-            height: 100px;
-            animation: float 3s ease-in-out infinite;
-            
-        }
-
-        .bles {
-            width: 100px;
-            height: 100px;
-                    }
         .btn-checkout:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(107, 142, 35, 0.5);
         }
 
-        .about-hero {
-            height: 80vh;
-            background: linear-gradient(135deg, rgba(92, 64, 51, 0.88), rgba(61, 33, 15, 0.78)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%235c4033" width="1200" height="600"/></svg>');
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
+        .ble {
+            width: 100px;
+            height: 100px;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .histoire-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-
-        .histoire-text h3 {
-            font-size: 1.8rem;
-            color: #3d210f;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .histoire-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-
-        .histoire-image {
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-            height: 400px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(107, 142, 35, 0.3);
-        }
-
-        .histoire-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .stats {
-            background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-            color: white;
-            padding: 4rem 5%;
-            margin: 4rem 0;
-            border-radius: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item h4 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+        .bles {
+            width: 100px;
+            height: 100px;
         }
 
         footer {
@@ -961,10 +980,119 @@
             cursor: not-allowed;
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+            position: relative;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            color: #3d210f;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .form-group .optional {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.3rem;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .toggle-form a {
+            color: #6b8e23;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: all 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .profile-page {
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+            min-height: 100vh;
+        }
+
+        .info-item {
+            padding: 1rem;
+            background: #f0f0f0;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: #3d210f;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
         @media (max-width: 968px) {
             .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .contact-content, .histoire-content { grid-template-columns: 1fr; }
+            .contact-content { grid-template-columns: 1fr; }
             .cart-item { grid-template-columns: 1fr; }
             .chat-popup {
                 width: 90vw;
@@ -977,346 +1105,43 @@
                 font-size: 1.5rem;
             }
         }
-        .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-/* NAV RIGHT STYLES */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.login-btn {
-    background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-    color: white;
-    padding: 0.8rem 1.8rem;
-    border: none;
-    border-radius: 25px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 8px 20px rgba(107, 142, 35, 0.3);
-}
-
-.login-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(107, 142, 35, 0.5);
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    cursor: pointer;
-    color: #f5e6d3;
-    transition: all 0.3s;
-    position: relative;
-}
-
-.user-profile:hover {
-    color: #8fbc8f;
-}
-
-.user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #8fbc8f, #6b8e23);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    border: 2px solid #f5e6d3;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
-    z-index: 999;
-    min-width: 220px;
-    overflow: hidden;
-}
-
-.dropdown-menu.active {
-    display: flex;
-}
-
-.dropdown-menu a,
-.dropdown-menu button {
-    padding: 1rem 1.5rem;
-    color: #333;
-    text-decoration: none;
-    border: none;
-    background: none;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 1rem;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.dropdown-menu a:last-child,
-.dropdown-menu button:last-child {
-    border-bottom: none;
-}
-
-.dropdown-menu a:hover,
-.dropdown-menu button:hover {
-    background: #f0f0f0;
-    color: #6b8e23;
-}
-
-/* MODAL STYLES */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 25px;
-    padding: 3rem;
-    max-width: 500px;
-    width: 100%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    animation: slideUp 0.3s ease-out;
-    position: relative;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.modal-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.modal-header h2 {
-    color: #3d210f;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.modal-header p {
-    color: #666;
-    font-size: 0.95rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #3d210f;
-    font-weight: 600;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    font-family: inherit;
-    transition: all 0.3s;
-    font-size: 1rem;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #8fbc8f;
-    box-shadow: 0 0 0 4px rgba(143, 188, 143, 0.15);
-}
-
-.form-group .optional {
-    font-size: 0.85rem;
-    color: #999;
-    margin-top: 0.3rem;
-}
-
-.submit-button {
-    background: linear-gradient(135deg, #6b8e23, #8fbc8f);
-    color: white;
-    padding: 1.2rem 3rem;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 1rem;
-    border-radius: 30px;
-}
-
-.submit-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(107, 142, 35, 0.4);
-}
-
-.toggle-form {
-    text-align: center;
-    margin-top: 1.5rem;
-    color: #666;
-    font-size: 0.95rem;
-}
-
-.toggle-form a {
-    color: #6b8e23;
-    cursor: pointer;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.toggle-form a:hover {
-    text-decoration: underline;
-}
-
-.close-modal {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #999;
-    transition: all 0.3s;
-    background: none;
-    border: none;
-}
-
-.close-modal:hover {
-    color: #333;
-}
-
-.message {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    text-align: center;
-    font-weight: 600;
-    display: none;
-}
-
-.message.show {
-    display: block;
-}
-
-.message.success {
-    background: #d4edda;
-    color: #155724;
-}
-
-.message.error {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.profile-page {
-    background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
-    min-height: 100vh;
-}
-
-.profile-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-}
-
-.profile-card h3 {
-    color: #3d210f;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.info-item {
-    padding: 1rem;
-    background: #f0f0f0;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-}
-
-.info-label {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.info-value {
-    color: #3d210f;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-content">
-    <div class="logo-container" onclick="showPage('home')">
-       <img src="image/logo.png" class="logo">
-    </div>
-    
-    <ul class="nav-links">
-        <li><a onclick="showPage('home')">Accueil</a></li>
-        <li><a onclick="scrollToSection('produits')">Produits</a></li>
-        <li><a onclick="showPage('about')">À propos</a></li>
-        <li><a onclick="scrollToSection('categories')">Nos catégories</a></li>
-        <li><a onclick="scrollToSection('contact')">Contact</a></li>
-    </ul>
-    
-    <!-- 🔴 SECKSYON NAV-RIGHT AJOUTE IKI -->
-    <div class="nav-right">
-        <div class="cart-icon" onclick="showPage('cart')">
-            🛒
-            <span class="cart-count" id="cartCount">0</span>
-        </div>
-        
-        <div id="authContainer">
-            <button class="login-btn" onclick="openAuthModal()">🔐 Connexion</button>
-        </div>
-        
-        <div id="userMenu" class="user-profile" style="display: none; position: relative;">
-            <div class="user-avatar" id="userAvatar">👤</div>
-            <span id="userName">Utilisateur</span>
-            <div class="dropdown-menu" id="dropdownMenu">
-                <a onclick="goToProfile()">👤 Mon Profil</a>
-                <button onclick="handleLogout()">🚪 Déconnexion</button>
+            <div class="logo-container" onclick="showPage('home')">
+                <img src="image/logo.png" class="logo">
+            </div>
+            
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Accueil</a></li>
+                <li><a onclick="scrollToSection('produits')">Produits</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a onclick="scrollToSection('categories')">Nos catégories</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            
+            <div class="nav-right">
+                <div class="cart-icon" onclick="showPage('cart')">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                
+                <div id="authContainer">
+                    <button class="login-btn" onclick="openAuthModal()">🔐 Connexion</button>
+                </div>
+                
+                <div id="userMenu" class="user-profile" style="display: none; position: relative;">
+                    <div class="user-avatar" id="userAvatar">👤</div>
+                    <span id="userName">Utilisateur</span>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a onclick="goToProfile()">👤 Mon Profil</a>
+                        <button onclick="handleLogout()">🚪 Déconnexion</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     </nav>
 
     <!-- Page Accueil -->
@@ -1326,7 +1151,7 @@
                 <h1>Produits Agricoles de Qualité</h1>
                 <p>Du cacao aux chocolats artisanaux - Production locale à ASSL, Haïti</p>
                 <a class="cta-button" onclick="scrollToSection('produits')">Voir nos produits</a>
-                <a class="cta-button" onclick="showPage('about')">En savoir plus</a>
+                <a class="cta-button" href="about.html">En savoir plus</a>
             </div>
         </section>
 
@@ -1419,55 +1244,6 @@
         </section>
     </div>
 
-    <!-- Page À Propos -->
-    <div id="aboutPage" class="page">
-        <section class="about-hero">
-            <div class="hero-content">
-                <h1>À Propos d'ASSL</h1>
-                <p>Association Socio-Sportive de Lhomond</p>
-            </div>
-        </section>
-
-        <section class="histoire" style="background: white;">
-            <h2 class="section-title">Notre Histoire</h2>
-            <div class="histoire-content">
-                <div class="histoire-text">
-                    <h3>🌱 Fondation et Mission</h3>
-                    <p>
-                        L'Association Socio-Sportive de Lhomond (ASSL) a été <strong>fondée le 26 août 2007</strong> par un ensemble de jeunes soucieux de l'avancement de leur localité. Depuis sa création, ASSL s'est engagée à transformer la vie des communautés locales à travers des initiatives durables et inclusives.
-                    </p>
-                    <p>
-                        Avec un effectif actuel de <strong>92 membres (38 femmes et 54 hommes)</strong>, notre organisation est gérée par un comité directeur de 9 membres élus démocratiquement.
-                    </p>
-                </div>
-                <div class="histoire-image">
-                    <img src="image/fondateur.png" alt="Fondateur">
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h4>92</h4>
-                        <p>Membres Actifs</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>17+</h4>
-                        <p>Années d'Activité</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>6+</h4>
-                        <p>Partenaires Majeurs</p>
-                    </div>
-                    <div class="stat-item">
-                        <h4>100%</h4>
-                        <p>Produits Locaux</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <!-- Page Panier -->
     <div id="cartPage" class="page cart-page">
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -1475,6 +1251,7 @@
             <div id="cartContent"></div>
         </div>
     </div>
+
     <!-- Chat Button -->
     <button class="chat-button-fixed" id="chatBtn" title="Message ASSL">💬</button>
 
@@ -1506,18 +1283,161 @@
         </div>
     </div>
 
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeAuthModal()">✕</button>
+            
+            <!-- Login Form -->
+            <div id="loginSection">
+                <div class="modal-header">
+                    <h2>🔐 Connexion</h2>
+                    <p>Connectez-vous pour ajouter des produits au panier</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nom d'utilisateur *</label>
+                    <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Numéro WhatsApp *</label>
+                    <input type="tel" id="loginWhatsapp" placeholder="+509 XXXX XXXX" required>
+                    <div class="optional">Obligatoire pour vérifier votre compte</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="votre@email.com " required>
+                    <div class="optional">Optionnel - Pour recevoir des mises à jour</div>
+                </div>
+                
+                <button class="submit-button" onclick="handleLogin()">Se connecter</button>
+                
+                <div class="toggle-form">
+                    Pas inscrit? <a onclick="toggleForms()">Créer un compte</a>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signupSection" style="display: none;">
+                <div class="modal-header">
+                    <h2>📝 Créer un compte</h2>
+                    <p>Inscription rapide et facile</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nom d'utilisateur *</label>
+                    <input type="text" id="signupUsername" placeholder="Nom d'utilisateur" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Numéro WhatsApp *</label>
+                    <input type="tel" id="signupWhatsapp" placeholder="+509 XXXX XXXX" required>
+                    <div class="optional">Obligatoire pour vérifier votre compte</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" placeholder="votre@email.com (optionnel)">
+                    <div class="optional">Optionnel - Pour recevoir des mises à jour</div>
+                </div>
+                
+                <button class="submit-button" onclick="handleSignup()">Créer mon compte</button>
+                
+                <div class="toggle-form">
+                    Déjà inscrit? <a onclick="toggleForms()">Se connecter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="profilePage" class="page profile-page" style="padding-top: 100px;">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 4rem 5%;">
+            <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                <h2 style="color: #3d210f; margin-bottom: 2rem; font-size: 2rem;">👤 Mon Profil</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div class="info-item">
+                        <div class="info-label">Nom d'utilisateur</div>
+                        <div class="info-value" id="infoUsername">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Numéro WhatsApp</div>
+                        <div class="info-value" id="infoWhatsapp">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Email</div>
+                        <div class="info-value" id="infoEmail">Non fourni</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Date d'inscription</div>
+                        <div class="info-value" id="infoDate">-</div>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="showPage('home')" style="display: inline-block;">← Retour Accueil</button>
+            </div>
+        </div>
+    </div>
+  <footer>
+    <h2>ASSL</h2>
+    <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
+    </div>
+    <div>
+        <p>&copy; 2026 ASSL. Tous droits réservés.</p>
+    </div>
+</footer>
+
     <script>
+        // ========================================
+        // 🎯 PRODUITS ET CART
+        // ========================================
         const produits = [
-            { id: 1, nom: "Mais", description: "mais fin et ultra pure", prix: 350, prixAncien: null, poids: "500g", badge: "Nouveau", icon: "<img src='image/ble.png' class='bles' >" },
-            { id: 2, nom: "Akmil", description: "transformation traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "<img src='image/farine (1).png' class='bles' >" },
-            { id: 3, nom: "Viande", description: "Boeuf seché a different gout", prix: 180, prixAncien: null, poids: "100g", badge: "Premium", icon: "<img src='image/viande.png' class='bles' >" },
-            { id: 4, nom: "Riz", description: "par sac et par marmite", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "<img src='image/riz.png' class='bles' >" },
-            { id: 5, nom: "Petit mil", description: "haute gamme et naturel", prix: 850, prixAncien: null, poids: "Pack", badge: null, icon: "<img src='image/ble.png' class='bles' >" },
-            { id: 6, nom: "Lait", description: "Poudre de lait 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon:"<img src='image/bouteille-de-lait.png' class='bles' >" }
+            { id: 1, nom: "Mais", description: "mais fin et ultra pure", prix: 350, prixAncien: null, poids: "500g", badge: "Nouveau", icon: "🌾" },
+            { id: 2, nom: "Akmil", description: "transformation traditionnel haïtien", prix: 280, prixAncien: null, poids: "400g", badge: "Popular", icon: "🍲" },
+            { id: 3, nom: "Viande", description: "Boeuf seché a different gout", prix: 180, prixAncien: null, poids: "100g", badge: "Premium", icon: "🥩" },
+            { id: 4, nom: "Riz", description: "par sac et par marmite", prix: 450, prixAncien: null, poids: "1kg", badge: null, icon: "🍚" },
+            { id: 5, nom: "Petit mil", description: "haute gamme et naturel", prix: 850, prixAncien: null, poids: "Pack", badge: null, icon: "🌾" },
+            { id: 6, nom: "Lait", description: "Poudre de lait 100% biologique", prix: 420, prixAncien: null, poids: "500g", badge: "Bio", icon: "🥛" }
         ];
 
         let cart = {};
+        const CART_STORAGE_KEY = 'asslCart';
 
+        // ✅ CHARGE LE PANIER DEPUIS LOCALSTORAGE
+        function loadCart() {
+            const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    updateCart();
+                } catch (e) {
+                    console.log('Erreur lors du chargement du panier');
+                    cart = {};
+                }
+            }
+        }
+
+        // ✅ SAUVEGARDE LE PANIER DANS LOCALSTORAGE
+     // ✅ SAUVEGARDE LE PANIER DANS LOCALSTORAGE
+        function saveCart() {
+            const user = localStorage.getItem('asslUser');
+            if (user) {
+                const userData = JSON.parse(user);
+                const cartKey = `asslCart_${userData.username}`;
+                localStorage.setItem(cartKey, JSON.stringify(cart));
+                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+            } else {
+                localStorage.removeItem(CART_STORAGE_KEY);
+            }
+        }
         function displayProduits() {
             const grid = document.getElementById('produitsGrid');
             grid.innerHTML = produits.map(p => `
@@ -1547,26 +1467,28 @@
             updateCartButtons();
         }
 
-     function toggleCart(id) {
-    // 🔴 VERIFYE SI MOUN KONEKTE
-    if (!isLoggedIn()) {
-        openAuthModal();
-        return;
-    }
+        // ✅ VERIFIER SI UTILISATEUR EST CONNECTE AVANT D'AJOUTER AU PANIER
+        function toggleCart(id) {
+            if (!isLoggedIn()) {
+                alert('⚠️ Veuillez vous connecter pour ajouter des produits au panier!');
+                openAuthModal();
+                return;
+            }
 
-    if (cart[id]) {
-        delete cart[id];
-    } else {
-        cart[id] = { quantity: 1 };
-    }
-    updateCart();
-    updateCartButtons();
-}
+            if (cart[id]) {
+                delete cart[id];
+            } else {
+                cart[id] = { quantity: 1 };
+            }
+            saveCart();
+            updateCart();
+            updateCartButtons();
+        }
 
-// 🔴 AJOUTE FONKSYON SA
-function isLoggedIn() {
-    return localStorage.getItem('asslUser') !== null;
-}
+        // ✅ VERIFIER SI UTILISATEUR EST CONNECTE
+        function isLoggedIn() {
+            return localStorage.getItem('asslUser') !== null;
+        }
 
         function updateCartButtons() {
             produits.forEach(p => {
@@ -1662,32 +1584,36 @@ function isLoggedIn() {
             if (cart[id].quantity <= 0) {
                 delete cart[id];
             }
+            saveCart();
             updateCart();
             updateCartButtons();
         }
 
         function removeFromCart(id) {
             delete cart[id];
+            saveCart();
             updateCart();
             updateCartButtons();
         }
-function showPage(pageName) {
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    if (pageName === 'home') {
-        document.getElementById('homePage').classList.add('active');
-    } else if (pageName === 'profile') {
-        document.getElementById('profilePage').classList.add('active');
-    } else if (pageName === 'cart') {
-        document.getElementById('cartPage').classList.add('active');
-        displayCart();
-    } else if (pageName === 'about') {
-        document.getElementById('aboutPage').classList.add('active');
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+
+        // ========================================
+        // 🎯 PAGES ET NAVIGATION
+        // ========================================
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            if (pageName === 'home') {
+                document.getElementById('homePage').classList.add('active');
+            } else if (pageName === 'profile') {
+                document.getElementById('profilePage').classList.add('active');
+            } else if (pageName === 'cart') {
+                document.getElementById('cartPage').classList.add('active');
+                displayCart();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         function scrollToSection(sectionId) {
             showPage('home');
@@ -1699,7 +1625,9 @@ function showPage(pageName) {
             }, 100);
         }
 
-        // Contact form functionality
+        // ========================================
+        // 🎯 FORMULAIRE DE CONTACT
+        // ========================================
         const submitBtn = document.getElementById('submitBtn');
         const whatsappBtn = document.getElementById('whatsappBtn');
         const messageBox = document.getElementById('messageBox');
@@ -1745,21 +1673,13 @@ function showPage(pageName) {
 
             const sujet = encodeURIComponent(`Nouveau message de ${data.nom} - ASSL`);
             const corps = encodeURIComponent(
-                `Bonjour,\n\n` +
-                `J'ai reçu un message via le formulaire ASSL:\n\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-                `Nom: ${data.nom}\n` +
-                `Email: ${data.email}\n` +
-                `Téléphone: ${data.telephone || 'Non fourni'}\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
-                `Message:\n${data.message}\n\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`
+                `Bonjour,\n\nJ'ai reçu un message via ASSL:\n\n━━━━━━━━━━━━━\nNom: ${data.nom}\nEmail: ${data.email}\nTéléphone: ${data.telephone || 'Non fourni'}\n━━━━━━━━━━━━━\n\nMessage:\n${data.message}`
             );
             
             const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=theandrique.louisjuste@gmail.com&su=${sujet}&body=${corps}`;
             window.open(gmailLink, '_blank');
             
-            showMessage('✅ Gmail ouvert! "Envoyer"!', 'success');
+            showMessage('✅ Gmail ouvert!', 'success');
             
             setTimeout(() => {
                 contactForm.reset();
@@ -1772,27 +1692,33 @@ function showPage(pageName) {
             const data = validateForm();
             if (!data) return;
 
-            const texte = `*Message depuis ASSL*\n\n` +
-                         `*Nom:* ${data.nom}\n` +
-                         `*Email:* ${data.email}\n` +
-                         `*Téléphone:* ${data.telephone || 'Non fourni'}\n\n` +
-                         `*Message:*\n${data.message}`;
+            const texte = `*Message depuis ASSL*\n\n*Nom:* ${data.nom}\n*Email:* ${data.email}\n*Téléphone:* ${data.telephone || 'Non fourni'}\n\n*Message:*\n${data.message}`;
 
             const textEncoded = encodeURIComponent(texte);
             const whatsappNumber = '50936310974';
             const whatsappLink = `https://wa.me/${whatsappNumber}?text=${textEncoded}`;
             window.open(whatsappLink, '_blank');
             
-            showMessage('✅ WhatsApp ouvert! Envoye message a!', 'success');
+            showMessage('✅ WhatsApp ouvert!', 'success');
             contactForm.reset();
         });
 
-        // Chat functionality
+        // ========================================
+        // 🎯 CHAT BOT AVEC VOIX
+        // ========================================
         const chatBtn = document.getElementById('chatBtn');
         const chatPopup = document.getElementById('chatPopup');
         const chatBody = document.getElementById('chatBody');
         const chatInput = document.getElementById('chatInput');
         const sendBtn = document.getElementById('sendBtn');
+
+        chatBtn.addEventListener('click', function() {
+            chatPopup.classList.toggle('open');
+            chatBtn.classList.toggle('active');
+            if (chatPopup.classList.contains('open')) {
+                chatInput.focus();
+            }
+        });
 
         function speakText(text, lang = 'fr-FR') {
             if (window.speechSynthesis.speaking) {
@@ -1812,64 +1738,94 @@ function showPage(pageName) {
                 utterance.voice = frenchVoice;
             }
             
-            utterance.onstart = function() {
-                updateVoiceIcon(true);
-            };
-            
-            utterance.onend = function() {
-                updateVoiceIcon(false);
-            };
-            
             window.speechSynthesis.speak(utterance);
         }
 
-        function updateVoiceIcon(isPlaying) {
-            const icons = document.querySelectorAll('.voice-icon');
-            icons.forEach(icon => {
-                if (isPlaying) {
-                    icon.classList.add('playing');
-                    icon.textContent = '🔈';
-                } else {
-                    icon.classList.remove('playing');
-                    icon.textContent = '🔊';
-                }
-            });
-        }
-
+        // ========================================
+        // 🎯 BASE DE CONNAISSANCE DU CHATBOT
+        // ========================================
         const knowledge = {
-            "mais": "Nous vendons du maïs fin et pur! Prix: 350 HTG pour 500g. Qualité excellente pour votre famille!",
-            "akmil": "L'Akmil est une transformation traditionnelle haïtienne! Prix: 280 HTG pour 400g. Bon pour la santé!",
-            "viande": "Boeuf séché avec un goût spécial! Prix: 180 HTG pour 100g. Délicieux!",
-            "riz": "Le meilleur riz! Prix: 450 HTG pour 1kg. Parfait pour tous les repas!",
-            "lait": "Poudre de lait 100% biologique! Prix: 420 HTG pour 500g. Pour toute la famille!",
-            "prix": "Voici nos prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG",
-            "livraison": "La livraison est GRATUITE sur tous les produits ASSL! Nous livrons dans toute Haïti rapidement!",
-            "contact": "Contactez-nous: Téléphone 47472529 ou WhatsApp https://wa.me/50936310974",
-            "assl": "ASSL est l'Association Socio-Sportive de Lhomond. Nous vendons les meilleur produits agricoles depuis 2007!",
-            "produit": "ASSL vend: Maïs, Akmil, Farine, Boeuf séché, Riz, Lait - TOUS de très bonne qualité!",
-            "bonjour": "Bonjour! Comment allez-vous? N'hésitez pas à poser votre question!",
-            "merci": "De rien! Avez-vous d'autres questions?",
-            "contact": "Pour nous contacter: 📞 (+509) 47472529 ou 📧 theandrique.louisjuste@gmail.com ou 💬 WhatsApp wa.me/50936310974"
+            "mais": "Nous vendons du maïs fin et pur! Maïs ASSL préparé avec soin spécial. Prix: 350 HTG pour 500g. Qualité excellente pour votre repas et votre famille! Le maïs d'ASSL vient directement des champs, sans aucun produit chimique dangereux!",
+            "akmil": "L'Akmil ASSL est une transformation traditionnelle haïtienne! C'est un mets délicieux et très nourrissant. Prix: 280 HTG pour 400g. L'Akmil est fait avec le maïs le plus pur qui a une saveur douce. C'est bon pour votre santé et votre famille!",
+            "viande": "Viande ASSL est de la viande de bœuf séchée avec saveur spéciale! Nous la séchons avec soin. Prix: 180 HTG pour 100g. C'est délicieux! C'est bon aussi pour faire du bouillon, du djon-djon, ou d'autres repas!",
+            "riz": "Le riz ASSL est le meilleur riz d'Haïti! Prix: 450 HTG pour 1kg. C'est parfait pour tous les repas - déjeuner, dîner, ou souper. Le riz est clair, bon et a une saveur naturelle!",
+            "lait": "Poudre de lait ASSL 100% biologique! Prix: 420 HTG pour 500g. Pour toute votre famille - enfants, garçons, filles. C'est riche en calcium et en protéines!",
+            "farine": "Farine ASSL est de la farine faite avec le meilleur maïs! Bon pour faire du pain, de la bouillie, et d'autres mets traditionnels. Prix: 320 HTG. La farine est faite dans une machine automatique qui est propre!",
+            "prix": "Voici les prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG, Farine 320 HTG. Tous les prix sont raisonnables et de bonne qualité!",
+            "livraison": "La livraison ASSL est GRATUITE sur tous les produits! Nous livrons dans toute Haïti avec rapidité. Si vous commandez aujourd'hui, le produit arrive demain rapidement! Nous sommes fiables et nous aimons notre travail!",
+            "contact": "Contactez ASSL aujourd'hui! Téléphone: <a href='tel:+50947472529' style='color: blue; text-decoration: underline;'>474-7252-9</a> ou WhatsApp: <a href='https://wa.me/50936310974' target='_blank' style='color: blue; text-decoration: underline;'>+509 3631 0974</a>. Vous pouvez nous parler directement!",
+            "email": "Envoyez un email à ASSL: <a href='mailto:assl.haiti@gmail.com' style='color: blue; text-decoration: underline;'>assl.haiti@gmail.com</a>. Nous répondons rapidement!",
+            "assl": "ASSL est l'Association Socio-Sportive de Lhomond! Nous vendons les meilleurs produits agricoles depuis 2007. Nous sommes une communauté qui travaille dur pour vous donner à manger bon marché!",
+            "produit": "ASSL vend: Maïs, Akmil, Farine, Viande séchée, Riz, Poudre de lait. TOUS de très bonne qualité! Nous garantissons les produits!",
+            "histoire": "ASSL fondée en 2007 par les gens de Lhomond qui ont développé l'agriculture. Depuis longtemps, nous travaillons pour rendre l'économie locale meilleure!",
+            "garantie": "ASSL garantit tous les produits! Si le produit n'est pas bon, vous pouvez le retourner pour récupérer votre argent. Nous sommes honnêtes avec nos clients!",
+            "bonjour": "Bonjour! Qu'est-ce que je peux vous aider aujourd'hui? Vous voulez connaître les produits ASSL? Vous avez des questions sur les prix ou la livraison?",
+            "salut": "Salut! Comment allez-vous? Je suis là pour vous aider! Posez une question sur ASSL ou nos produits!",
+            "bonsoir": "Bonsoir! Comment s'est passée votre journée? Je suis là pour répondre à toutes vos questions sur ASSL!",
+            "merci": "De rien! Chaque fois que vous avez une question, posez-la. Je suis là pour vous aider!",
+            "s'il vous plaît": "Avec plaisir! Quelle est votre question pour moi?",
+            "au revoir": "Au revoir! Passez une bonne journée! À bientôt!",
+            "bye": "Bye bye! Merci de visiter ASSL! À très bientôt!",
+            "qui": "ASSL est une association à Lhomond qui vend des produits agricoles bons et bon marché! Nous avons le cœur pour travailler dur!",
+            "où": "ASSL est à Lhomond, Haïti! Vous pouvez nous contacter par téléphone ou WhatsApp, ou envoyer un email!",
+            "comment": "ASSL fonctionne avec de bons travailleurs qui sont dédiés à l'agriculture! Chaque produit est préparé avec soin et amour!",
+            "santé": "Les produits ASSL sont bons pour votre santé! Le maïs, l'akmil, le riz - ils sont faits dans des champs naturels, sans drogues, sans produits dangereux!",
+            "naturel": "Oui! Les produits ASSL sont naturels! Ils n'ont pas de produits chimiques, ils n'ont pas d'insecticides dangereux. Ils viennent de champs propres!",
+            "famille": "ASSL préserve votre famille! Le maïs, le lait, le riz - c'est bon pour tout le monde. La santé de votre famille est la première pour ASSL!",
+            "bébé": "La poudre de lait ASSL est bonne pour les petits enfants! C'est 100% biologique et riche en nutriments. Les enfants grandiront en bonne santé avec les produits ASSL!",
+            "enfants": "Les enfants ont besoin de bien manger pour grandir! ASSL vend du maïs, de l'akmil, du lait - tout ce dont ils ont besoin pour la santé!",
+            "commander": "Pour commander ASSL, parlez sur WhatsApp: <a href='https://wa.me/50936310974' target='_blank' style='color: blue;'>+509 3631 0974</a> ou téléphone: <a href='tel:+50947472529' style='color: blue;'>474-7252-9</a>",
+            "acheter": "Achetez ASSL! Demandez sur WhatsApp ou téléphone. Le produit arrivera chez vous rapidement!",
+            "vite": "Oui! ASSL livre vite! Si vous commandez aujourd'hui, le produit arrive demain! Vous avez le produit frais et bon!",
+            "frais": "Les produits ASSL sont frais et bons! Le produit n'est pas importé, c'est un produit local haïtien!",
+            "local": "Soutenez le local! Soutenez ASSL! Produit local = économie locale meilleure!",
+            "économie": "ASSL rend l'économie locale meilleure! Vous achetez ASSL, l'argent reste dans le pays!",
+            "communauté": "ASSL est une communauté! Les gens de Lhomond travaillent pour vous! C'est entre amis!",
+            "qualité": "ASSL qualité extra! Ils contrôlent chaque lot pour bonne qualité!",
+            "meilleur": "ASSL est le meilleur! Les meilleurs produits, le meilleur service, le meilleur prix!",
+            "fiable": "ASSL est fiable! Livraison rapide, bon service, prix raisonnable!",
+            "honnête": "ASSL est honnête! Ils ne trompent pas, ils ne mentent pas - c'est la vérité!",
+            "confiance": "Confiance ASSL! Les gens peuvent faire confiance au produit et au service!",
+            "notification": "Vous pouvez vous notifier pour nos nouveaux produits! Envoyez un message avec votre email et nous vous tenons informé!",
+            "promotions": "ASSL a des promotions régulières! Suivez notre page Facebook et Instagram pour les dernières offres!",
+            "horaires": "ASSL ouvert Lundi à Samedi, 8H-17H. Nous sommes fermés le dimanche!",
+            "adresse": "ASSL est situé à 13, Merger Léogâne, Lhomond, Haïti!",
+            "paiement": "Vous pouvez payer directement via WhatsApp ou nous appeler! Livraison gratuite pour toute commande!",
+            "delai": "La livraison prend 24 heures maximum! Nous livrons rapidement!",
+            "retour": "Si vous n'êtes pas satisfait, vous avez 7 jours pour retourner le produit!",
+            "gratuit": "La livraison ASSL est GRATUITE! Pas de frais caché!",
+            "telephone": "Notre numéro: +50947472529. Appelez-nous!",
+            "whatsapp": "Notre WhatsApp: +50936310974. Écrivez-nous!",
+            "fondateur": "Jean Tony Catounge est le fondateur et PDG d'ASSL. Il est historien, écrivain et juriste!",
+            "formation": "ASSL a une formation pluridisciplinaire sur l'organisation et le développement durable!",
+            "membres": "ASSL compte actuellement 82 membres (28 femmes et 54 hommes)!",
+            "bio": "Tous les produits ASSL sont 100% biologique et naturel!",
+            "sac": "Nous vendons par sac, par sachet et par marmite. Choisissez la quantité que vous voulez!",
+            "commander_maintenant": "Pour commander maintenant, cliquez sur 'Ajouter au panier' ou envoyez un message WhatsApp!",
+            "panier": "Vous pouvez ajouter des produits au panier et les commander quand vous voulez!",
+            "compte": "Créez un compte pour garder votre panier et vos commandes!",
+            "inscription": "L'inscription est gratuite! Créez un compte en quelques secondes!",
+            "securite": "Vos données sont sécurisées avec ASSL! Nous protégeons votre vie privée!",
+            "assistance": "Nous avons une assistante ASSL disponible 24/7 pour vous aider!",
         };
 
         const defaultResponses = [
-            "Je ne comprends pas bien. Pourriez-vous poser une question sur nos produits ou nos services?",
-            "Votre question n'est pas très claire. Voulez-vous des informations sur les produits ou la livraison?",
-            "Je n'ai pas de réponse à cela. Posez une question sur ASSL, nos prix ou comment nous contacter!"
+            "Je ne comprends pas bien cette question. Pouvez-vous demander quelque chose sur nos produits, prix, livraison ou contact ASSL?",
+            "Votre question n'est pas très claire. Voulez-vous savoir quelque chose sur les produits, le prix ou la livraison?",
+            "Je n'ai pas de réponse précise à cela. Posez une question sur ASSL, nos produits ou comment nous contacter!"
         ];
-
-        chatBtn.addEventListener('click', function() {
-            chatPopup.classList.toggle('open');
-            chatBtn.classList.toggle('active');
-            if (chatPopup.classList.contains('open')) {
-                chatInput.focus();
-            }
-        });
-
+// ========================================
+        // 🎯 VERIFIER CONNEXION AVANT CHAT
+        // ========================================
         function sendMessage() {
+            // ✅ VERIFIER SI UTILISATEUR EST CONNECTE
+            if (!isLoggedIn()) {
+                openAuthModal();
+                return;
+            }
+
             const message = chatInput.value.trim();
             if (!message) return;
-
             const userMsg = document.createElement('div');
             userMsg.className = 'chat-message user';
             userMsg.textContent = message;
@@ -1891,6 +1847,7 @@ function showPage(pageName) {
                 const lowerMsg = message.toLowerCase();
                 let response = null;
 
+                // ✅ AMELIORATION: CHERCHE CHAQUE MOT
                 for (let key in knowledge) {
                     if (lowerMsg.includes(key)) {
                         response = knowledge[key];
@@ -1904,10 +1861,11 @@ function showPage(pageName) {
 
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-message bot';
-                botMsg.innerHTML = response + ` <span class="voice-icon" onclick="speakText('${response.replace(/'/g, "\\'")}', 'fr-FR')">🔊</span>`;
+                const cleanText = response.replace(/<[^>]*>/g, '');
+                botMsg.innerHTML = response + ` <span class="voice-icon" onclick="speakText('${cleanText.replace(/'/g, "\\'")}', 'fr-FR')">🔊</span>`;
                 chatBody.appendChild(botMsg);
                 
-                speakText(response, 'fr-FR');
+                speakText(cleanText, 'fr-FR');
                 
                 chatBody.scrollTop = chatBody.scrollHeight;
                 sendBtn.disabled = false;
@@ -1931,277 +1889,183 @@ function showPage(pageName) {
             window.speechSynthesis.getVoices();
         };
 
-        // Initialize
-        displayProduits();
-        updateCart();
-   // 🔴 MODAL FUNCTIONS
-function openAuthModal() {
-    document.getElementById('authModal').classList.add('active');
-}
-
-function closeAuthModal() {
-    document.getElementById('authModal').classList.remove('active');
-}
-
-function toggleForms() {
-    const loginSection = document.getElementById('loginSection');
-    const signupSection = document.getElementById('signupSection');
-    
-    loginSection.style.display = loginSection.style.display === 'none' ? 'block' : 'none';
-    signupSection.style.display = signupSection.style.display === 'none' ? 'block' : 'none';
-}
-
-// 🔴 LOGIN FUNCTION
-function handleLogin() {
-    const username = document.getElementById('loginUsername').value.trim();
-    const whatsapp = document.getElementById('loginWhatsapp').value.trim();
-    const email = document.getElementById('loginEmail').value.trim();
-
-    if (!username || !whatsapp) {
-        alert('⚠️ Nom et WhatsApp obligatoire!');
-        return;
-    }
-
-    const userData = { 
-        username, 
-        whatsapp, 
-        email,
-        joinDate: new Date().toLocaleDateString('fr-HT')
-    };
-    
-    localStorage.setItem('asslUser', JSON.stringify(userData));
-    loginUser(userData);
-}
-
-// 🔴 SIGNUP FUNCTION
-function handleSignup() {
-    const username = document.getElementById('signupUsername').value.trim();
-    const whatsapp = document.getElementById('signupWhatsapp').value.trim();
-    const email = document.getElementById('signupEmail').value.trim();
-
-    if (!username || !whatsapp) {
-        alert('⚠️ Nom et WhatsApp obligatoire!');
-        return;
-    }
-
-    const userData = { 
-        username, 
-        whatsapp, 
-        email,
-        joinDate: new Date().toLocaleDateString('fr-HT')
-    };
-    
-    localStorage.setItem('asslUser', JSON.stringify(userData));
-    loginUser(userData);
-}
-
-// 🔴 LOGIN USER FUNCTION
-function loginUser(userData) {
-    document.getElementById('authContainer').style.display = 'none';
-    document.getElementById('userMenu').style.display = 'flex';
-    document.getElementById('userName').textContent = userData.username;
-    document.getElementById('userAvatar').innerHTML = userData.username[0].toUpperCase();
-    
-    // Reset forms
-    document.getElementById('loginUsername').value = '';
-    document.getElementById('loginWhatsapp').value = '';
-    document.getElementById('loginEmail').value = '';
-    document.getElementById('signupUsername').value = '';
-    document.getElementById('signupWhatsapp').value = '';
-    document.getElementById('signupEmail').value = '';
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('signupSection').style.display = 'none';
-    
-    closeAuthModal();
-}
-
-// 🔴 LOGOUT FUNCTION
-function handleLogout() {
-    if (confirm('Vous etes sur de ce que vous faites?')) {
-        localStorage.removeItem('asslUser');
-        location.reload();
-    }
-}
-
-// 🔴 GO TO PROFILE
-function goToProfile() {
-    const user = JSON.parse(localStorage.getItem('asslUser'));
-    document.getElementById('infoUsername').textContent = user.username;
-    document.getElementById('infoWhatsapp').textContent = user.whatsapp;
-    document.getElementById('infoEmail').textContent = user.email || 'Non fourni';
-    document.getElementById('infoDate').textContent = user.joinDate;
-    
-    showPage('profile');
-    document.getElementById('dropdownMenu').classList.remove('active');
-}
-
-
-// 🔴 SHOW PAGE
-function showPage(pageName) {
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    if (pageName === 'home') {
-        document.getElementById('homePage').classList.add('active');
-    } else if (pageName === 'profile') {
-        document.getElementById('profilePage').classList.add('active');
-    } else if (pageName === 'orders') {
-        document.getElementById('ordersPage').classList.add('active');
-    } else if (pageName === 'cart') {
-        document.getElementById('cartPage').classList.add('active');
-        displayCart();
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// 🔴 CHECK IF USER LOGGED IN AT START
-window.addEventListener('load', function() {
-    const user = localStorage.getItem('asslUser');
-    if (user) {
-        const userData = JSON.parse(user);
-        document.getElementById('authContainer').style.display = 'none';
-        document.getElementById('userMenu').style.display = 'flex';
-        document.getElementById('userName').textContent = userData.username;
-        document.getElementById('userAvatar').textContent = userData.username[0].toUpperCase();
-    }
-    
-    // Dropdown toggle
-    const userMenu = document.getElementById('userMenu');
-    if (userMenu) {
-        userMenu.addEventListener('click', function() {
-            document.getElementById('dropdownMenu').classList.toggle('active');
-        });
-    }
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-        const dropdown = document.getElementById('dropdownMenu');
-        if (dropdown && !e.target.closest('.user-profile')) {
-            dropdown.classList.remove('active');
+        // ========================================
+        // 🎯 AUTHENTIFICATION
+        // ========================================
+        function openAuthModal() {
+            document.getElementById('authModal').classList.add('active');
         }
-    });
-});
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.remove('active');
+        }
+
+        function toggleForms() {
+            const loginSection = document.getElementById('loginSection');
+            const signupSection = document.getElementById('signupSection');
+            
+            loginSection.style.display = loginSection.style.display === 'none' ? 'block' : 'none';
+            signupSection.style.display = signupSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const whatsapp = document.getElementById('loginWhatsapp').value.trim();
+            const email = document.getElementById('loginEmail').value.trim();
+
+            if (!username || !whatsapp) {
+                alert('⚠️ Nom et WhatsApp obligatoire!');
+                return;
+            }
+
+            const userData = { 
+                username, 
+                whatsapp, 
+                email,
+                joinDate: new Date().toLocaleDateString('fr-HT')
+            };
+            
+            localStorage.setItem('asslUser', JSON.stringify(userData));
+            loginUser(userData);
+        }
+
+        function handleSignup() {
+            const username = document.getElementById('signupUsername').value.trim();
+            const whatsapp = document.getElementById('signupWhatsapp').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+
+            if (!username || !whatsapp) {
+                alert('⚠️ Nom et WhatsApp obligatoire!');
+                return;
+            }
+
+            const userData = { 
+                username, 
+                whatsapp, 
+                email,
+                joinDate: new Date().toLocaleDateString('fr-HT')
+            };
+            
+            localStorage.setItem('asslUser', JSON.stringify(userData));
+            loginUser(userData);
+        }
+
+      function loginUser(userData) {
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('userMenu').style.display = 'flex';
+            document.getElementById('userName').textContent = userData.username;
+            document.getElementById('userAvatar').innerHTML = userData.username[0].toUpperCase();
+            
+            // ✅ RESTAURER LE PANIER DE L'UTILISATEUR
+            const cartKey = `asslCart_${userData.username}`;
+            const savedCart = localStorage.getItem(cartKey);
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                    saveCart();
+                } catch (e) {
+                    console.log('Erreur lors du chargement du panier');
+                    cart = {};
+                }
+            } else {
+                cart = {};
+            }
+            
+            // ✅ METTRE A JOUR L'AFFICHAGE
+            updateCart();
+            updateCartButtons();
+            
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginWhatsapp').value = '';
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('signupUsername').value = '';
+            document.getElementById('signupWhatsapp').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+            
+            closeAuthModal();
+        }
+
+       function handleLogout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter?')) {
+                // ✅ SAUVEGARDER LE PANIER AVANT DECONNEXION
+                const currentUser = JSON.parse(localStorage.getItem('asslUser'));
+                if (currentUser) {
+                    const cartKey = `asslCart_${currentUser.username}`;
+                    localStorage.setItem(cartKey, JSON.stringify(cart));
+                }
+                
+                // ✅ VIDER LE PANIER ACTUEL
+                cart = {};
+                localStorage.removeItem(CART_STORAGE_KEY);
+                
+                // ✅ SUPPRIMER L'UTILISATEUR
+                localStorage.removeItem('asslUser');
+                location.reload();
+            }
+        }
+        function goToProfile() {
+            const user = JSON.parse(localStorage.getItem('asslUser'));
+            document.getElementById('infoUsername').textContent = user.username;
+            document.getElementById('infoWhatsapp').textContent = user.whatsapp;
+            document.getElementById('infoEmail').textContent = user.email || 'Non fourni';
+            document.getElementById('infoDate').textContent = user.joinDate;
+            
+            showPage('profile');
+            document.getElementById('dropdownMenu').classList.remove('active');
+        }
+
+        // ========================================
+        // 🎯 INITIALISATION
+      window.addEventListener('load', function() {
+            displayProduits();
+            
+            const user = localStorage.getItem('asslUser');
+            if (user) {
+                const userData = JSON.parse(user);
+                
+                // ✅ RESTAURER LE PANIER DE L'UTILISATEUR
+                const cartKey = `asslCart_${userData.username}`;
+                const savedCart = localStorage.getItem(cartKey);
+                if (savedCart) {
+                    try {
+                        cart = JSON.parse(savedCart);
+                    } catch (e) {
+                        cart = {};
+                    }
+                } else {
+                    cart = {};
+                }
+                
+                document.getElementById('authContainer').style.display = 'none';
+                document.getElementById('userMenu').style.display = 'flex';
+                document.getElementById('userName').textContent = userData.username;
+                document.getElementById('userAvatar').textContent = userData.username[0].toUpperCase();
+                
+                // ✅ METTRE A JOUR LE PANIER
+                updateCart();
+                updateCartButtons();
+            } else {
+                // ✅ SI PAS CONNECTÉ, PANIER VIDE
+                cart = {};
+                updateCart();
+            }
+            
+            const userMenu = document.getElementById('userMenu');
+            if (userMenu) {
+                userMenu.addEventListener('click', function() {
+                    document.getElementById('dropdownMenu').classList.toggle('active');
+                });
+            }
+            
+            document.addEventListener('click', function(e) {
+                const dropdown = document.getElementById('dropdownMenu');
+                if (dropdown && !e.target.closest('.user-profile')) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        });
     </script>
-   <!-- 🔴 LOGIN MODAL AJOUTE IKI -->
-<div class="modal" id="authModal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeAuthModal()">✕</button>
-        
-        <!-- Login Form -->
-        <div id="loginSection">
-            <div class="modal-header">
-                <h2>🔐 Connexion</h2>
-                <p>Connectez-vous pour ajoutez a votre panier</p>
-            </div>
-            <div id="loginMessage" class="message"></div>
-            
-            <div class="form-group">
-                <label>Nom d'utilisateur *</label>
-                <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Numéro WhatsApp *</label>
-                <input type="number" id="loginWhatsapp" placeholder="+509 XXXX XXXX" required>
-                <div class="optional">Obligatoire pour vérifier votre compte</div>
-            </div>
-            
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="loginEmail" placeholder="votre@email.com (optionnel)">
-                <div class="optional">Optionnel - Pour recevoir des mises à jour</div>
-            </div>
-            
-            <button class="submit-button" onclick="handleLogin()">Se connecter</button>
-            
-            <div class="toggle-form">
-                Pas inscrit? <a onclick="toggleForms()">Créer un compte</a>
-            </div>
-        </div>
-
-        <!-- Signup Form -->
-        <div id="signupSection" style="display: none;">
-            <div class="modal-header">
-                <h2>📝 Créer un compte</h2>
-                <p>Inscription rapide et facile</p>
-            </div>
-            <div id="signupMessage" class="message"></div>
-            
-            <div class="form-group">
-                <label>Nom d'utilisateur *</label>
-                <input type="text" id="signupUsername" placeholder="Nom d'utilisateur" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Numéro WhatsApp *</label>
-                <input type="tel" id="signupWhatsapp" placeholder="+509 XXXX XXXX" required>
-                <div class="optional">Obligatoire pour vérifier votre compte</div>
-            </div>
-            
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="signupEmail" placeholder="votre@email.com (optionnel)">
-                <div class="optional">Optionnel - Pour recevoir des mises à jour</div>
-            </div>
-            
-            <button class="submit-button" onclick="handleSignup()">Créer mon compte</button>
-            
-            <div class="toggle-form">
-                Déjà inscrit? <a onclick="toggleForms()">Se connecter</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 🔴 PROFILE PAGE AJOUTE IKI -->
-<div id="profilePage" class="page profile-page" style="padding-top: 100px;">
-    <div style="max-width: 1000px; margin: 0 auto; padding: 4rem 5%;">
-        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
-            <h2 style="color: #3d210f; margin-bottom: 2rem; font-size: 2rem;">👤 Mon Profil</h2>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <div class="info-item">
-                    <div class="info-label">Nom d'utilisateur</div>
-                    <div class="info-value" id="infoUsername">-</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Numéro WhatsApp</div>
-                    <div class="info-value" id="infoWhatsapp">-</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Email</div>
-                    <div class="info-value" id="infoEmail">Non fourni</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Date d'inscription</div>
-                    <div class="info-value" id="infoDate">-</div>
-                </div>
-            </div>
-            
-            <button class="cta-button" onclick="showPage('home')" style="display: inline-block;">← Retour Accueil</button>
-            
-        </div>
-    </div>
-</div>
-<!-- Profile Page -->
-<div id="profilePage" class="page profile-page" style="padding-top: 100px;">
-    ...
-</div>
-
-<!-- 🔴 FOOTER LA DWE IKI, APRE TOUT PAJ YO -->
-<footer>
-    <h2>ASSL</h2>
-    <p>Votre partenaire de confiance pour des produits agricoles de qualité.<br>Production locale - Transformation artisanale - Livraison rapide</p>
-    <div class="social-links">
-        <a href="https://www.facebook.com/assl.haiti" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-        <a href="https://www.instagram.com/assl.haiti" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-        <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-        <a href="https://wa.me/50936310974" target="_blank"><img src="image/linkedin.png" style="width: 50px; height: 50px;"></a>
-    </div>
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(245, 230, 211, 0.2);">
-        <p>&copy; 2026 ASSL. Tous droits réservés.</p>
-    </div>
-</footer>
 </body>
 </html>
