@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1149,7 +1150,7 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>Produits Agricoles de Qualité</h1>
-                <p>Du cacao aux chocolats artisanaux - Production locale à ASSL, Haïti</p>
+                <p>Site web e-commerce- Production locale à ASSL, Haïti</p>
                 <a class="cta-button" onclick="scrollToSection('produits')">Voir nos produits</a>
                 <a class="cta-button" href="about.html">En savoir plus</a>
             </div>
@@ -1572,7 +1573,7 @@
                         <span>Total</span>
                         <span>${total} HTG</span>
                     </div>
-                    <button class="btn-checkout" onclick="window.open('https://wa.me/50936310974', '_blank')">💳 Passer la commande</button>
+                    <button class="btn-checkout" onclick="passerCommande()">💳 Passer la commande</button>
                     <button class="submit-button" style="width: 100%; margin-top: 1rem; background: white; color: #6b8e23; border: 2px solid #6b8e23;" onclick="showPage('home')">← Continuer mes achats</button>
                 </div>
             `;
@@ -2066,6 +2067,40 @@
                 }
             });
         });
-    </script>
+        function passerCommande() {
+    const items = Object.keys(cart);
+    if (items.length === 0) {
+        alert('Votre panier est vide!');
+        return;
+    }
+
+    // Récupérer l'heure pour salutation
+    const heure = new Date().getHours();
+    const salutation = heure < 18 ? 'Bonjour' : 'Bonsoir';
+
+    // Construire le message
+    let message = `${salutation} monsieur,\n\nJ'aimerais acheter le(s) produit(s) suivants :\n\n`;
+    
+    let total = 0;
+    items.forEach(id => {
+        const produit = produits.find(p => p.id == id);
+        const quantity = cart[id].quantity;
+        const subtotal = produit.prix * quantity;
+        total += subtotal;
+        
+        message += `• ${produit.nom} - Quantité: ${quantity} - Prix: ${subtotal} HTG\n`;
+    });
+
+    message += `\n━━━━━━━━━━━━━\n*Total: ${total} HTG*\n━━━━━━━━━━━━━\n\nMerci!`;
+
+    // Encoder le message pour WhatsApp
+    const messageEncoded = encodeURIComponent(message);
+    const whatsappNumber = '50936310974';
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${messageEncoded}`;
+    
+    // Ouvrir WhatsApp
+    window.open(whatsappLink, '_blank');
+}
+</script>
 </body>
 </html>
