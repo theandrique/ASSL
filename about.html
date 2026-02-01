@@ -572,7 +572,376 @@
             font-size: 1.5rem;
             font-weight: 700;
         }
+/* À AJOUTER DANS LA SECTION <style> */
 
+/* ===== PAGE OFFLINE ===== */
+.offline-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.offline-page.active {
+    display: flex;
+}
+
+.offline-content {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.offline-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.offline-animation {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto 2rem;
+}
+
+/* ===== GARÇON ===== */
+.boy {
+    position: absolute;
+    right: 100px;
+    bottom: 80px;
+    animation: boyBounce 2s ease-in-out infinite;
+}
+
+@keyframes boyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.boy-head {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: #fdbcb4;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.cap {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    width: 60px;
+    height: 35px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border-radius: 20px 20px 0 0;
+    transform: rotate(-10deg);
+}
+
+.cap::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: -10px;
+    width: 70px;
+    height: 15px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border-radius: 10px;
+}
+
+.face {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.eye {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    animation: blink 3s infinite;
+}
+
+@keyframes blink {
+    0%, 96%, 100% { transform: scaleY(1); }
+    98% { transform: scaleY(0.1); }
+}
+
+.left-eye {
+    left: -15px;
+    top: 0;
+}
+
+.right-eye {
+    right: -15px;
+    top: 0;
+}
+
+.mouth {
+    position: absolute;
+    width: 25px;
+    height: 15px;
+    border: 3px solid #333;
+    border-top: none;
+    border-radius: 0 0 25px 25px;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.boy-body {
+    position: relative;
+    width: 100px;
+    height: 80px;
+    margin-top: 5px;
+}
+
+.jacket {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 15px;
+    position: relative;
+}
+
+.jacket::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    background: #ffd93d;
+    border-radius: 5px;
+}
+
+/* ===== EXTINCTEUR ===== */
+.extinguisher {
+    position: absolute;
+    right: -30px;
+    bottom: -20px;
+    animation: spray 1.5s ease-in-out infinite;
+}
+
+@keyframes spray {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+.extinguisher-body {
+    width: 35px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff4757 0%, #c0392b 100%);
+    border-radius: 8px;
+    position: relative;
+    box-shadow: inset -5px 0 10px rgba(0,0,0,0.3);
+}
+
+.extinguisher-body::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: #333;
+    border-radius: 50%;
+}
+
+.extinguisher-body::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 15px;
+    background: #333;
+    border-radius: 5px 5px 0 0;
+}
+
+.extinguisher-hose {
+    position: absolute;
+    top: -5px;
+    left: -25px;
+    width: 30px;
+    height: 3px;
+    background: #333;
+    transform: rotate(-20deg);
+}
+
+.extinguisher-hose::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: -3px;
+    width: 10px;
+    height: 10px;
+    background: #666;
+    border-radius: 2px;
+}
+
+.foam {
+    position: absolute;
+    left: -60px;
+    top: -10px;
+    animation: foamSpray 1s ease-out infinite;
+}
+
+@keyframes foamSpray {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateX(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5) translateX(-30px);
+    }
+}
+
+.foam::before,
+.foam::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+
+.foam::before {
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+}
+
+.foam::after {
+    width: 15px;
+    height: 15px;
+    top: 5px;
+    left: 15px;
+}
+
+/* ===== FEU ===== */
+.fire {
+    position: absolute;
+    left: 100px;
+    bottom: 80px;
+}
+
+.flame {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 1.5s ease-in-out infinite;
+}
+
+.flame-1 {
+    width: 60px;
+    height: 80px;
+    background: linear-gradient(to top, #ff6b00 0%, #ff9500 50%, #ffbb00 100%);
+    left: 0;
+    animation-delay: 0s;
+}
+
+.flame-2 {
+    width: 50px;
+    height: 70px;
+    background: linear-gradient(to top, #ff8800 0%, #ffaa00 50%, #ffcc00 100%);
+    left: 20px;
+    animation-delay: 0.3s;
+}
+
+.flame-3 {
+    width: 45px;
+    height: 65px;
+    background: linear-gradient(to top, #ffaa00 0%, #ffcc00 50%, #ffee00 100%);
+    left: 40px;
+    animation-delay: 0.6s;
+}
+
+@keyframes flicker {
+    0%, 100% {
+        transform: scaleY(1) scaleX(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scaleY(1.1) scaleX(0.95);
+        opacity: 0.9;
+    }
+}
+
+.offline-message {
+    font-size: 1.3rem;
+    margin: 2rem 0;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.retry-button {
+    padding: 1rem 3rem;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.retry-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .offline-title {
+        font-size: 2rem;
+    }
+    
+    .offline-animation {
+        width: 100%;
+        height: 300px;
+        transform: scale(0.7);
+    }
+}
         .assl-info-content p {
             text-align: justify;
             font-size: 1rem;
@@ -1402,7 +1771,7 @@
                 <div class="founder-text">
                     <h3>Fondateur et pilier</h3>
                     <p>Jean Tony Catounge est PDG, historien et écrivain, juriste et étudiant en sciences du développement. Il possède une formation pluridisciplinaire sur la permanence et l'établissement des organisations, les étapes et le développement.</p>
-                    <p>Originaire de Trou-Blancs, dans la 2e section communale de Limonof, il est profondément attaché à son milieu.</p>
+                    <p>Originaire de Fond-des-Blancs, dans la 2e section communale de L'homond, il est profondément attaché à son milieu.</p>
                 </div>
                 <div class="founder-image">
                     <img src="image/fondateur.png" alt="Jean Tony Catounge">
@@ -1422,8 +1791,8 @@
         <section class="assl-info">
             <h2>ASSL</h2>
             <div class="assl-info-content">
-                <h3>Association Socio-Sportive de Limonof</h3>
-                <p>L'Association Socio-Sportive de Limonof (ASSL) a été fondée le 28 mai 2007 par un ensemble de jeunes angoissés par l'avenir et développant une vision claire de la transition. ASSL, en tant qu'organisation pivot, assure l'ordre et l'encadrement des activités. Elle compte actuellement 82 membres (28 femmes et 54 hommes), notre organisation veut pour un ordonnance fédéré à 8 membres aux affiliations.</p>
+                <h3>Association Socio-Sportive de L'homond</h3>
+                <p>L'Association Socio-Sportive de L'homond (ASSL) a été fondée le 28 mai 2007 par un ensemble de jeunes angoissés par l'avenir et développant une vision claire de la transition. ASSL, en tant qu'organisation pivot, assure l'ordre et l'encadrement des activités. Elle compte actuellement 82 membres (28 femmes et 54 hommes), notre organisation veut pour un ordonnance fédéré à 8 membres aux affiliations.</p>
             </div>
         </section>
 
@@ -1938,6 +2307,79 @@
                 }
             });
         });
+        // À AJOUTER À LA FIN DE VOTRE SECTION <script>, JUSTE AVANT LA BALISE 
+
+// ========================================
+// 🎯 DÉTECTION CONNEXION INTERNET
+// ========================================
+function checkConnection() {
+    const offlinePage = document.getElementById('offlinePage');
+    
+    if (!navigator.onLine) {
+        offlinePage.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else {
+        offlinePage.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Vérifier au chargement
+window.addEventListener('load', checkConnection);
+
+// Vérifier quand la connexion change
+window.addEventListener('online', function() {
+    document.getElementById('offlinePage').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    location.reload(); // Recharge la page automatiquement
+});
+
+window.addEventListener('offline', function() {
+    document.getElementById('offlinePage').classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
     </script>
 </body>
+<!-- À AJOUTER JUSTE APRÈS LA BALISE <body> -->
+<div id="offlinePage" class="offline-page">
+    <div class="offline-content">
+        <h1 class="offline-title">Pas de Connexion Internet</h1>
+        
+        <div class="offline-animation">
+            <!-- Garçon avec extincteur -->
+            <div class="boy">
+                <div class="boy-head">
+                    <div class="cap"></div>
+                    <div class="face">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                        <div class="mouth"></div>
+                    </div>
+                </div>
+                <div class="boy-body">
+                    <div class="jacket"></div>
+                    <div class="arms">
+                        <div class="arm left-arm"></div>
+                        <div class="arm right-arm"></div>
+                    </div>
+                </div>
+                <div class="extinguisher">
+                    <div class="extinguisher-body"></div>
+                    <div class="extinguisher-hose"></div>
+                    <div class="foam"></div>
+                </div>
+            </div>
+            
+            <!-- Feu -->
+            <div class="fire">
+                <div class="flame flame-1"></div>
+                <div class="flame flame-2"></div>
+                <div class="flame flame-3"></div>
+            </div>
+        </div>
+        
+        <p class="offline-message">Veuillez vérifier votre connexion Internet</p>
+        <button class="retry-button" onclick="location.reload()">🔄 Réessayer</button>
+    </div>
+</div>
 </html>
