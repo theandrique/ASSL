@@ -2186,28 +2186,315 @@
             window.speechSynthesis.speak(utterance);
         }
 
-        const knowledge = {
-            "mais": "Nous vendons du maïs fin et pur! Maïs ASSL préparé avec soin spécial. Prix: 350 HTG pour 500g. Qualité excellente pour votre repas et votre famille! Le maïs d'ASSL vient directement des champs, sans aucun produit chimique dangereux!",
-            "akmil": "L'Akmil ASSL est une transformation traditionnelle haïtienne! C'est un mets délicieux et très nourrissant. Prix: 280 HTG pour 400g. L'Akmil est fait avec le maïs le plus pur qui a une saveur douce. C'est bon pour votre santé et votre famille!",
-            "viande": "Viande ASSL est de la viande de bœuf séchée avec saveur spéciale! Nous la séchons avec soin. Prix: 180 HTG pour 100g. C'est délicieux! C'est bon aussi pour faire du bouillon, du djon-djon, ou d'autres repas!",
-            "riz": "Le riz ASSL est le meilleur riz d'Haïti! Prix: 450 HTG pour 1kg. C'est parfait pour tous les repas - déjeuner, dîner, ou souper. Le riz est clair, bon et a une saveur naturelle!",
-            "lait": "Poudre de lait ASSL 100% biologique! Prix: 420 HTG pour 500g. Pour toute votre famille - enfants, garçons, filles. C'est riche en calcium et en protéines!",
-            "farine": "Farine ASSL est de la farine faite avec le meilleur maïs! Bon pour faire du pain, de la bouillie, et d'autres mets traditionnels. Prix: 320 HTG. La farine est faite dans une machine automatique qui est propre!",
-            "prix": "Voici les prix ASSL: Maïs 350 HTG, Akmil 280 HTG, Viande 180 HTG, Riz 450 HTG, Lait 420 HTG, Farine 320 HTG. Tous les prix sont raisonnables et de bonne qualité!",
-            "livraison": "La livraison ASSL est GRATUITE sur tous les produits! Nous livrons dans toute Haïti avec rapidité. Si vous commandez aujourd'hui, le produit arrive demain rapidement! Nous sommes fiables et nous aimons notre travail!",
-            "contact": "Contactez ASSL aujourd'hui! Téléphone: <a href='tel:+50947472529' style='color: blue; text-decoration: underline;'>474-7252-9</a> ou WhatsApp: <a href='https://wa.me/50936310974' target='_blank' style='color: blue; text-decoration: underline;'>+509 3631 0974</a>. Vous pouvez nous parler directement!",
-            "email": "Envoyez un email à ASSL: <a href='mailto:assl.haiti@gmail.com' style='color: blue; text-decoration: underline;'>assl.haiti@gmail.com</a>. Nous répondons rapidement!",
-            "assl": "ASSL est l'Association Socio-Sportive de Lhomond! Nous vendons les meilleurs produits agricoles depuis 2007. Nous sommes une communauté qui travaille dur pour vous donner à manger bon marché!",
-            "produit": "ASSL vend: Maïs, Akmil, Farine, Viande séchée, Riz, Poudre de lait. TOUS de très bonne qualité! Nous garantissons les produits!",
-            "bonjour": "Bonjour! Qu'est-ce que je peux vous aider aujourd'hui?",
-            "merci": "De rien! Chaque fois que vous avez une question, posez-la!",
-        };
+      // ========================================
+// 🎯 BASE DE CONNAISSANCE ENRICHIE - CHATBOT ASSL
+// ========================================
 
-        const defaultResponses = [
-            "Je ne comprends pas bien cette question. Pouvez-vous demander quelque chose sur nos produits, prix, livraison ou contact ASSL?",
-            "Votre question n'est pas très claire. Voulez-vous savoir quelque chose sur les produits, le prix ou la livraison?",
-            "Je n'ai pas de réponse précise à cela. Posez une question sur ASSL, nos produits ou comment nous contacter!"
-        ];
+const knowledge = {
+    // ===== SALUTATIONS AMICALES =====
+    "slt": "Slt! 👋 Ça va bien? Je suis l'assistante ASSL! Comment je peux t'aider aujourd'hui? Tu cherches des produits agricoles de qualité?",
+    "slut": "Slut coucou! 😊 Bienvenue chez ASSL! Comment ça va? Je suis là pour répondre à toutes tes questions!",
+    "yo": "Yo! What's up! 🤙 Bienvenue sur ASSL! Comment je peux t'aider?",
+    "coucou": "Coucou! 👋 Ça va? Je suis l'assistante ASSL! T'as besoin d'aide pour commander des produits ou tu veux connaître nos offres?",
+    "allo": "Allo! 📞 Bienvenue chez ASSL! Comment ça va aujourd'hui?",
+    "allô": "Allô! 📞 Bienvenue! Je suis là pour toi! Qu'est-ce que je peux faire?",
+    "hey": "Hey! 🙌 Ça va? Je suis l'assistante ASSL! Comment je peux t'aider?",
+    "bonjour": "Bonjour! 👋 Bienvenue chez ASSL! Je suis ravie de te rencontrer! Tu cherches quoi aujourd'hui? Des produits agricoles de qualité? Je peux t'aider!",
+    "bonsoir": "Bonsoir! 🌙 Comment s'est passée ta journée? Je suis l'assistante ASSL et je suis toujours là pour toi! Qu'est-ce que je peux t'aider?",
+    "bon matin": "Bon matin! ☀️ Quelle belle journée! Bienvenue chez ASSL! Tu veux acheter des produits agricoles?",
+    "bonne journée": "Bonne journée! ☀️ Merci de visiter ASSL! Je suis ici pour toi!",
+    "good morning": "Good morning! ☀️ Bienvenue chez ASSL! Je suis prête à t'aider!",
+    "good evening": "Good evening! 🌙 Bienvenue! Comment je peux t'aider ce soir?",
+    
+    // ===== SALUTATIONS FORMELLES =====
+    "salut": "Salut! 👋 Ça va bien? Je suis l'assistante ASSL! Je peux t'aider avec nos produits agricoles ou répondre à tes questions!",
+    "hi": "Hi! 👋 Bienvenue chez ASSL! Comment je peux t'aider?",
+    "hello": "Hello! 👋 Bienvenue! Je suis l'assistante ASSL!",
+    
+    // ===== POLITESSE ET REMERCIEMENTS =====
+    "merci": "De rien! 😊 Avec plaisir! Si tu as d'autres questions sur nos produits, n'hésite pas à demander! Je suis là pour toi 24/7!",
+    "merci beaucoup": "Merci à toi! 🙏 C'est gentil! J'aime aider les clients ASSL! Posez d'autres questions si tu veux!",
+    "thx": "Thx! 😊 De rien! Je suis toujours là pour toi!",
+    "thanks": "Thanks! 😊 De rien! Besoin d'aide pour autre chose?",
+    "s'il vous plaît": "Avec plaisir! 🙏 Quelle est ta question?",
+    "stp": "Bien sûr! 😊 Je vais t'aider! Qu'est-ce que tu veux savoir?",
+    "svp": "Avec plaisir! 🙏 Je suis là pour t'aider! Dis-moi ce que tu veux!",
+    "au revoir": "Au revoir! 👋 Merci d'avoir visité ASSL! À bientôt! Pase yon bon jou! 😊",
+    "bye": "Bye bye! 👋 À très bientôt chez ASSL! Pase yon bon jou!",
+    "bye bye": "Bye bye! 👋 Merci d'avoir visité! À bientôt!",
+    "à bientôt": "À bientôt! 👋 Merci de visiter ASSL! On se reparle bientôt!",
+    "adieu": "Adieu! 👋 Pase yon bon jou! À bientôt!",
+    "à plus": "À plus! 👋 À très bientôt! Merci de visiter ASSL!",
+
+    // ===== QUESTIONS SUR ASSL =====
+    "qui êtes vous": "Je suis l'assistante virtuelle ASSL! 🤖 ASSL c'est l'Association Socio-Sportive de Lhomond à Haïti! Nous vendons les meilleurs produits agricoles depuis des années! Notre mission: vous donner des produits naturels, sains et délicieux! On travaille très dur pour ta famille!",
+    "qui êtes-vous": "Je suis l'assistante ASSL! 🤖 Et ASSL est une association qui vend les meilleurs produits agricoles! Tu veux connaître nos produits?",
+    "c'est quoi assl": "ASSL c'est l'Association Socio-Sportive de Lhomond! 🌾 Une association à Haïti qui vend des produits agricoles de TRÈS bonne qualité! On transforme les produits locaux artisanalement et on les livre directement chez toi! Pas d'intermédiaires, juste de la qualité!",
+    "assl c'est": "ASSL c'est l'excellence agricole! 🌾 Nous sommes une association haïtienne qui travaille pour vous donner les meilleurs produits! Moringa, Chamchame, Farines, Akmil, Akasan - TOUT de qualité extra!",
+    "c'est assl": "ASSL = Les meilleurs produits agricoles haïtiens! 🌾 Nous sommes basés à Lhomond et nous livrons dans toute Haïti! Produits naturels, sains et délicieux!",
+    "assl haïti": "Oui! ASSL est une fière association haïtienne! 🇭🇹 Basée à Lhomond, nous transformons les produits locaux et nous les vendons au meilleur prix! Soutenez le local!",
+    "assl lhomond": "Oui! ASSL est à Lhomond! 📍 C'est une belle communauté agricole à Haïti! Nous travaillons ensemble pour produire les meilleurs produits!",
+    "association assl": "ASSL est une association sans but lucratif! 🏢 Nous travaillons pour le bien de la communauté! Tous nos profits vont à la communauté locale!",
+    "organisation assl": "ASSL est bien organisée! 📊 Nous avons une équipe dédiée qui contrôle la qualité de chaque produit! Pas de compromis sur la qualité!",
+
+    // ===== PRODUITS - MORINGA =====
+    "moringa": "Le Moringa ASSL! 🌿 C'est une poudre naturelle SUPER bonne pour ta santé! Riche en vitamines, minéraux, protéines! Tu peux le mettre dans ton café, ton jus, ta soupe! C'est délicieux et très nutritif! Disponible en: 10g, 50g, 100g, 500g, 1kg",
+    "moringa poudre": "Notre Moringa est une poudre pure et naturelle! 🌿 100% biologique! Très bon pour la santé, la peau, l'énergie! Un super-aliment haïtien!",
+    "moringa santé": "Le Moringa est excellent pour la santé! 💪 Anti-inflammatoire, riche en antioxydants, bon pour les os, les muscles! Les docteurs le recommandent!",
+    "moringa prix": "Le Moringa ASSL est à prix TRÈS raisonnable! 💰 Pas cher pour une qualité pareille! Tu veux commander?",
+
+    // ===== PRODUITS - CHAMCHAME =====
+    "chamchame": "Le Chamchame ASSL! 🍛 C'est un mélange épicé traditionnel haïtien! DÉLICIEUX avec le riz, la viande, les légumes! Ça donne un goût extraordinaire à ta nourriture! Disponible en: 10g, 50g, 100g, 500g, 1kg",
+    "chamchame épice": "Le Chamchame c'est l'épice haïtienne! 🌶️ Un mélange traditionnel qui rend ta nourriture délicieuse! Les mères haïtiennes adorent!",
+    "chamchame goût": "Le Chamchame donne un goût naturel et savoureux! 👍 Pas de conservateurs, pas de produits chimiques! Juste du vrai goût haïtien!",
+
+    // ===== PRODUITS - FARINE MANIOC =====
+    "farine manioc": "La Farine Manioc ASSL! 🥔 Traditionnelle, naturelle et délicieuse! Parfaite pour la cassava, les pains, les gâteaux! Riche en glucides naturels! Disponible en: 50g, 100g, 500g, 1kg",
+    "manioc": "Le Manioc est un aliment traditionnel haïtien! 🌳 Notre farine est faite à partir de manioc frais et naturel! Aucun additif!",
+    "cassava": "Tu aimes la cassava? 🥔 Notre Farine Manioc ASSL est PARFAITE pour faire une cassava succulente! Goût authentique haïtien!",
+
+    // ===== PRODUITS - FARINE BANANE =====
+    "farine banane": "La Farine Banane ASSL! 🍌 Riche en potassium et nutriments! Parfaite pour les bébés, les enfants et les adultes! Douce et naturelle! Disponible en: 50g, 100g, 500g, 1kg",
+    "banane farine": "Notre Farine Banane est faite de bananes naturelles! 🍌 TRÈS bonne pour la digestion et la santé! Les enfants adorent!",
+    "banane nutrition": "La Banane ASSL est TRÈS nutritive! 💪 Pleine de vitamines, minéraux, fibres! Parfaite pour la croissance des enfants!",
+    "banane enfant": "La Farine Banane est idéale pour les enfants! 👶 Naturelle, douce, facile à digérer! Les mères nous font confiance!",
+
+    // ===== PRODUITS - FARINE POMME DE TERRE =====
+    "farine pomme de terre": "La Farine Pomme de Terre ASSL! 🥔 Douce, naturelle et délicieuse! Parfaite pour les pains, les gâteaux, les plats! Riche en amidon naturel! Disponible en: 50g, 100g, 500g, 1kg",
+    "pomme de terre": "La Pomme de Terre ASSL vient de nos champs! 🌾 Transformée naturellement en farine! Aucun produit chimique!",
+    "patate": "La Patate (Pomme de Terre) ASSL est DÉLICIEUSE! 🥔 Utilisée pour faire des purées, des soupes, des gâteaux!",
+
+    // ===== PRODUITS - FARINE MAÏS =====
+    "farine maïs": "La Farine Maïs ASSL! 🌽 Le produit CLASSIQUE haïtien! Utilisée pour le maïs moulu, les gâteaux, le pain! TRÈS populaire! Disponible en: 50g, 100g, 500g, 1kg",
+    "maïs": "Le Maïs ASSL c'est le CLASSIQUE haïtien! 🌽 Rien de mieux pour une bonne polenta ou du maïs moulu! Délicieux et nutritif!",
+    "maïs moulu": "Tu veux faire du maïs moulu? 🌽 Notre Farine Maïs est PARFAITE! Goût authentique, texture parfaite! Les mamans haïtiennes adorent!",
+    "maïs délicieux": "Le Maïs ASSL est délicieux! 👍 Aucun compromis sur la qualité! Fait avec du vrai maïs naturel!",
+
+    // ===== PRODUITS - FARINE SORGO =====
+    "farine sorgo": "La Farine Sorgo ASSL! 🌾 Aussi appelée petit mil! Traditionnelle, nutritive, naturelle! TRÈS bonne pour la santé! Disponible en: 50g, 100g, 500g, 1kg",
+    "sorgo": "Le Sorgo (petit mil) c'est un super-aliment! 🌾 Notre farine est faite 100% naturellement! Excellente pour la digestion et l'énergie!",
+    "petit mil": "Le Petit Mil ASSL est NATUREL! 🌾 Une farine ancienne et bonne! Riche en fibres et protéines!",
+
+    // ===== PRODUITS - FARINE RIZ =====
+    "farine riz": "La Farine Riz ASSL! 🍚 Douce, fine et délicieuse! Parfaite pour les pains, les gâteaux, les desserts! Riz 100% naturel! Disponible en: 50g, 100g, 500g, 1kg",
+    "riz farine": "Notre Farine Riz est EXQUISE! 🍚 Texture fine, goût délicat! Parfaite pour la pâtisserie!",
+    "riz blanc": "Le Riz ASSL est de qualité supérieure! 🍚 Transformé en farine fine et blanche! Délicieux pour tous les usages!",
+
+    // ===== PRODUITS - AKAMIL =====
+    "akamil": "L'Akamil ASSL! 🥛 C'est un mélange traditionnel haïtien DÉLICIEUX! Fait avec des farines et des épices! Prêt à préparer ou à customiser! TRÈS populaire! Disponible en: 10g, 50g, 100g, 400g, 1kg",
+    "akmil": "L'Akmil ASSL! 🥛 La boisson traditionnelle haïtienne! On la prépare avec du lait ou de l'eau! Goût sucré et savoureux! Les enfants adorent!",
+    "akami": "L'Akami c'est bon! 🥛 Notre version ASSL est faite avec les meilleurs ingrédients! Naturelle, délicieuse, nutritive!",
+    "akamil boisson": "L'Akamil est une boisson MERVEILLEUSE! 🥛 Tu ajoutes du lait, un peu de sucre, et c'est prêt! Les enfants demandent toujours plus!",
+    "akamil goût": "L'Akamil ASSL a un goût UNIQUE! 👍 Mélange parfait de saveurs haïtiennes! Rien de comparable!",
+
+    // ===== PRODUITS - AKASAN =====
+    "akasan": "L'Akasan ASSL! 🍲 La soupe traditionnelle haïtienne! ÉPAISSE, CRÉMEUSE et DÉLICIEUSE! Riche en nutriments! Parfait pour le petit-déjeuner ou le dîner! Disponible en: 50g, 100g, 500g, 1kg",
+    "akassan": "L'Akasan c'est le petit-déjeuner traditionnel haïtien! 🍲 Notre version ASSL est MAGNIFIQUE! Épaisse, crémeuse, nourrissante!",
+    "akasan soup": "L'Akasan est une SUPER soupe! 🍲 Faite avec les meilleurs ingrédients! Riche en calories pour bien commencer la journée!",
+    "akasan petit déjeuner": "L'Akasan pour le petit-déj? OUIN! 🌅 C'est parfait! Ça te remplit le ventre et te donne de l'énergie! Les Haïtiens le font depuis longtemps!",
+    "akasan délicieux": "L'Akasan ASSL est DÉLICIEUX! 👍 Chaud et réconfortant! Parfait quand il fait froid!",
+
+    // ===== QUALITÉ ET INGRÉDIENTS =====
+    "qualité": "La qualité ASSL c'est notre promesse! ✅ Chaque produit est contrôlé! Zéro compromis! Produits naturels, sans additifs, sans conservateurs! 100% haïtien!",
+    "naturel": "TOUS les produits ASSL sont 100% naturels! 🌿 Aucun produit chimique, aucun insecticide! Juste la nature dans ta maison!",
+    "bio": "ASSL c'est BIO! 🌱 Produits biologiques, naturels, sains! Pas d'OGM, pas de pesticides! Juste du pur!",
+    "ingrédients": "Nos ingrédients sont simples et naturels! 🌾 On prend que le meilleur du terroir haïtien! Pas d'additifs, pas de trucages!",
+    "sans conservateurs": "ZÉRO conservateurs! ✅ Nos produits ASSL sont frais et naturels! Pas de produits chimiques pour te tromper!",
+    "frais": "Les produits ASSL sont toujours FRAIS! 🌿 Produits locaux, pas importés! Direct du champ à ta maison!",
+    "pas chimique": "Pas de produits chimiques! ✅ ASSL c'est 100% naturel! Ta santé d'abord!",
+    "sain": "Les produits ASSL sont TRÈS sains! 💪 Parfait pour ta santé et celle de ta famille!",
+    "santé": "La santé c'est important! 🏥 C'est pourquoi ASSL vend que des produits naturels et sains! Rien de dangereux!",
+
+    // ===== LIVRAISON =====
+    "livraison": "La livraison ASSL est GRATUITE partout en Haïti! 🚚 Rapide et fiable! Si tu commandes aujourd'hui, ça arrive demain! On ne fait jamais attendre!",
+    "delivery": "Livraison GRATUITE! 🚚 Partout en Haïti! Rapide et sécurisée!",
+    "livrer": "Nous livrons partout en Haïti! 🗺️ Port-au-Prince, Cap-Haïtien, Gonaïves, partout! GRATUIT!",
+    "délai livraison": "Maximum 24 heures pour la livraison! ⏱️ C'est rapide et fiable! Pas d'attente inutile!",
+    "combien temps livraison": "La livraison prend maximum 24 heures! ⏱️ On est rapides chez ASSL! Tu auras ton produit très vite!",
+    "frais livraison": "GRATUIT! 🎉 Pas de frais de livraison! ASSL paye tout! C'est notre cadeau pour toi!",
+    "gratuit livraison": "Livraison GRATUITE! 🎁 C'est un de nos avantages! Tu paies juste le produit!",
+    "où vous livrez": "Nous livrons PARTOUT en Haïti! 🇭🇹 Port-au-Prince, provinces, îles - partout! GRATUIT!",
+    "haïti entier": "ASSL livre dans tout Haïti! 🗺️ Aucun endroit trop loin! On va chez toi!",
+
+    // ===== PRIX ET PAIEMENT =====
+    "prix": "Les prix ASSL sont JUSTES et raisonnables! 💰 Pas cher pour une qualité pareille! T'as besoin de quoi?",
+    "combien coûte": "Demande-moi un produit et je te dirai le prix! 💰 Tous nos prix sont très compétitifs!",
+    "cher": "ASSL c'est PAS cher! 💰 Meilleure qualité, meilleur prix! C'est du bon rapport qualité-prix!",
+    "coût": "Les produits ASSL sont abordables! 💰 Pas cher du tout! Bon produit, bon prix!",
+    "paiement": "Tu peux payer par WhatsApp! 💳 Transfère l'argent et on te livre! Simple et sûr!",
+    "comment payer": "Demande simplement sur WhatsApp! 📱 On t'envoie les détails de paiement! Sûr et rapide!",
+    "sécurisé": "Les paiements ASSL sont sécurisés! 🔒 Pas de danger, pas de problème!",
+    "virement": "Oui, tu peux faire un virement! 💳 Demande juste les détails sur WhatsApp!",
+
+    // ===== COMMANDER =====
+    "commander": "Pour commander chez ASSL: 1) Ajoute les produits au panier 2) Passe ta commande sur WhatsApp 3) On te livre! Simple non? 📱",
+    "comment commander": "C'est TRÈS facile! 😊 1) Choisis tes produits 2) Ajoute au panier 3) Contacte-nous par WhatsApp! C'est tout!",
+    "acheter": "Tu veux acheter? 🛒 Clique sur 'Ajouter au panier' et contacte-nous sur WhatsApp! On s'occupe du reste!",
+    "commande": "Pour commencer une commande: choisis tes produits, ajoute au panier, puis envoie-nous un message! 📱",
+    "panier": "Le panier ASSL est facile à utiliser! 🛒 Ajoute ce que tu veux, puis clique pour passer commande!",
+    "passer commande": "Passer commande c'est simple! 1) Sélectionne tes produits 2) Ajoute au panier 3) Envoie sur WhatsApp! 📱",
+
+    // ===== CONTACT ET COMMUNICATION =====
+    "contact": "Contacte ASSL! 📱 WhatsApp: +509 36 31 0974 ou Téléphone: +509 47 47 2529 Ou envoie un email: assl.haiti@gmail.com Nous répondons très vite!",
+    "whatsapp": "Notre WhatsApp: +509 36 31 0974 📱 Écris-nous! On répond dans les minutes!",
+    "téléphone": "Appelle-nous! ☎️ +509 47 47 2529 On parle directement!",
+    "appeler": "Appelle ASSL! ☎️ +509 47 47 2529 On va répondre et t'aider!",
+    "email": "Envoie un email! 📧 assl.haiti@gmail.com On répond rapidement!",
+    "message": "Envoie-nous un message sur WhatsApp! 📱 +509 36 31 0974 C'est plus rapide!",
+    "comment nous contacter": "Tu peux nous contacter par: 📱 WhatsApp: +509 36 31 0974 ☎️ Téléphone: +509 47 47 2529 📧 Email: assl.haiti@gmail.com",
+    "horaires": "ASSL ouvert: Lundi à Samedi, 8H AM - 17H Dimanche: Fermé! 🚫",
+    "jours ouverture": "Lundi à Samedi! ☀️ De 8H du matin à 5H de l'après-midi! Le dimanche on se repose! 😊",
+    "ouvert aujourd'hui": "Si c'est lundi à samedi et entre 8H-17H, on est OUVERT! 🟢 Contacte-nous!",
+    "adresse": "ASSL se trouve à: 13, Merger Léogâne, Lhomond, Ouest, Haïti 📍",
+    "où assl": "ASSL est à Lhomond! 📍 Dans le département de l'Ouest en Haïti! Tu peux nous visiter ou nous appeler!",
+    "emplacement": "Nous sommes basés à Lhomond, Haïti! 🇭🇹 C'est une belle région agricole!",
+
+    // ===== RÉSEAUX SOCIAUX =====
+    "facebook": "Suis-nous sur Facebook! 📘 Association ASSL - Lhomond! Tu verras nos nouveaux produits et nos promotions!",
+    "instagram": "Suis-nous sur Instagram! 📸 @associationassl07 Voir nos belles photos!",
+    "youtube": "Ça ou chaîne YouTube! 📺 Découvre nos vidéos de produits! Abonne-toi!",
+    "tiktok": "Suis-nous sur TikTok! 🎵 @asslassociation Vidéos amusantes et produits!",
+    "réseaux sociaux": "ASSL est sur tous les réseaux! 📱 Facebook, Instagram, YouTube, TikTok! Suis-nous pour les mises à jour!",
+    "newsletter": "Tu veux les mises à jour? 📧 Donne-nous ton email et on t'envoie les news!",
+    "suivre": "Suis ASSL sur tous les réseaux! 📱 Facebook, Instagram, YouTube, TikTok! Ne manque rien!",
+
+    // ===== HISTOIRE ET MISSION =====
+    "histoire": "ASSL est née de la passion pour l'agriculture! 🌾 Une association à Lhomond qui transforme les produits locaux! Depuis des années, on travaille pour la communauté!",
+    "mission": "Notre mission: ASSL veut donner la meilleure nourriture à la meilleure qualité au meilleur prix! Pour toi, ta famille, ta santé! 💪",
+    "objectif": "ASSL veut: 1) Produire naturellement 2) Transformer artisanalement 3) Livrer rapidement 4) Prix juste! Ça c'est notre objectif!",
+    "fondateur": "Jean Tony Catounge est le fondateur et PDG! 👨‍💼 Un visionnaire qui aime l'agriculture et la communauté!",
+    "équipe": "L'équipe ASSL est dédiée! 💪 Des gens qui aiment leur travail et qui veulent te servir!",
+    "communauté": "ASSL c'est une communauté! 🤝 Les gens de Lhomond travaillent ensemble pour toi!",
+
+    // ===== ENFANTS ET FAMILLE =====
+    "enfant": "Les produits ASSL sont PARFAITS pour les enfants! 👶 Naturels, sains, nutritifs! Les mères font confiance à ASSL!",
+    "bébé": "Les bébés aiment nos produits! 👶 Farine Banane, Akamil - tout est TRÈS bon pour les petits!",
+    "famille": "ASSL c'est pour toute la famille! 👨‍👩‍👧‍👦 Du bébé aux grands-parents! Tout le monde adore nos produits!",
+    "femme enceinte": "Les femmes enceintes ont besoin de nutrition! 🤰 ASSL donne tous les nutriments naturels! Très bon pour la maman et le bébé!",
+    "nutrient": "Nos produits sont RICHES en nutriments! 💪 Protéines, vitamines, minéraux - tout ce qu'il faut!",
+    "croissance": "Les enfants grandissent bien avec ASSL! 📈 Produits naturels = croissance saine!",
+    "recette": "Tu veux des recettes? 🍳 Je peux t'aider! Dis-moi quel produit et je te donne des idées!",
+
+    // ===== PROMOTIONS ET OFFRES =====
+    "promotion": "ASSL a des promotions régulièrement! 🎉 Suis nos réseaux sociaux pour les dernières offres!",
+    "offre": "Les meilleures offres chez ASSL! 💰 Demande ce mois-ci!",
+    "réduction": "ASSL donne parfois des réductions! 💰 Demande si tu achètes en gros!",
+    "gros": "Tu veux acheter en gros? 📦 ASSL donne des prix réduits! Contacte-nous!",
+    "en masse": "Acheter en masse chez ASSL? 📦 On donne des prix super! Appelle-nous!",
+    "rabais": "ASSL donne des rabais! 💰 Surtout si tu achètes beaucoup!",
+
+    // ===== DIFFÉRENCES D'ASSL =====
+    "pourquoi assl": "Pourquoi ASSL? 🤔 Parce qu'on a: Qualité ✅ Prix juste ✅ Livraison gratuite ✅ Service excellent ✅ Produits naturels ✅ Rien de mieux!",
+    "avantages": "ASSL c'est: 1) Naturel 2) Pas cher 3) Livraison gratuite 4) Rapide 5) Fiable! Quoi de mieux?",
+    "différent": "ASSL est différent! 🌟 On donne que du naturel, pas de chimie! On ne fait pas d'intermédiaires! Direct du champ à toi!",
+    "meilleur": "ASSL c'est le meilleur! 🏆 Meilleure qualité, meilleur prix, meilleur service!",
+    "local": "ASSL c'est local! 🇭🇹 Haïtien, naturel, fait par les Haïtiens! Soutiens le local!",
+    "économie": "En achetant ASSL, tu aides l'économie locale! 💰 L'argent reste en Haïti! Belle action!",
+    "artisanal": "ASSL c'est artisanal! 🤝 Pas d'usine, pas de machines! Fait à la main avec amour!",
+
+    // ===== GARANTIE ET CONFIANCE =====
+    "garantie": "ASSL garantit tous les produits! ✅ Pas satisfait? Retourne-le! Remboursement garanti!",
+    "retour": "Tu peux retourner les produits dans 7 jours! 📦 Si t'es pas content, on t'aide!",
+    "remboursement": "Remboursement facile! 💰 Si tu veux, on te rembourse!",
+    "fiable": "ASSL c'est fiable! 🤝 Confiance 100%! Tes amis aussi utilisent ASSL!",
+    "confiance": "Fais confiance à ASSL! 🤝 Des milliers de clients nous font confiance! Pourquoi? Parce qu'on ne triche pas!",
+    "réputation": "La réputation ASSL c'est: FIABLE, HONNÊTE, QUALITÉ! 👏 Les gens nous recommandent!",
+    "avis": "Les avis sur ASSL sont EXCELLENTS! ⭐ Les clients adorent nos produits!",
+
+    // ===== RECOMMANDATIONS =====
+    "recommande": "Je recommande ASSL à 100%! 👍 Meilleure qualité, meilleur prix! Pas de regrets!",
+    "copine": "Dis à ta copine: ASSL c'est le mieux! 👭 Elle va adorer!",
+    "ami": "Dis à tes amis d'essayer ASSL! 👬 Ça change la vie!",
+    "famille recommande": "Les familles haïtiennes recommandent ASSL! 👨‍👩‍👧 Elles adorent nos produits!",
+    "essayer": "Tu dois essayer ASSL! 😊 Tu ne regretteras pas! Qualité garantie!",
+
+    // ===== CURIOSITÉ ET APPRENTISSAGE =====
+    "pourquoi moringa": "Le Moringa c'est un super-aliment! 🌿 Riche en vitamines A, C, E! Anti-inflammatoire! Les docteurs le recommandent!",
+    "pourquoi naturel": "Naturel c'est mieux! 💚 Pas de chimie = pas de danger! Santé = vie longue!",
+    "nutrition": "La nutrition ASSL c'est: Vitamines ✅ Minéraux ✅ Protéines ✅ Fibres ✅ Énergie ✅ Santé ✅",
+    "énergie": "Les produits ASSL te donnent de l'énergie! ⚡ Tu te sentiras mieux!",
+    "force": "Les produits ASSL te donnent la force! 💪 Parfait pour le travail, le sport, la vie!",
+    "peau": "Le Moringa est bon pour la peau! 👌 Belle peau = produits naturels!",
+    "cheveux": "Les produits ASSL rendent les cheveux beaux! 💇 Naturel = cheveux forts!",
+    "poids": "Les produits ASSL aident avec le poids! ⚖️ Naturel, pas de danger!",
+
+    // ===== SPÉCIFICITÉS =====
+    "combien sac": "Nous vendons par: Sac (1kg) 📦 Sachet (50g-500g) 📭 Marmite (1kg) 🍲 Tu choisis!",
+    "taille": "Les produits ASSL viennent en plusieurs tailles! Petit sachet pour goûter, gros sac pour la famille!",
+    "gramme": "Gramme par gramme, ASSL c'est de la qualité! 🎯 Aucune arnaque!",
+    "quantité": "Tu veux quelle quantité? 🤔 10g, 50g, 100g, 500g, 1kg? On a tout!",
+    "stock": "ASSL a toujours du stock! 📦 Pas de rupture! On refait régulièrement!",
+    "rupture": "Pas de panique! 🚫 Si on n'a pas en stock, on en refait rapidement! Commande en avance!",
+
+    // ===== QUESTIONS SIMPLES =====
+    "ça va": "Ça va bien! 😊 Et toi? Tu vas bien? Comment je peux t'aider?",
+    "comment ça va": "Je vais très bien, merci! 😊 Tu veux connaître nos produits?",
+    "quoi de neuf": "Quoi de neuf chez ASSL? 🌟 De nouveaux produits, de meilleures qualités! On innove toujours!",
+    "tu t'appelles comment": "Je suis l'Assistante ASSL! 🤖 Et toi? Comment tu t'appelles? 😊",
+    "ton nom": "Je n'ai pas de nom personnel, mais appelle-moi Assistante ASSL! 😊 Et toi?",
+    "tu es qui": "Je suis l'assistante virtuelle ASSL! 🤖 Je suis là pour t'aider 24/7!",
+    "d'où tu viens": "Je viens du site ASSL! 🌐 Je suis basée ici pour t'aider!",
+    "tu connais asl": "Oui! ASSL c'est moi! 😊 Je connais TOUS les produits! Pose tes questions!",
+
+    // ===== BLAGUES ET HUMOUR =====
+    "blague": "Pourquoi les produits ASSL sont les meilleurs? 🤔 Parce que c'est de l'or agricole! 😆",
+    "rigolo": "Tu sais pourquoi les Haïtiens adorent ASSL? 🤔 Parce que c'est BON, c'est NATUREL, et c'est PATRIOTIQUE! 😆",
+    "marrant": "Pourquoi tu dois essayer ASSL? Parce que c'est: NATUREL ✅ PAS CHER ✅ BON ✅ Et que ça change la vie! 😄",
+    "ha ha": "😆 Je suis contente de te faire rire! Tu veux parler de produits maintenant?",
+
+    // ===== ÉMOTIONS =====
+    "j'aime": "J'aime que tu aimes ASSL! 😊 Ça nous rend heureux!",
+    "j'adore": "J'adore ça! 😊 ASSL aussi t'adore!",
+    "sympa": "Merci! C'est sympa! 😊 On essaie de servir au mieux!",
+    "bien": "Bien! 👍 Heureux de t'aider!",
+    "super": "Super! 🎉 Je suis contente!",
+    "génial": "C'est génial! 🌟 ASSL c'est génial!",
+    "excellent": "Excellent! ⭐ C'est ASSL!",
+
+    // ===== PROBLÈMES =====
+    "problème": "Un problème? 😟 Raconte-moi! Je vais t'aider!",
+    "souci": "Un souci? 😟 Dis-moi! On va le régler ensemble!",
+    "plainte": "Une plainte? 😟 On veut l'entendre! On va arranger ça!",
+    "erreur": "Une erreur? 😟 Appelle-nous tout de suite! +509 36 31 0974! On va corriger!",
+    "pas reçu": "Tu n'as pas reçu ta commande? 😟 Appelle-nous! On va chercher! On prend ça au sérieux!",
+    "cassé": "Produit cassé? 😟 Retourne-le! On te donne un nouveau gratuitement!",
+    "mauvais produit": "Mauvais produit? 😟 C'est rare mais ça arrive! Retourne-le! Remboursement garanti!",
+    "qualité mauvaise": "Qualité mauvaise? 😟 C'est impossible! Mais si c'est le cas, ramène-le! On s'excuse!",
+
+    // ===== CONSEILS =====
+    "conseil": "Tu veux un conseil? 💡 Commence avec un petit sachet pour goûter! Tu vas adorer!",
+    "conseil produit": "Je te conseille le Moringa! 🌿 Super-aliment qui change tout! Ou l'Akamil si tu aimes les boissons!",
+    "pour commencer": "Pour commencer chez ASSL: Prends un Akamil ou un Moringa! Petit sachet! Tu vas découvrir la qualité!",
+    "quel produit": "Quel produit tu cherches? 🤔 Sucré? Salé? Nutritif? Je te conseille!",
+    "besoin help": "T'as besoin d'aide? 😊 Dis-moi et je vais t'aider!",
+    "pas sûr": "Pas sûr? 😊 Pose-moi des questions! Je vais tout t'expliquer!",
+
+    // ===== DIVERSITÉ =====
+    "autres produits": "ASSL a PLEIN de produits! 🌾 Moringa, Chamchame, Farines (Maïs, Manioc, Banane, Pomme de Terre, Sorgo, Riz), Akamil, Akasan! Tu vas pas trouver ailleurs!",
+    "plus produits": "Plus tu regardes, plus tu trouves! 🔍 ASSL a une variété incroyable! Tout pour la cuisine haïtienne!",
+    "variété": "ASSL c'est la variété! 🌈 Tous les ingrédients pour faire ta cuisine! Tout naturel!",
+    "choix": "Gros choix chez ASSL! 😊 9 produits différents! Quoi que tu veux, on a!",
+
+    // ===== FINALES =====
+    "merci assl": "Merci à TOI! 🙏 Tes commandes nous rendent heureux!",
+    "continue": "On va continuer à te servir! 💪 Merci de croire en ASSL!",
+    "bonne luck": "Bonne chance! 🍀 Et à bientôt chez ASSL!",
+    "à demain": "À demain! 👋 On sera là!",
+    "plus tard": "À plus tard! 👋 On t'attend!",
+    "j'reviendrai": "Yes! À très bientôt! 😊 On attend ta commande!",
+    "c'est cool": "C'est vraiment cool! 🎉 ASSL c'est cool!",
+    "love assl": "Love ASSL! 💚 Nous aussi on t'aime!",
+
+    // ===== FALLBACK RESPONSES =====
+};
+
+const defaultResponses = [
+    "Je ne comprends pas bien cette question. 🤔 Tu veux savoir quelque chose sur les produits ASSL? Les prix? La livraison? Pose ta question!",
+    "Hmm... ta question est un peu confuse! 😅 Demande-moi quelque chose sur ASSL, nos produits, ou comment commander!",
+    "Je ne suis pas sure de ce que tu demandes! 🤷 Parle-moi de produits agricoles, de prix, de livraison - je vais t'aider!",
+    "C'est une bonne question! 💡 Mais je ne suis pas sure comment répondre! Pose une autre question sur ASSL!",
+    "Je n'ai pas de réponse pour ça! 😅 Mais je peux t'aider avec nos produits! Dis-moi quoi!",
+];
 
         function sendMessage() {
             if (!isLoggedIn()) {
@@ -2307,79 +2594,7 @@
                 }
             });
         });
-        // À AJOUTER À LA FIN DE VOTRE SECTION <script>, JUSTE AVANT LA BALISE 
-
-// ========================================
-// 🎯 DÉTECTION CONNEXION INTERNET
-// ========================================
-function checkConnection() {
-    const offlinePage = document.getElementById('offlinePage');
-    
-    if (!navigator.onLine) {
-        offlinePage.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    } else {
-        offlinePage.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// Vérifier au chargement
-window.addEventListener('load', checkConnection);
-
-// Vérifier quand la connexion change
-window.addEventListener('online', function() {
-    document.getElementById('offlinePage').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    location.reload(); // Recharge la page automatiquement
-});
-
-window.addEventListener('offline', function() {
-    document.getElementById('offlinePage').classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
+       
     </script>
 </body>
-<!-- À AJOUTER JUSTE APRÈS LA BALISE <body> -->
-<div id="offlinePage" class="offline-page">
-    <div class="offline-content">
-        <h1 class="offline-title">Pas de Connexion Internet</h1>
-        
-        <div class="offline-animation">
-            <!-- Garçon avec extincteur -->
-            <div class="boy">
-                <div class="boy-head">
-                    <div class="cap"></div>
-                    <div class="face">
-                        <div class="eye left-eye"></div>
-                        <div class="eye right-eye"></div>
-                        <div class="mouth"></div>
-                    </div>
-                </div>
-                <div class="boy-body">
-                    <div class="jacket"></div>
-                    <div class="arms">
-                        <div class="arm left-arm"></div>
-                        <div class="arm right-arm"></div>
-                    </div>
-                </div>
-                <div class="extinguisher">
-                    <div class="extinguisher-body"></div>
-                    <div class="extinguisher-hose"></div>
-                    <div class="foam"></div>
-                </div>
-            </div>
-            
-            <!-- Feu -->
-            <div class="fire">
-                <div class="flame flame-1"></div>
-                <div class="flame flame-2"></div>
-                <div class="flame flame-3"></div>
-            </div>
-        </div>
-        
-        <p class="offline-message">Veuillez vérifier votre connexion Internet</p>
-        <button class="retry-button" onclick="location.reload()">🔄 Réessayer</button>
-    </div>
-</div>
 </html>
