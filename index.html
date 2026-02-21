@@ -2949,6 +2949,12 @@ const defaultResponses = [
                     dropdown.classList.remove('active');
                 }
             });
+
+            const params = new URLSearchParams(window.location.search);
+            const shouldOpenCart = params.get('page') === 'cart' || window.location.hash === '#cart';
+            if (shouldOpenCart) {
+                showPage('cart');
+            }
         });
 
         function passerCommande() {
